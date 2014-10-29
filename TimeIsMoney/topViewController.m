@@ -198,8 +198,8 @@
     //strをNSData型の変数に変換
     NSData *trimdata = [str dataUsingEncoding:NSUTF8StringEncoding];
     //dataを元にJSONオブジェクトを生成
-    NSArray *array = [NSJSONSerialization JSONObjectWithData:trimdata options:NSJSONReadingMutableContainers error:&err];
+    NSArray *resarray = [NSJSONSerialization JSONObjectWithData:trimdata options:NSJSONReadingMutableContainers error:&err];
     //値を返す
-    return array;
+    return resarray;
 }
 @end

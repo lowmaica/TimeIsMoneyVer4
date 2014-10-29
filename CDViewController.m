@@ -5,6 +5,11 @@
 //  Created by ビザンコムマック　13 on 2014/09/19.
 //  Copyright (c) 2014年 mycompany. All rights reserved.
 //
+//http://time.miraiserver.com/clienttop.php?id=time01これでクライアントのトップ5の時給が知れる
+//http://time.miraiserver.com/avgjikyu.php?id=time01 これで平均の時給がしれる
+//http://time.miraiserver.com/timeavg.php?id=time01 これで平均の時間が知れる
+//http://time.miraiserver.com/projecttop.php?id=time01 これでプロジェクトのトップ5が知れる
+//http://time.miraiserver.com/janletop.php?id=time01 これでジャンルのトップ5が知れる
 
 #import "CDViewController.h"
 
@@ -114,6 +119,7 @@
 //タイマーで呼ばれるcountDownメソッド
 -(void)countDown{
     app.prjTime++; //経過時間を足していく
+    NSLog(@"%ld",app.prjTime);
     //まだ00:00:00になってなかったら…
     if (!isOver) {
         if(seconds>0){
@@ -212,11 +218,13 @@
 
 //経過時間を保存するメソッド
 -(void)saveTime{
+    /*
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *dic = [defaults dictionaryForKey:app.projectName];
     NSNumber *num = [NSNumber numberWithFloat:app.prjTime];
     [dic setValue: num  forKey: @"経過時間"];
     [defaults setObject:dic forKey: app.projectName];
+     */
     //サーバーのデータ送信処理
     NSURL *url = [NSURL URLWithString:@"http://time.miraiserver.com/update.php"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -236,7 +244,7 @@
     //timeのパラメータの設定
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Disposition: form-data; name=\"time\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"0\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%ld\r\n",app.prjTime] dataUsingEncoding:NSUTF8StringEncoding]];
     //clientのパラメータの設定
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Disposition: form-data; name=\"client\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];

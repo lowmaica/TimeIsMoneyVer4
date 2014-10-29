@@ -14,6 +14,7 @@
 
 //共通の変数
 @property float jikyu;
+@property float resjikyu;
 
 //進行中プロジェクトを管理する配列
 @property NSMutableArray *nowProject;
