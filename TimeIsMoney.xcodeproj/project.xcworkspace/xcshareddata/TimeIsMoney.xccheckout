@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0AD68A8C-0991-474F-82CF-E158772957D8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TimeIsMoney</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5421A5E8ADE97FB02447C985665017240FCD479D</key>
+		<string>https://github.com/bizancomSmartPhoneAppDeveloper2/TimeIsMoneyVer2.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TimeIsMoney.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5421A5E8ADE97FB02447C985665017240FCD479D</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/bizancomSmartPhoneAppDeveloper2/TimeIsMoneyVer2.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5421A5E8ADE97FB02447C985665017240FCD479D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5421A5E8ADE97FB02447C985665017240FCD479D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TimeIsMoneyVer2</string>
+		</dict>
+	</array>
+</dict>
+</plist>

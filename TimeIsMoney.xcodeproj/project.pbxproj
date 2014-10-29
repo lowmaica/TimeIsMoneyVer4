@@ -1,0 +1,533 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F43D562419E455C000BF6718 /* topViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D562319E455C000BF6718 /* topViewController.m */; };
+		F46D80AC19E99A47003732D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46D80AB19E99A47003732D5 /* Main.storyboard */; };
+		F46D80E119E9D877003732D5 /* finishTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46D80E019E9D877003732D5 /* finishTableViewController.m */; };
+		F46D80E419E9DACF003732D5 /* finishResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46D80E319E9DACF003732D5 /* finishResultViewController.m */; };
+		F46DA20F19CB403300AB1CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DA20E19CB403300AB1CEC /* Foundation.framework */; };
+		F46DA21119CB403300AB1CEC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DA21019CB403300AB1CEC /* CoreGraphics.framework */; };
+		F46DA21319CB403300AB1CEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DA21219CB403300AB1CEC /* UIKit.framework */; };
+		F46DA21919CB403300AB1CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F46DA21719CB403300AB1CEC /* InfoPlist.strings */; };
+		F46DA21B19CB403300AB1CEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA21A19CB403300AB1CEC /* main.m */; };
+		F46DA21F19CB403300AB1CEC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA21E19CB403300AB1CEC /* AppDelegate.m */; };
+		F46DA22719CB403400AB1CEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F46DA22619CB403400AB1CEC /* Images.xcassets */; };
+		F46DA22E19CB403400AB1CEC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DA22D19CB403400AB1CEC /* XCTest.framework */; };
+		F46DA22F19CB403400AB1CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DA20E19CB403300AB1CEC /* Foundation.framework */; };
+		F46DA23019CB403400AB1CEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46DA21219CB403300AB1CEC /* UIKit.framework */; };
+		F46DA23819CB403400AB1CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F46DA23619CB403400AB1CEC /* InfoPlist.strings */; };
+		F46DA23A19CB403400AB1CEC /* TimeIsMoneyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA23919CB403400AB1CEC /* TimeIsMoneyTests.m */; };
+		F46DA24519CB41AE00AB1CEC /* NPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA24419CB41AE00AB1CEC /* NPViewController.m */; };
+		F46DA24B19CB44E800AB1CEC /* CDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA24A19CB44E800AB1CEC /* CDViewController.m */; };
+		F46DA24E19CB466800AB1CEC /* FNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA24D19CB466800AB1CEC /* FNViewController.m */; };
+		F4A86A6319EE0E8600B42894 /* bunsekiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */; };
+		F4A9AFB919E634C200F8E9FD /* jikyuSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */; };
+		F4DBBB5419E4443A0064083C /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DBBB5319E4443A0064083C /* Sound.m */; };
+		F4E9CF6C19CC02EE0049F233 /* coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4E9CF6919CC02EE0049F233 /* coin.mp3 */; };
+		F4E9CF6D19CC02EE0049F233 /* register.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4E9CF6A19CC02EE0049F233 /* register.mp3 */; };
+		F4E9CF6E19CC02EE0049F233 /* Time approach.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4E9CF6B19CC02EE0049F233 /* Time approach.mp3 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F46DA23119CB403400AB1CEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F46DA20319CB403300AB1CEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F46DA20A19CB403300AB1CEC;
+			remoteInfo = TimeIsMoney;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F43D562219E455C000BF6718 /* topViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topViewController.h; sourceTree = "<group>"; };
+		F43D562319E455C000BF6718 /* topViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topViewController.m; sourceTree = "<group>"; };
+		F46D80AB19E99A47003732D5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F46D80DF19E9D877003732D5 /* finishTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finishTableViewController.h; sourceTree = "<group>"; };
+		F46D80E019E9D877003732D5 /* finishTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finishTableViewController.m; sourceTree = "<group>"; };
+		F46D80E219E9DACF003732D5 /* finishResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finishResultViewController.h; sourceTree = "<group>"; };
+		F46D80E319E9DACF003732D5 /* finishResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finishResultViewController.m; sourceTree = "<group>"; };
+		F46DA20B19CB403300AB1CEC /* TimeIsMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeIsMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F46DA20E19CB403300AB1CEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F46DA21019CB403300AB1CEC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F46DA21219CB403300AB1CEC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F46DA21619CB403300AB1CEC /* TimeIsMoney-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TimeIsMoney-Info.plist"; sourceTree = "<group>"; };
+		F46DA21819CB403300AB1CEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F46DA21A19CB403300AB1CEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F46DA21C19CB403300AB1CEC /* TimeIsMoney-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TimeIsMoney-Prefix.pch"; sourceTree = "<group>"; };
+		F46DA21D19CB403300AB1CEC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F46DA21E19CB403300AB1CEC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F46DA22619CB403400AB1CEC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F46DA22C19CB403400AB1CEC /* TimeIsMoneyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeIsMoneyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F46DA22D19CB403400AB1CEC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F46DA23519CB403400AB1CEC /* TimeIsMoneyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TimeIsMoneyTests-Info.plist"; sourceTree = "<group>"; };
+		F46DA23719CB403400AB1CEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F46DA23919CB403400AB1CEC /* TimeIsMoneyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeIsMoneyTests.m; sourceTree = "<group>"; };
+		F46DA24319CB41AE00AB1CEC /* NPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPViewController.h; sourceTree = "<group>"; };
+		F46DA24419CB41AE00AB1CEC /* NPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPViewController.m; sourceTree = "<group>"; };
+		F46DA24919CB44E800AB1CEC /* CDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDViewController.h; path = ../CDViewController.h; sourceTree = "<group>"; };
+		F46DA24A19CB44E800AB1CEC /* CDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDViewController.m; path = ../CDViewController.m; sourceTree = "<group>"; };
+		F46DA24C19CB466800AB1CEC /* FNViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNViewController.h; sourceTree = "<group>"; };
+		F46DA24D19CB466800AB1CEC /* FNViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNViewController.m; sourceTree = "<group>"; };
+		F4A86A6119EE0E8600B42894 /* bunsekiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bunsekiViewController.h; sourceTree = "<group>"; };
+		F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bunsekiViewController.m; sourceTree = "<group>"; };
+		F4A9AFB719E634C200F8E9FD /* jikyuSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jikyuSetViewController.h; sourceTree = "<group>"; };
+		F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jikyuSetViewController.m; sourceTree = "<group>"; };
+		F4DBBB5219E4443A0064083C /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		F4DBBB5319E4443A0064083C /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
+		F4E9CF6919CC02EE0049F233 /* coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin.mp3; sourceTree = "<group>"; };
+		F4E9CF6A19CC02EE0049F233 /* register.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = register.mp3; sourceTree = "<group>"; };
+		F4E9CF6B19CC02EE0049F233 /* Time approach.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Time approach.mp3"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F46DA20819CB403300AB1CEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46DA21119CB403300AB1CEC /* CoreGraphics.framework in Frameworks */,
+				F46DA21319CB403300AB1CEC /* UIKit.framework in Frameworks */,
+				F46DA20F19CB403300AB1CEC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F46DA22919CB403400AB1CEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46DA22E19CB403400AB1CEC /* XCTest.framework in Frameworks */,
+				F46DA23019CB403400AB1CEC /* UIKit.framework in Frameworks */,
+				F46DA22F19CB403400AB1CEC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F46DA20219CB403300AB1CEC = {
+			isa = PBXGroup;
+			children = (
+				F46DA21419CB403300AB1CEC /* TimeIsMoney */,
+				F46DA23319CB403400AB1CEC /* TimeIsMoneyTests */,
+				F46DA20D19CB403300AB1CEC /* Frameworks */,
+				F46DA20C19CB403300AB1CEC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F46DA20C19CB403300AB1CEC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F46DA20B19CB403300AB1CEC /* TimeIsMoney.app */,
+				F46DA22C19CB403400AB1CEC /* TimeIsMoneyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F46DA20D19CB403300AB1CEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F46DA20E19CB403300AB1CEC /* Foundation.framework */,
+				F46DA21019CB403300AB1CEC /* CoreGraphics.framework */,
+				F46DA21219CB403300AB1CEC /* UIKit.framework */,
+				F46DA22D19CB403400AB1CEC /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F46DA21419CB403300AB1CEC /* TimeIsMoney */ = {
+			isa = PBXGroup;
+			children = (
+				F46DA21D19CB403300AB1CEC /* AppDelegate.h */,
+				F46DA21E19CB403300AB1CEC /* AppDelegate.m */,
+				F4DBBB5219E4443A0064083C /* Sound.h */,
+				F4DBBB5319E4443A0064083C /* Sound.m */,
+				F46D80AB19E99A47003732D5 /* Main.storyboard */,
+				F4A86A6119EE0E8600B42894 /* bunsekiViewController.h */,
+				F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */,
+				F43D562219E455C000BF6718 /* topViewController.h */,
+				F43D562319E455C000BF6718 /* topViewController.m */,
+				F46D80DF19E9D877003732D5 /* finishTableViewController.h */,
+				F46D80E019E9D877003732D5 /* finishTableViewController.m */,
+				F4A9AFB719E634C200F8E9FD /* jikyuSetViewController.h */,
+				F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */,
+				F46DA24319CB41AE00AB1CEC /* NPViewController.h */,
+				F46DA24419CB41AE00AB1CEC /* NPViewController.m */,
+				F46DA24919CB44E800AB1CEC /* CDViewController.h */,
+				F46DA24A19CB44E800AB1CEC /* CDViewController.m */,
+				F46DA24C19CB466800AB1CEC /* FNViewController.h */,
+				F46DA24D19CB466800AB1CEC /* FNViewController.m */,
+				F46D80E219E9DACF003732D5 /* finishResultViewController.h */,
+				F46D80E319E9DACF003732D5 /* finishResultViewController.m */,
+				F46DA22619CB403400AB1CEC /* Images.xcassets */,
+				F4A9AFBB19E64F4000F8E9FD /* Images */,
+				F46DA21519CB403300AB1CEC /* Supporting Files */,
+			);
+			path = TimeIsMoney;
+			sourceTree = "<group>";
+		};
+		F46DA21519CB403300AB1CEC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F4E9CF6919CC02EE0049F233 /* coin.mp3 */,
+				F4E9CF6A19CC02EE0049F233 /* register.mp3 */,
+				F4E9CF6B19CC02EE0049F233 /* Time approach.mp3 */,
+				F46DA21619CB403300AB1CEC /* TimeIsMoney-Info.plist */,
+				F46DA21719CB403300AB1CEC /* InfoPlist.strings */,
+				F46DA21A19CB403300AB1CEC /* main.m */,
+				F46DA21C19CB403300AB1CEC /* TimeIsMoney-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F46DA23319CB403400AB1CEC /* TimeIsMoneyTests */ = {
+			isa = PBXGroup;
+			children = (
+				F46DA23919CB403400AB1CEC /* TimeIsMoneyTests.m */,
+				F46DA23419CB403400AB1CEC /* Supporting Files */,
+			);
+			path = TimeIsMoneyTests;
+			sourceTree = "<group>";
+		};
+		F46DA23419CB403400AB1CEC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F46DA23519CB403400AB1CEC /* TimeIsMoneyTests-Info.plist */,
+				F46DA23619CB403400AB1CEC /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F4A9AFBB19E64F4000F8E9FD /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F46DA20A19CB403300AB1CEC /* TimeIsMoney */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F46DA23D19CB403400AB1CEC /* Build configuration list for PBXNativeTarget "TimeIsMoney" */;
+			buildPhases = (
+				F46DA20719CB403300AB1CEC /* Sources */,
+				F46DA20819CB403300AB1CEC /* Frameworks */,
+				F46DA20919CB403300AB1CEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimeIsMoney;
+			productName = TimeIsMoney;
+			productReference = F46DA20B19CB403300AB1CEC /* TimeIsMoney.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F46DA22B19CB403400AB1CEC /* TimeIsMoneyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F46DA24019CB403400AB1CEC /* Build configuration list for PBXNativeTarget "TimeIsMoneyTests" */;
+			buildPhases = (
+				F46DA22819CB403400AB1CEC /* Sources */,
+				F46DA22919CB403400AB1CEC /* Frameworks */,
+				F46DA22A19CB403400AB1CEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F46DA23219CB403400AB1CEC /* PBXTargetDependency */,
+			);
+			name = TimeIsMoneyTests;
+			productName = TimeIsMoneyTests;
+			productReference = F46DA22C19CB403400AB1CEC /* TimeIsMoneyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F46DA20319CB403300AB1CEC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = mycompany;
+				TargetAttributes = {
+					F46DA22B19CB403400AB1CEC = {
+						TestTargetID = F46DA20A19CB403300AB1CEC;
+					};
+				};
+			};
+			buildConfigurationList = F46DA20619CB403300AB1CEC /* Build configuration list for PBXProject "TimeIsMoney" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F46DA20219CB403300AB1CEC;
+			productRefGroup = F46DA20C19CB403300AB1CEC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F46DA20A19CB403300AB1CEC /* TimeIsMoney */,
+				F46DA22B19CB403400AB1CEC /* TimeIsMoneyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F46DA20919CB403300AB1CEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46DA22719CB403400AB1CEC /* Images.xcassets in Resources */,
+				F46DA21919CB403300AB1CEC /* InfoPlist.strings in Resources */,
+				F4E9CF6E19CC02EE0049F233 /* Time approach.mp3 in Resources */,
+				F46D80AC19E99A47003732D5 /* Main.storyboard in Resources */,
+				F4E9CF6D19CC02EE0049F233 /* register.mp3 in Resources */,
+				F4E9CF6C19CC02EE0049F233 /* coin.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F46DA22A19CB403400AB1CEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46DA23819CB403400AB1CEC /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F46DA20719CB403300AB1CEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A9AFB919E634C200F8E9FD /* jikyuSetViewController.m in Sources */,
+				F46DA24B19CB44E800AB1CEC /* CDViewController.m in Sources */,
+				F46DA24E19CB466800AB1CEC /* FNViewController.m in Sources */,
+				F4DBBB5419E4443A0064083C /* Sound.m in Sources */,
+				F4A86A6319EE0E8600B42894 /* bunsekiViewController.m in Sources */,
+				F46D80E119E9D877003732D5 /* finishTableViewController.m in Sources */,
+				F46D80E419E9DACF003732D5 /* finishResultViewController.m in Sources */,
+				F43D562419E455C000BF6718 /* topViewController.m in Sources */,
+				F46DA21F19CB403300AB1CEC /* AppDelegate.m in Sources */,
+				F46DA24519CB41AE00AB1CEC /* NPViewController.m in Sources */,
+				F46DA21B19CB403300AB1CEC /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F46DA22819CB403400AB1CEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F46DA23A19CB403400AB1CEC /* TimeIsMoneyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F46DA23219CB403400AB1CEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F46DA20A19CB403300AB1CEC /* TimeIsMoney */;
+			targetProxy = F46DA23119CB403400AB1CEC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F46DA21719CB403300AB1CEC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F46DA21819CB403300AB1CEC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F46DA23619CB403400AB1CEC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F46DA23719CB403400AB1CEC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F46DA23B19CB403400AB1CEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F46DA23C19CB403400AB1CEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F46DA23E19CB403400AB1CEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TimeIsMoney/TimeIsMoney-Prefix.pch";
+				INFOPLIST_FILE = "TimeIsMoney/TimeIsMoney-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F46DA23F19CB403400AB1CEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TimeIsMoney/TimeIsMoney-Prefix.pch";
+				INFOPLIST_FILE = "TimeIsMoney/TimeIsMoney-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F46DA24119CB403400AB1CEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TimeIsMoney.app/TimeIsMoney";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TimeIsMoney/TimeIsMoney-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TimeIsMoneyTests/TimeIsMoneyTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F46DA24219CB403400AB1CEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TimeIsMoney.app/TimeIsMoney";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TimeIsMoney/TimeIsMoney-Prefix.pch";
+				INFOPLIST_FILE = "TimeIsMoneyTests/TimeIsMoneyTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F46DA20619CB403300AB1CEC /* Build configuration list for PBXProject "TimeIsMoney" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F46DA23B19CB403400AB1CEC /* Debug */,
+				F46DA23C19CB403400AB1CEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F46DA23D19CB403400AB1CEC /* Build configuration list for PBXNativeTarget "TimeIsMoney" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F46DA23E19CB403400AB1CEC /* Debug */,
+				F46DA23F19CB403400AB1CEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F46DA24019CB403400AB1CEC /* Build configuration list for PBXNativeTarget "TimeIsMoneyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F46DA24119CB403400AB1CEC /* Debug */,
+				F46DA24219CB403400AB1CEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F46DA20319CB403300AB1CEC /* Project object */;
+}
