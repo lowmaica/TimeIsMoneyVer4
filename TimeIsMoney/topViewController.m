@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tabBarController.delegate = self;
@@ -138,7 +139,7 @@
         [alert show];
         [tableView deselectRowAtIndexPath:indexPath animated:YES]; // 選択状態の解除
     }else{
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         if (indexPath.section != 0) return; //これがよくわからない
         NSInteger row = indexPath.row; //何番目が押されたかを判別してるっぽい

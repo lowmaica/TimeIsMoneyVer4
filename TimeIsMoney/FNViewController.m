@@ -131,7 +131,7 @@
     [defaults setObject:app.finishProject forKey:@"終了済"];
     */
     [mySound soundCoin]; //コインの音
-<<<<<<< HEAD
+
     //サーバーのデータ送信処理
     NSURL *url = [NSURL URLWithString:@"http://time.miraiserver.com/exitadd.php"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -178,7 +178,6 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
     NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"削除は%@",datastring);
-=======
     
     //Evernoteにノートを送信
     [self addEvernote];
@@ -280,7 +279,6 @@
     //ノートタイトルとテキストを代入
     noteTitle= app.projectName;
     noteText = [NSString stringWithFormat:@"報酬額：%@円\nクライアント：%@\nジャンル：%@\n\n\n合計時間　%@\n時給結果　%ld円", numHousyu,app.clientName,app.genreName,totalTime,resultJikyu];
->>>>>>> Evernote
 }
 
 @end
