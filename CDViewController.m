@@ -41,12 +41,12 @@
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
     //チート用!!経過時間を操作。
-//    NSInteger i = 4; //時間
-//    app.prjTime = i*3600;
-//    i = 59; //分
-//    app.prjTime = app.prjTime + (i*60);
-//    i = 50; //秒
-//    app.prjTime = app.prjTime + i;
+    NSInteger i = 4; //時間
+    app.prjTime = i*3600;
+    i = 35; //分
+    app.prjTime = app.prjTime + (i*60);
+    i = 26; //秒
+    app.prjTime = app.prjTime + i;
     
     
     //プロジェクト名をラベルに表示

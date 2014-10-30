@@ -10,4 +10,5 @@
 
 @interface bunsekiViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *jikyulabel;
 @end

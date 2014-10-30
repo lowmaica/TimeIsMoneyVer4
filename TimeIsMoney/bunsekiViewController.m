@@ -8,13 +8,26 @@
 
 #import "bunsekiViewController.h"
 
-@interface bunsekiViewController ()
+@interface bunsekiViewController (){
+    NSArray *array;
+}
 
 @end
 
 @implementation bunsekiViewController
 
 - (void)viewDidLoad {
+    NSString *dvid = @"time01";
+    //端末idを取得するための変数であるがシミュレータを起動するたびにかわるのでコメント
+    //dvid = [UIDevice currentDevice].identifierForVendor.UUIDString;
+    NSLog(@"%@",dvid);
+    NSString *urlstr = @"http://time.miraiserver.com/avgjikyu.php?id=";
+    urlstr = [urlstr stringByAppendingString:dvid];
+    array = [self serverdata:urlstr];
+    NSString *avgjikyu = [array objectAtIndex:0];
+    int avg = [avgjikyu intValue];
+    avgjikyu = [NSString stringWithFormat:@"%d円",avg];
+    self.jikyulabel.text = avgjikyu;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    // UIScrollViewのインスタンス化
@@ -61,5 +74,30 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(NSArray*)serverdata:(NSString*)url{
+    //URLを生成
+    NSURL *dataurl = [NSURL URLWithString:url];
+    //リクエスト生成
+    NSURLRequest *request = [NSURLRequest requestWithURL:dataurl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    //レスポンスを生成
+    NSHTTPURLResponse *response;
+    //NSErrorの初期化
+    NSError *err = nil;
+    //requestによって返ってきたデータを生成
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    //データを元に文字列を生成
+    NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    //余計な文字列を削除
+    str = [str stringByReplacingOccurrencesOfString:@"<!--/* Miraiserver \"NO ADD\" http://www.miraiserver.com */-->" withString:@""];
+    str = [str stringByReplacingOccurrencesOfString:@"<script type=\"text/javascript\" src=\"http://17787372.ranking.fc2.com/analyze.js\" charset=\"utf-8\"></script>" withString:@""];
+    //strをNSData型の変数に変換
+    NSData *trimdata = [str dataUsingEncoding:NSUTF8StringEncoding];
+    //dataを元にJSONオブジェクトを生成
+    NSArray *resarray = [NSJSONSerialization JSONObjectWithData:trimdata options:NSJSONReadingMutableContainers error:&err];
+    //値を返す
+    return resarray;
+}
+
 
 @end

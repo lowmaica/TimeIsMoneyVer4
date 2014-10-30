@@ -33,6 +33,7 @@
     //Evernote用
     NSString *noteText;
     NSString *noteTitle;
+    NSString *finishDate;
 }
 
 
@@ -186,6 +187,9 @@
 
 //Evernote用
 -(void)addEvernote{
+    //終了時刻を取得
+    [self finishTime];
+    
     EvernoteSession* session = [EvernoteSession sharedSession];
     if (session.isAuthenticated == NO) {
         // 未ログインであれば、ログイン処理を行なう
@@ -278,7 +282,42 @@
     
     //ノートタイトルとテキストを代入
     noteTitle= app.projectName;
-    noteText = [NSString stringWithFormat:@"報酬額：%@円\nクライアント：%@\nジャンル：%@\n\n\n合計時間　%@\n時給結果　%ld円", numHousyu,app.clientName,app.genreName,totalTime,resultJikyu];
+    noteText = [NSString stringWithFormat:@"報酬額：%@円\nクライアント：%@\nジャンル：%@\n\n開始時刻：2014年10月24日13時45分\n%@\n\n合計時間　%@\n時給結果　%ld円", numHousyu,app.clientName,app.genreName,finishDate,totalTime,resultJikyu];
+}
+
+
+-(void)finishTime{
+    NSDate *now = [NSDate date];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger flags;
+    NSDateComponents *comps;
+    
+    // 年・月・日を取得
+    flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    comps = [calendar components:flags fromDate:now];
+    
+    NSInteger year = comps.year;
+    NSInteger month = comps.month;
+    NSInteger day = comps.day;
+    
+    NSLog(@"%ld年 %ld月 %ld日", year, month, day);
+    
+    // 時・分・秒を取得
+    flags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    comps = [calendar components:flags fromDate:now];
+    
+    NSInteger hour = comps.hour;
+    NSInteger minute = comps.minute;
+    NSInteger second = comps.second;
+    
+    NSLog(@"%ld時 %ld分 %ld秒", hour, minute, second);
+    
+    NSLog(@"終了時刻：%ld年%ld月%ld日%ld時%ld分",year, month, day,hour, minute
+          );
+    
+    finishDate = [NSString stringWithFormat:@"終了時刻：%ld年%ld月%ld日%ld時%ld分",year, month, day,hour, minute];
+
 }
 
 @end
