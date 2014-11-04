@@ -7,25 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "EvernoteSession.h"
-#import "ENConstants.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-    //Evernote用
-    NSString *EVERNOTE_HOST = BootstrapServerBaseURLStringSandbox;
-    NSString *CONSUMER_KEY = @"lowmaica-3239";
-    NSString *CONSUMER_SECRET = @"028a814aefef271c";
-    
-    [EvernoteSession setSharedSessionHost:EVERNOTE_HOST
-                              consumerKey:CONSUMER_KEY
-                           consumerSecret:CONSUMER_SECRET];
-    
-    return YES;
+      return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -48,10 +36,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
-    //EvernoteAPI実装のため
-    [[EvernoteSession sharedSession] handleDidBecomeActive];
-    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -78,15 +62,6 @@
     //userdefaulから時給を呼び出してjikyuに代入する
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.jikyu = [defaults floatForKey:@"時給"];    
-}
-
-//Evernote用
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    BOOL canHandle = NO;
-    if ([[NSString stringWithFormat:@"en-%@", [[EvernoteSession sharedSession] consumerKey]] isEqualToString:[url scheme]] == YES) {
-        canHandle = [[EvernoteSession sharedSession] canHandleOpenURL:url];
-    }
-    return canHandle;
 }
 
 @end

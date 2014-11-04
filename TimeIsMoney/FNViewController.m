@@ -8,11 +8,6 @@
 
 #import "FNViewController.h"
 
-#import "EvernoteSession.h"
-#import "EvernoteUserStore.h"
-#import "CommonCrypto/CommonDigest.h"
-#import "EvernoteSDK.h"
-
 @interface FNViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
 @end
@@ -30,10 +25,6 @@
     NSInteger cost;
     float ichienByousu;
     
-    //Evernote用
-    NSString *noteText;
-    NSString *noteTitle;
-    NSString *finishDate;
 }
 
 
@@ -180,144 +171,6 @@
     NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"削除は%@",datastring);
     
-    //Evernoteにノートを送信
-    [self addEvernote];
-}
-
-
-//Evernote用
--(void)addEvernote{
-    //終了時刻を取得
-    [self finishTime];
-    
-    EvernoteSession* session = [EvernoteSession sharedSession];
-    if (session.isAuthenticated == NO) {
-        // 未ログインであれば、ログイン処理を行なう
-        [session authenticateWithViewController:self completionHandler:^(NSError *error) {
-            if (error || !session.isAuthenticated) {
-                // ログインエラー処理を記述します（メッセージ表示など）
-            } else {
-                // ログイン完了
-                NSLog(@"Evernoteにログイン完了 noteStoreUrl:%@ webApiUrlPrefix:%@", session.noteStoreUrl, session.webApiUrlPrefix);
-                [self addEvernote]; //なんじゃこりゃ？？
-            }
-        }];
-        return;
-    }
-    // プレーンテキストを得る？？
-    //    NSString *note = @"これがノートの中身になるっぽい\n\n何行でもOK？";
-    
-    [self createNote];
-    // プレーンテキストをENML形式に変換する
-    NSMutableString* enml = [NSMutableString string];
-    [enml setString:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"];
-    [enml appendString:@"<!DOCTYPE en-note SYSTEM \"http://xml.evernote.com/pub/enml.dtd\">"];
-    [enml appendString:@"<en-note>"];
-    NSRange range = NSMakeRange(0, noteText.length); //note→noteText
-    NSRange lineRange;
-    NSString* lineString;
-    while (range.length > 0) {
-        
-        // 改行コードかあるいは文字列の終端までを読み込み、ENML形式に変換する
-        lineRange = [noteText lineRangeForRange:NSMakeRange(range.location, 0)]; //note→noteText
-        lineString = [noteText substringWithRange:lineRange]; //note→noteText
-        NSLog(@"line: %@", lineString);
-        range.location = NSMaxRange(lineRange);
-        range.length -= lineRange.length;
-        
-        
-        if ([lineString isEqualToString:@"\n"]) {
-            // 改行のみの場合、<br />に変換する
-            lineString = @"<br />";
-        }
-        else{
-            // 改行以外の文字が含まれる場合、改行コードを削除する
-            lineString = [lineString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        }
-        
-        // 文字列の両端に<div> </div>を連結する
-        [enml appendFormat:@"<div>%@</div>", lineString];
-    }
-    [enml appendString:@"</en-note>\n"];
-    
-    // tag情報の作成（152行目で黄色エラーが出るのでNSArray→NSMutableArrayに変更）（更にクライアント名、ジャンル名がタグになるように改造）
-    NSMutableArray* tagList = [NSMutableArray arrayWithObjects: app.clientName, app.genreName ,nil];
-    
-    // noteオブジェクトの生成
-    //autoreleaseというのがエラーの原因
-    //    EDAMNoteAttributes *newNoteAttributes = [[[EDAMNoteAttributes alloc] init] autorelease];
-    EDAMNoteAttributes *newNoteAttributes = [[EDAMNoteAttributes alloc] init];
-    //    EDAMNote *newNote = [[[EDAMNote alloc] init] autorelease];
-    EDAMNote *newNote = [[EDAMNote alloc] init];
-    //    [newNote setTitle:_template.title];
-    [newNote setTitle: noteTitle]; //ノートタイトル（変数に変更）
-    [newNote setContent:enml];
-    [newNote setTagNames:tagList];
-    [newNote setAttributes:newNoteAttributes];
-    [newNote setCreated:(long long)[[NSDate date] timeIntervalSince1970] * 1000];
-    
-    // noteを追加する
-    EvernoteNoteStore *noteStore = [EvernoteNoteStore noteStore];
-    [noteStore createNote:newNote
-                  success:^(EDAMNote *note) {
-                      // アップロード成功時処理（メッセージ表示など）
-                  }
-                  failure:^(NSError *error) {
-                      // アップロード失敗時処理（メッセージ表示など）
-                      NSLog(@"createNote error %@", error);
-                  }];
-    // アップロードファイルのサイズによっては、ここで「アップロード中」表示を行なった方がよいかもしれません。
-}
-
-//Evernote用
--(void)createNote{
-    //floatをnumに変更
-    NSNumber *numHousyu = [NSNumber numberWithFloat:app.housyu];
-    
-    //経過時間を時：分：秒に変換
-    NSInteger totalHours = app.prjTime/3600;
-    NSInteger totalMinutes = (app.prjTime%3600)/60;
-    NSInteger totalSeconds = (app.prjTime%3600)%60;
-    NSString *totalTime = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",totalHours,totalMinutes,totalSeconds];
-    
-    //ノートタイトルとテキストを代入
-    noteTitle= app.projectName;
-    noteText = [NSString stringWithFormat:@"報酬額：%@円\nクライアント：%@\nジャンル：%@\n\n開始時刻：2014年10月24日13時45分\n%@\n\n合計時間　%@\n時給結果　%ld円", numHousyu,app.clientName,app.genreName,finishDate,totalTime,resultJikyu];
-}
-
-
--(void)finishTime{
-    NSDate *now = [NSDate date];
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger flags;
-    NSDateComponents *comps;
-    
-    // 年・月・日を取得
-    flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-    comps = [calendar components:flags fromDate:now];
-    
-    NSInteger year = comps.year;
-    NSInteger month = comps.month;
-    NSInteger day = comps.day;
-    
-    NSLog(@"%ld年 %ld月 %ld日", year, month, day);
-    
-    // 時・分・秒を取得
-    flags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    comps = [calendar components:flags fromDate:now];
-    
-    NSInteger hour = comps.hour;
-    NSInteger minute = comps.minute;
-    NSInteger second = comps.second;
-    
-    NSLog(@"%ld時 %ld分 %ld秒", hour, minute, second);
-    
-    NSLog(@"終了時刻：%ld年%ld月%ld日%ld時%ld分",year, month, day,hour, minute
-          );
-    
-    finishDate = [NSString stringWithFormat:@"終了時刻：%ld年%ld月%ld日%ld時%ld分",year, month, day,hour, minute];
-
 }
 
 @end
