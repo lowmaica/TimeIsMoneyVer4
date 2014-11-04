@@ -27,10 +27,13 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tabBarController.delegate = self;
+    
     dvid = @"time01";
+    
     //端末idを取得するための変数であるがシミュレータを起動するたびにかわるのでコメント
     //dvid = [UIDevice currentDevice].identifierForVendor.UUIDString;
     NSLog(@"%@",dvid);
+    
     NSString *urlstr = @"http://time.miraiserver.com/alldata.php?id=";
     urlstr = [urlstr stringByAppendingString:dvid];
     array = [self serverdata:urlstr];
@@ -41,8 +44,8 @@
     
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
 
-    [app sinkouSet]; //配列の準備
-    [app finishSet]; //配列の準備
+//    [app sinkouSet]; //配列の準備
+//    [app finishSet]; //配列の準備
     
     //プロジェクトの変数を初期化する
     app.housyu = 0; //報酬
@@ -202,5 +205,8 @@
     NSArray *resarray = [NSJSONSerialization JSONObjectWithData:trimdata options:NSJSONReadingMutableContainers error:&err];
     //値を返す
     return resarray;
+}
+
+- (IBAction)returnTop:(UIStoryboardSegue *)segue {
 }
 @end

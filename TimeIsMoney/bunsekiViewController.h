@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface bunsekiViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *timelabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *jikyulabel;
+@property (weak, nonatomic) IBOutlet UILabel *prolabel;
 @end

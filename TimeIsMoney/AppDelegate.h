@@ -34,8 +34,8 @@
 @property NSInteger syuryo;
 
 
--(void)sinkouSet;
--(void)finishSet;
+//-(void)sinkouSet;
+//-(void)finishSet;
 -(void)jikyuSet;
 
 @end

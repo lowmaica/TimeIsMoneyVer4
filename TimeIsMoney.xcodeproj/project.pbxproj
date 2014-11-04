@@ -80,8 +80,8 @@
 		F46DA23819CB403400AB1CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F46DA23619CB403400AB1CEC /* InfoPlist.strings */; };
 		F46DA23A19CB403400AB1CEC /* TimeIsMoneyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA23919CB403400AB1CEC /* TimeIsMoneyTests.m */; };
 		F46DA24519CB41AE00AB1CEC /* NPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA24419CB41AE00AB1CEC /* NPViewController.m */; };
-		F46DA24B19CB44E800AB1CEC /* CDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA24A19CB44E800AB1CEC /* CDViewController.m */; };
 		F46DA24E19CB466800AB1CEC /* FNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA24D19CB466800AB1CEC /* FNViewController.m */; };
+		F4819B491A092A0D00319379 /* CDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4819B481A092A0D00319379 /* CDViewController.m */; };
 		F4A86A6319EE0E8600B42894 /* bunsekiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */; };
 		F4A9AFB919E634C200F8E9FD /* jikyuSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */; };
 		F4DBBB5419E4443A0064083C /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DBBB5319E4443A0064083C /* Sound.m */; };
@@ -242,10 +242,10 @@
 		F46DA23919CB403400AB1CEC /* TimeIsMoneyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeIsMoneyTests.m; sourceTree = "<group>"; };
 		F46DA24319CB41AE00AB1CEC /* NPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPViewController.h; sourceTree = "<group>"; };
 		F46DA24419CB41AE00AB1CEC /* NPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPViewController.m; sourceTree = "<group>"; };
-		F46DA24919CB44E800AB1CEC /* CDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDViewController.h; path = ../CDViewController.h; sourceTree = "<group>"; };
-		F46DA24A19CB44E800AB1CEC /* CDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDViewController.m; path = ../CDViewController.m; sourceTree = "<group>"; };
 		F46DA24C19CB466800AB1CEC /* FNViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FNViewController.h; sourceTree = "<group>"; };
 		F46DA24D19CB466800AB1CEC /* FNViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNViewController.m; sourceTree = "<group>"; };
+		F4819B471A092A0D00319379 /* CDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDViewController.h; sourceTree = "<group>"; };
+		F4819B481A092A0D00319379 /* CDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDViewController.m; sourceTree = "<group>"; };
 		F4A86A6119EE0E8600B42894 /* bunsekiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bunsekiViewController.h; sourceTree = "<group>"; };
 		F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bunsekiViewController.m; sourceTree = "<group>"; };
 		F4A9AFB719E634C200F8E9FD /* jikyuSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jikyuSetViewController.h; sourceTree = "<group>"; };
@@ -576,8 +576,8 @@
 				F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */,
 				F46DA24319CB41AE00AB1CEC /* NPViewController.h */,
 				F46DA24419CB41AE00AB1CEC /* NPViewController.m */,
-				F46DA24919CB44E800AB1CEC /* CDViewController.h */,
-				F46DA24A19CB44E800AB1CEC /* CDViewController.m */,
+				F4819B471A092A0D00319379 /* CDViewController.h */,
+				F4819B481A092A0D00319379 /* CDViewController.m */,
 				F46DA24C19CB466800AB1CEC /* FNViewController.h */,
 				F46DA24D19CB466800AB1CEC /* FNViewController.m */,
 				F46D80E219E9DACF003732D5 /* finishResultViewController.h */,
@@ -744,7 +744,6 @@
 				F44EF24A1A014E0700DF47E0 /* ENAFURLConnectionOperation.m in Sources */,
 				F44EF2601A014E0700DF47E0 /* TMemoryBuffer.m in Sources */,
 				F44EF25D1A014E0700DF47E0 /* TApplicationException.m in Sources */,
-				F46DA24B19CB44E800AB1CEC /* CDViewController.m in Sources */,
 				F44EF2681A014E0700DF47E0 /* ENConstants.m in Sources */,
 				F44EF2721A014E0700DF47E0 /* ENNewNoteRequest.m in Sources */,
 				F46DA24E19CB466800AB1CEC /* FNViewController.m in Sources */,
@@ -769,6 +768,7 @@
 				F4A86A6319EE0E8600B42894 /* bunsekiViewController.m in Sources */,
 				F44EF2511A014E0700DF47E0 /* KSXMLAttributes.m in Sources */,
 				F44EF27C1A014E0700DF47E0 /* ENMLUtility.m in Sources */,
+				F4819B491A092A0D00319379 /* CDViewController.m in Sources */,
 				F44EF2711A014E0700DF47E0 /* ENLinkNotebookRequest.m in Sources */,
 				F44EF2561A014E0700DF47E0 /* NSString+URLEncoding.m in Sources */,
 				F44EF24F1A014E0700DF47E0 /* KSHTMLWriter.m in Sources */,
@@ -912,6 +912,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeIsMoney/TimeIsMoney-Prefix.pch";
 				INFOPLIST_FILE = "TimeIsMoney/TimeIsMoney-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -925,6 +926,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeIsMoney/TimeIsMoney-Prefix.pch";
 				INFOPLIST_FILE = "TimeIsMoney/TimeIsMoney-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

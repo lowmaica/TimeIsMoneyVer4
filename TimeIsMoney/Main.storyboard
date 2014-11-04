@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="i6S-Lg-GgH">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -75,8 +76,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="backBtn:" destination="p0p-wN-6Ax" eventType="touchUpInside" id="72k-98-qip"/>
-                                    <action selector="backBtn:" destination="49m-P8-eY1" eventType="touchUpInside" id="zgC-v8-JdG"/>
+                                    <segue destination="tE1-FW-HI9" kind="unwind" unwindAction="returnFinish:" id="VWd-z4-l6U"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVM-8n-uVa">
@@ -143,10 +143,10 @@
                         <outlet property="resultCostLabel" destination="GN6-no-hZv" id="fpb-9V-Wqo"/>
                         <outlet property="resultJikyuLabel" destination="la9-2T-h9I" id="ycd-s8-8Ea"/>
                         <outlet property="resultTimeLabel" destination="dVM-8n-uVa" id="MeF-Ai-SOC"/>
-                        <segue destination="i6S-Lg-GgH" kind="modal" identifier="finishResultToTop" animates="NO" id="W4N-Ld-x8T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JP7-wo-Oht" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="tE1-FW-HI9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-984" y="183"/>
         </scene>
@@ -179,23 +179,25 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDi-aD-SKd">
-                                        <rect key="frame" x="203" y="159" width="97" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="プロジェクト別ランキング" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccN-cR-Pn6">
                                         <rect key="frame" x="20" y="197" width="238" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gUx-hC-ofZ">
-                                        <rect key="frame" x="203" y="238" width="97" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC4-XW-g8m">
+                                        <rect key="frame" x="20" y="159" width="275" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ly-Xy-JDP">
+                                        <rect key="frame" x="20" y="242" width="280" height="212"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPb-0Y-bjs">
-                                        <rect key="frame" x="20" y="85" width="280" height="21"/>
+                                        <rect key="frame" x="20" y="75" width="280" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -209,6 +211,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="jikyulabel" destination="gPb-0Y-bjs" id="4CH-Vc-Xfw"/>
+                        <outlet property="prolabel" destination="9Ly-Xy-JDP" id="4Zo-bG-4Rh"/>
+                        <outlet property="timelabel" destination="pC4-XW-g8m" id="q7P-GE-ec3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="440-ZX-RhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -314,7 +318,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="00t-gY-fI1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2285" y="-59"/>
+            <point key="canvasLocation" x="-2159" y="-67"/>
         </scene>
         <!--進行中-->
         <scene sceneID="bj0-Mm-mHn">
@@ -389,7 +393,7 @@
                                 </state>
                                 <connections>
                                     <action selector="backBtn:" destination="p0p-wN-6Ax" eventType="touchUpInside" id="JiJ-IV-qOO"/>
-                                    <segue destination="i6S-Lg-GgH" kind="modal" animates="NO" id="uTl-ET-T77"/>
+                                    <segue destination="rL6-1B-EHF" kind="unwind" unwindAction="returnTop:" id="TlS-kB-nym"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOr-Yk-xtH">
@@ -425,12 +429,6 @@
                                     <action selector="genreLabel:" destination="VkJ-d8-TsN" eventType="editingChanged" id="Adh-cc-tDN"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cws-K6-1ed">
-                                <rect key="frame" x="245" y="20" width="75" height="44"/>
-                                <state key="normal" image="btnDele">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HiT-SQ-QZ2">
                                 <rect key="frame" x="30" y="292" width="150" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -460,8 +458,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMu-8H-Ag1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="rL6-1B-EHF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1698" y="-1784"/>
+            <point key="canvasLocation" x="-1704" y="-1784"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="GSx-Jg-rFE">
@@ -547,7 +546,7 @@
                                 </state>
                                 <connections>
                                     <action selector="backBtn:" destination="p0p-wN-6Ax" eventType="touchUpInside" id="JXz-hg-wMJ"/>
-                                    <segue destination="i6S-Lg-GgH" kind="modal" animates="NO" id="jwa-Fc-Loz"/>
+                                    <segue destination="axa-yu-fFG" kind="unwind" unwindAction="returnTop:" id="o7J-kT-5Uh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -569,8 +568,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ic6-Fn-hrv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="axa-yu-fFG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1204" y="-860"/>
+            <point key="canvasLocation" x="-1204" y="-790"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QNX-iM-qcF">
@@ -658,7 +658,6 @@
     </scenes>
     <resources>
         <image name="btnBack" width="75" height="44"/>
-        <image name="btnDele" width="75" height="44"/>
         <image name="btnEdit" width="55" height="44"/>
         <image name="btnFinish" width="488" height="100"/>
         <image name="btnGekkyu" width="120" height="80"/>
@@ -687,7 +686,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5Md-wl-6Uj"/>
+        <segue reference="aVt-VP-t5n"/>
         <segue reference="lYV-gr-fN4"/>
     </inferredMetricsTieBreakers>
 </document>

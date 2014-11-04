@@ -45,11 +45,13 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-//ここがよばれてる？
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    //EvernoteAPI実装のため
     [[EvernoteSession sharedSession] handleDidBecomeActive];
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -58,19 +60,19 @@
 
 }
 
--(void)sinkouSet{
-    //userdefaulから進行中を呼び出してnowProjectに代入する
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *array = [defaults arrayForKey:@"進行中"];
-    self.nowProject = [array mutableCopy];
-}
+//-(void)sinkouSet{
+//    //userdefaulから進行中を呼び出してnowProjectに代入する
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSArray *array = [defaults arrayForKey:@"進行中"];
+//    self.nowProject = [array mutableCopy];
+//}
 
--(void)finishSet{
-    //userdefaulから終了済を呼び出してfinishProjectに代入する
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *array = [defaults arrayForKey:@"終了済"];
-    self.finishProject = [array mutableCopy];
-}
+//-(void)finishSet{
+//    //userdefaulから終了済を呼び出してfinishProjectに代入する
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSArray *array = [defaults arrayForKey:@"終了済"];
+//    self.finishProject = [array mutableCopy];
+//}
 
 -(void)jikyuSet{
     //userdefaulから時給を呼び出してjikyuに代入する
@@ -86,4 +88,5 @@
     }
     return canHandle;
 }
+
 @end

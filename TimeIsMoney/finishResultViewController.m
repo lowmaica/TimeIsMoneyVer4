@@ -113,9 +113,6 @@
     [mySound soundCoin]; //コインの音
 }
 
-- (IBAction)backBtn:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"finishResultToTop" sender:self]; //Segueを実行
-    app.syuryo = 1;
-}
+
 
 @end
