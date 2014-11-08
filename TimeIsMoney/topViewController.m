@@ -16,7 +16,7 @@
 
 @implementation topViewController{
     AppDelegate *app; //変数管理
-    NSArray *array;
+    NSMutableArray *array;
     NSString *dvid;
 }
 
@@ -41,7 +41,8 @@
     
     NSString *urlstr = @"http://time.miraiserver.com/alldata.php?id=";
     urlstr = [urlstr stringByAppendingString:dvid];
-    array = [self serverdata:urlstr];
+    array = [NSMutableArray array];
+    array = (NSMutableArray*)[self serverdata:urlstr];
     
     NSLog(@"%@",array);
     
@@ -218,6 +219,35 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         // 削除するコードを挿入します
+        NSLog(@"%ld行目削除",indexPath.row);
+        NSDictionary *prodic = [array objectAtIndex:indexPath.row];
+        [array removeObjectAtIndex:indexPath.row];
+        //サーバーのデータ送信処理
+        NSURL *url = [NSURL URLWithString:@"http://time.miraiserver.com/delete.php"];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+        NSMutableData *body = [NSMutableData data];
+        NSString *boundary = @"--1680ert52491z";
+        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+        [request setHTTPMethod:@"POST"];
+        //idのパラメータの設定
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"Content-Disposition: form-data; name=\"id\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", dvid] dataUsingEncoding:NSUTF8StringEncoding]];
+        //idのパラメータの設定
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"Content-Disposition: form-data; name=\"projectid\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        NSString *projectidstr = [prodic objectForKey:@"projectid"];
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", projectidstr] dataUsingEncoding:NSUTF8StringEncoding]];
+        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:body];
+        NSURLResponse *response;
+        NSError *err = nil;
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+        NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"削除は%@",datastring);
+
+        
+        [tableView reloadData];
     }
 }
 

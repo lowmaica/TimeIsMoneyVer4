@@ -57,7 +57,6 @@
 //    self.window.rootViewController = mainViewController;
 //    [self.window makeKeyAndVisible];
 //    //ここまでストーリーボード分岐のためのコード
-
     
       return YES;
 }

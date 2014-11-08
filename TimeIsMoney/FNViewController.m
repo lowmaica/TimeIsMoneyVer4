@@ -82,6 +82,7 @@
         NSNumber *num = [NSNumber numberWithFloat:app.housyu]; //float型を編集
         self.resultJikyuLabel.text = [NSString stringWithFormat:@"%@",num];
     }else{
+        app.housyu = resultJikyu;
         self.resultJikyuLabel.text = [NSString stringWithFormat:@"%ld",(long)resultJikyu];
     }
 }
@@ -153,6 +154,10 @@
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Disposition: form-data; name=\"jikyu\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"%ld\r\n",resultJikyu] dataUsingEncoding:NSUTF8StringEncoding]];
+    //houshuのパラメータの設定
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Disposition: form-data; name=\"houshu\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%f\r\n",app.housyu] dataUsingEncoding:NSUTF8StringEncoding]];
     //janleのパラメータの設定
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Disposition: form-data; name=\"janle\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
