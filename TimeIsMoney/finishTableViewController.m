@@ -16,19 +16,19 @@
 @implementation finishTableViewController{
     AppDelegate *app; //変数管理
     NSMutableArray *array;
-    NSString *dvid;
+//    NSString *dvid;
 }
 
 - (void)viewDidLoad {
-    dvid = @"time01";
+    app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
+//    dvid = @"time01";
     NSString *urlstr = @"http://time.miraiserver.com/exitalldata.php?id=";
-    urlstr = [urlstr stringByAppendingString:dvid];
+    urlstr = [urlstr stringByAppendingString:app.userid];
     array = (NSMutableArray*)[self serverdata:urlstr];
     NSLog(@"%@",array);
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
     //プロジェクトの変数を初期化する
     app.housyu = 0; //報酬
@@ -175,7 +175,7 @@
         //idのパラメータの設定
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Disposition: form-data; name=\"id\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"%@\r\n", dvid] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", app.userid] dataUsingEncoding:NSUTF8StringEncoding]];
         //idのパラメータの設定
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Disposition: form-data; name=\"projectid\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];

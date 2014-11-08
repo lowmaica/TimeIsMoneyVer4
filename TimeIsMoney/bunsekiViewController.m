@@ -14,23 +14,27 @@
 
 @end
 
-@implementation bunsekiViewController
+@implementation bunsekiViewController{
+    AppDelegate *app; //変数管理
+}
 
 - (void)viewDidLoad {
-    NSString *dvid = @"time01";
+    app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
+
+//    NSString *dvid = @"time01";
     //端末idを取得するための変数であるがシミュレータを起動するたびにかわるのでコメント
     //dvid = [UIDevice currentDevice].identifierForVendor.UUIDString;
-    NSLog(@"%@",dvid);
+    NSLog(@"%@",app.userid);
     NSString *urlstr = @"http://time.miraiserver.com/avgjikyu.php?id=";
-    urlstr = [urlstr stringByAppendingString:dvid];
+    urlstr = [urlstr stringByAppendingString:app.userid];
     array = [self serverdata:urlstr];
     NSString *avgjikyu = [array objectAtIndex:0];
     int avg = [avgjikyu intValue];
     avgjikyu = [NSString stringWithFormat:@"%d円",avg];
     self.jikyulabel.text = avgjikyu;
-    NSLog(@"%@",dvid);
+    NSLog(@"%@",app.userid);
     urlstr = @"http://time.miraiserver.com/timeavg.php?id=";
-    urlstr = [urlstr stringByAppendingString:dvid];
+    urlstr = [urlstr stringByAppendingString:app.userid];
     array = [self serverdata:urlstr];
     avgjikyu = [array objectAtIndex:0];
     avg = [avgjikyu intValue];
@@ -38,18 +42,20 @@
     int min = (avg - 3600 * hour) / 60;
     int sec = (avg - 3600 * hour - min * 60);
     self.timelabel.text = [NSString stringWithFormat:@"%d時間%d分%d秒",hour,min,sec];
-    NSLog(@"%@",dvid);
+    NSLog(@"%@",app.userid);
     self.prolabel.text = @"";
     urlstr = @"http://time.miraiserver.com/projecttop.php?id=";
-    urlstr = [urlstr stringByAppendingString:dvid];
+    urlstr = [urlstr stringByAppendingString:app.userid];
+    self.textview.editable = NO;
+    self.textview.text = @"プロジェクトランキング";
     array = [self serverdata:urlstr];
     for (int i = 0; i < [array count]; i++) {
-        self.prolabel.text = [self.prolabel.text stringByAppendingString:[NSString stringWithFormat:@"%d位\n",i+1]];
+        self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位\n",i+1]];
         NSDictionary *dic = [array objectAtIndex:i];
-        self.prolabel.text = [self.prolabel.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[dic objectForKey:@"project"]]];
+        self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[dic objectForKey:@"project"]]];
         NSString *jikyustr = [dic objectForKey:@"jikyuavg"];
         avg = [jikyustr intValue];
-        self.prolabel.text = [self.prolabel.text stringByAppendingString:[NSString stringWithFormat:@"時給:%d円\n",avg]];
+        self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給:%d円\n",avg]];
         
         
     }

@@ -17,7 +17,7 @@
 @implementation topViewController{
     AppDelegate *app; //変数管理
     NSMutableArray *array;
-    NSString *dvid;
+//    NSString *dvid;
 }
 
 
@@ -33,14 +33,15 @@
     self.tableView.dataSource = self;
     self.tabBarController.delegate = self;
     
-    dvid = @"time01";
+//    dvid = @"time01";
     
     //端末idを取得するための変数であるがシミュレータを起動するたびにかわるのでコメント
     //dvid = [UIDevice currentDevice].identifierForVendor.UUIDString;
-    NSLog(@"%@",dvid);
     
     NSString *urlstr = @"http://time.miraiserver.com/alldata.php?id=";
-    urlstr = [urlstr stringByAppendingString:dvid];
+    app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
+    NSLog(@"%@",app.userid);
+    urlstr = [urlstr stringByAppendingString:app.userid];
     array = [NSMutableArray array];
     array = (NSMutableArray*)[self serverdata:urlstr];
     
@@ -48,7 +49,6 @@
     
 //    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
     
-    app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
 
 //    [app sinkouSet]; //配列の準備
 //    [app finishSet]; //配列の準備
@@ -232,7 +232,7 @@
         //idのパラメータの設定
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Disposition: form-data; name=\"id\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"%@\r\n", dvid] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", app.userid] dataUsingEncoding:NSUTF8StringEncoding]];
         //idのパラメータの設定
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Disposition: form-data; name=\"projectid\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];

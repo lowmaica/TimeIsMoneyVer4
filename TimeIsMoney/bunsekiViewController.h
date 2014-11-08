@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h" //変数管理
 
 @interface bunsekiViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *timelabel;
@@ -16,5 +17,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UITextView *prjLabel;
+
+@property (weak, nonatomic) IBOutlet UITextView *textview;
 
 @end
