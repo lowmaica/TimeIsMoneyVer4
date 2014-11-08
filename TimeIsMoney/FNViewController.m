@@ -24,7 +24,6 @@
     NSInteger seconds;
     NSInteger cost;
     float ichienByousu;
-    
 }
 
 
@@ -66,7 +65,8 @@
     hours = app.prjTime/3600;
     minutes = (app.prjTime%3600)/60;
     seconds = (app.prjTime%3600)%60;
-    self.resultTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
+    self.resultTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",
+                                 hours,minutes,seconds];
 
 
     //resultCostLabelに報酬額から総コストを引いた金額を記入
@@ -82,7 +82,7 @@
         NSNumber *num = [NSNumber numberWithFloat:app.housyu]; //float型を編集
         self.resultJikyuLabel.text = [NSString stringWithFormat:@"%@",num];
     }else{
-        self.resultJikyuLabel.text = [NSString stringWithFormat:@"%ld",resultJikyu];
+        self.resultJikyuLabel.text = [NSString stringWithFormat:@"%ld",(long)resultJikyu];
     }
 }
 

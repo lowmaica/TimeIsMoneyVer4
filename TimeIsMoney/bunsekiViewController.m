@@ -55,34 +55,6 @@
     }
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    // UIScrollViewのインスタンス化
-//    UIScrollView *scrollView = [[UIScrollView alloc]init];
-//    scrollView.frame = self.view.bounds;
-//    
-//    // スクロールしたときバウンドさせないようにする
-//    scrollView.bounces = NO;
-//    
-//    
-//    // UIImageViewのインスタンス化
-//    // サンプルとして画面に収まりきらないサイズ
-//    CGRect rect = CGRectMake(0, 0, 320, 1600);
-//    UIImageView *imageView = [[UIImageView alloc]initWithFrame:rect];
-//    
-//    // 画像を設定
-//    imageView.image = [UIImage imageNamed:@"dummy.png"];
-//    
-//    // UIScrollViewのインスタンスに画像を貼付ける
-//    [scrollView addSubview:imageView];
-//    
-//    
-//    // UIScrollViewのコンテンツサイズを画像のサイズに合わせる
-//    scrollView.contentSize = imageView.bounds.size;
-//    
-//    // UIScrollViewのインスタンスをビューに追加
-//    [self.view addSubview:scrollView];
-//    
-//    // 表示されたときスクロールバーを点滅
-//    [scrollView flashScrollIndicators];
 }
 
 - (void)didReceiveMemoryWarning {

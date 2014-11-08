@@ -13,4 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *jikyulabel;
 @property (weak, nonatomic) IBOutlet UILabel *prolabel;
+
+
+@property (weak, nonatomic) IBOutlet UITextView *prjLabel;
+
 @end

@@ -97,7 +97,7 @@
     //時間コストの初期値を表示
     flt = app.prjTime/ichienByousu;
     cost = flt;
-    self.TimeCostLabel.text = [NSString stringWithFormat:@"%ld",cost];
+    self.TimeCostLabel.text = [NSString stringWithFormat:@"%ld",(long)cost];
     
     //経過時間が0の場合終了ボタンを隠す
 //    if (app.prjTime == 0) {
@@ -119,12 +119,12 @@
 //タイマーで呼ばれるcountDownメソッド
 -(void)countDown{
     app.prjTime++; //経過時間を足していく
-    NSLog(@"%ld",app.prjTime);
+    NSLog(@"%ld",(long)app.prjTime);
     //まだ00:00:00になってなかったら…
     if (!isOver) {
         if(seconds>0){
             seconds--;
-            self.pjTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
+            self.pjTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",(long)hours,(long)minutes,(long)seconds];
         }else if(minutes != 0 && seconds == 0){
             //分が0ではない状態で秒が0になったら、分から1引いて秒を59にする（0秒と60秒は同じなので59秒からカウントダウン）
             minutes--;
@@ -159,7 +159,7 @@
 
 //countDownメソッドで使うprojectTimeLabelに残り時間を表示するためのメソッド
 -(void)writePjTimeLabel{
-    self.pjTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",hours,minutes,seconds];
+    self.pjTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",(long)hours,(long)minutes,(long)seconds];
 }
 
 //経過時間を計算して表示するメソッド（countDownとViewDidLoadに使った）
@@ -167,7 +167,7 @@
     NSInteger totalHours = app.prjTime/3600;
     NSInteger totalMinutes = (app.prjTime%3600)/60;
     NSInteger totalSeconds = (app.prjTime%3600)%60;
-    self.totalTimeLabel.text = [NSString stringWithFormat:@"経過時間：%02ld:%02ld:%02ld",totalHours,totalMinutes,totalSeconds];
+    self.totalTimeLabel.text = [NSString stringWithFormat:@"経過時間：%02ld:%02ld:%02ld",(long)totalHours,(long)totalMinutes,(long)totalSeconds];
 }
 
 //赤字に陥った後のカウントアップメソッド
@@ -212,7 +212,7 @@
 //コストラベルの更新をするメソッド
 -(void)witeCostLabel{
     cost++;
-    self.TimeCostLabel.text = [NSString stringWithFormat:@"%ld",cost];
+    self.TimeCostLabel.text = [NSString stringWithFormat:@"%ld",(long)cost];
 }
 //~~~~~~~~~~~~~~~~~~~~~コストカウントここまで~~~~~~~~~~~~~~~~~~~~~
 
@@ -244,7 +244,7 @@
     //timeのパラメータの設定
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Disposition: form-data; name=\"time\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%ld\r\n",app.prjTime] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%ld\r\n",(long)app.prjTime] dataUsingEncoding:NSUTF8StringEncoding]];
     //clientのパラメータの設定
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Disposition: form-data; name=\"client\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];

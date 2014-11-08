@@ -12,6 +12,9 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+//ストーリーボードの名前の変数
+@property (nonatomic) NSString  *sbName;
+
 //共通の変数
 @property float jikyu;
 @property float resjikyu;
@@ -29,6 +32,10 @@
 
 //プロジェクトの経過時間を数える変数
 @property NSInteger prjTime;
+
+//iPhone4Sかどうかの判定のための変数
+@property NSString *deviceName;
+
 
 ////終了タブから戻ってきたかどうかの判定
 //@property NSInteger syuryo;

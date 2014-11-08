@@ -7,7 +7,7 @@
 //
 
 #import "topViewController.h"
-#import "CDViewController.h"
+//#import "CDViewController.h"
 
 
 @interface topViewController ()
@@ -23,6 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+//        NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+//        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -55,6 +60,7 @@
     app.prjTime = 0; //経過時間
     
     [app jikyuSet]; //時給をセット
+    
     //時給が空の場合時給タブを開く
     if(app.jikyu == 0){
         UIViewController *vc = self.tabBarController.childViewControllers[3];
@@ -66,22 +72,21 @@
          ^(BOOL finished) {
              self.tabBarController.selectedViewController = vc;
          }];
-        
     }
     
     //終了結果表示から帰ってきた場合終了タブを開く
-    if(app.syuryo == 1){
-        UIViewController *vc = self.tabBarController.childViewControllers[1];
-        [UIView transitionFromView:self.view
-                            toView:vc.view
-                          duration:1.0
-                           options:UIViewAnimationOptionTransitionCrossDissolve
-                        completion:
-         ^(BOOL finished) {
-             self.tabBarController.selectedViewController = vc;
-             app.syuryo = 0;
-         }];
-    }
+//    if(app.syuryo == 1){
+//        UIViewController *vc = self.tabBarController.childViewControllers[1];
+//        [UIView transitionFromView:self.view
+//                            toView:vc.view
+//                          duration:1.0
+//                           options:UIViewAnimationOptionTransitionCrossDissolve
+//                        completion:
+//         ^(BOOL finished) {
+//             self.tabBarController.selectedViewController = vc;
+//             app.syuryo = 0;
+//         }];
+//    }
 }
 
 
@@ -177,11 +182,11 @@
 }
 
 //今のところ機能してないのでデータ消去に利用
-- (IBAction)hensyu:(UIButton *)sender {
-    //NSUserdefaultの中身を全消去するメソッド
+//- (IBAction)hensyu:(UIButton *)sender {
+//    //NSUserdefaultの中身を全消去するメソッド
 //    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
 //    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
-}
+//}
 
 -(NSArray*)serverdata:(NSString*)url{
     //URLを生成
@@ -207,6 +212,16 @@
     return resarray;
 }
 
+//横フリックでプロジェクトを削除できるようにしたい
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        // 削除するコードを挿入します
+    }
+}
+
+//戻るボタンのためにSegueを設定
 - (IBAction)returnTop:(UIStoryboardSegue *)segue {
 }
 @end

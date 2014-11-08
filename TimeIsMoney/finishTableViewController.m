@@ -125,6 +125,8 @@
         [self performSegueWithIdentifier:@"finishToResult" sender:self]; //Segueを実行
     }
 }
+
+//サーバーからデータを取ってきてる？値を返すってのはどこに？
 -(NSArray*)serverdata:(NSString*)url{
     //URLを生成
     NSURL *dataurl = [NSURL URLWithString:url];
@@ -149,6 +151,16 @@
     return resarray;
 }
 
+//横フリックでプロジェクトを削除できるようにしたい
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        // 削除するコードを挿入します
+    }
+}
+
+//戻るボタンのためにSegueを設定
 - (IBAction)returnFinish:(UIStoryboardSegue *)segue {
 }
 

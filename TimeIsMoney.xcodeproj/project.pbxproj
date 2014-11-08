@@ -28,6 +28,7 @@
 		F4819B491A092A0D00319379 /* CDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4819B481A092A0D00319379 /* CDViewController.m */; };
 		F4A86A6319EE0E8600B42894 /* bunsekiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */; };
 		F4A9AFB919E634C200F8E9FD /* jikyuSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */; };
+		F4D1C5351A0B4F0C00BF95AA /* iPhoneOld.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D1C5341A0B4F0C00BF95AA /* iPhoneOld.storyboard */; };
 		F4DBBB5419E4443A0064083C /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DBBB5319E4443A0064083C /* Sound.m */; };
 		F4E9CF6C19CC02EE0049F233 /* coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4E9CF6919CC02EE0049F233 /* coin.mp3 */; };
 		F4E9CF6D19CC02EE0049F233 /* register.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4E9CF6A19CC02EE0049F233 /* register.mp3 */; };
@@ -80,6 +81,7 @@
 		F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bunsekiViewController.m; sourceTree = "<group>"; };
 		F4A9AFB719E634C200F8E9FD /* jikyuSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jikyuSetViewController.h; sourceTree = "<group>"; };
 		F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jikyuSetViewController.m; sourceTree = "<group>"; };
+		F4D1C5341A0B4F0C00BF95AA /* iPhoneOld.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhoneOld.storyboard; sourceTree = "<group>"; };
 		F4DBBB5219E4443A0064083C /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		F4DBBB5319E4443A0064083C /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
 		F4E9CF6919CC02EE0049F233 /* coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin.mp3; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				F4DBBB5219E4443A0064083C /* Sound.h */,
 				F4DBBB5319E4443A0064083C /* Sound.m */,
 				F46D80AB19E99A47003732D5 /* Main.storyboard */,
+				F4D1C5341A0B4F0C00BF95AA /* iPhoneOld.storyboard */,
 				F4A86A6119EE0E8600B42894 /* bunsekiViewController.h */,
 				F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */,
 				F43D562219E455C000BF6718 /* topViewController.h */,
@@ -293,6 +296,7 @@
 				F46DA21919CB403300AB1CEC /* InfoPlist.strings in Resources */,
 				F4E9CF6E19CC02EE0049F233 /* Time approach.mp3 in Resources */,
 				F46D80AC19E99A47003732D5 /* Main.storyboard in Resources */,
+				F4D1C5351A0B4F0C00BF95AA /* iPhoneOld.storyboard in Resources */,
 				F4E9CF6D19CC02EE0049F233 /* register.mp3 in Resources */,
 				F4E9CF6C19CC02EE0049F233 /* coin.mp3 in Resources */,
 			);
