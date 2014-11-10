@@ -101,4 +101,15 @@
     return resdic;
 }
 
+//IDを変数として保存
+- (IBAction)idField:(UITextField *)sender {
+}
+
+//パスワードを変数として保存
+- (IBAction)passField:(UITextField *)sender {
+}
+
+
+
+
 @end

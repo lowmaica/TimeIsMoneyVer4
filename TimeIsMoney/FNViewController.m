@@ -80,6 +80,7 @@
     resultJikyu = (app.housyu/app.prjTime)*3600;
     if (app.housyu < resultJikyu) {
         NSNumber *num = [NSNumber numberWithFloat:app.housyu]; //float型を編集
+        resultJikyu = app.housyu;
         self.resultJikyuLabel.text = [NSString stringWithFormat:@"%@",num];
     }else{
         app.housyu = resultJikyu;

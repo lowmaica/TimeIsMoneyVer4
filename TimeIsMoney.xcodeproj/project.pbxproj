@@ -273,6 +273,13 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = mycompany;
 				TargetAttributes = {
+					F46DA20A19CB403300AB1CEC = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
+					};
 					F46DA22B19CB403400AB1CEC = {
 						TestTargetID = F46DA20A19CB403300AB1CEC;
 					};

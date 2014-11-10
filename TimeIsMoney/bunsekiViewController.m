@@ -28,35 +28,42 @@
     NSString *urlstr = @"http://time.miraiserver.com/avgjikyu.php?id=";
     urlstr = [urlstr stringByAppendingString:app.userid];
     array = [self serverdata:urlstr];
-    NSString *avgjikyu = [array objectAtIndex:0];
-    int avg = [avgjikyu intValue];
-    avgjikyu = [NSString stringWithFormat:@"%d円",avg];
-    self.jikyulabel.text = avgjikyu;
-    NSLog(@"%@",app.userid);
-    urlstr = @"http://time.miraiserver.com/timeavg.php?id=";
-    urlstr = [urlstr stringByAppendingString:app.userid];
-    array = [self serverdata:urlstr];
-    avgjikyu = [array objectAtIndex:0];
-    avg = [avgjikyu intValue];
-    int hour = avg / 3600;
-    int min = (avg - 3600 * hour) / 60;
-    int sec = (avg - 3600 * hour - min * 60);
-    self.timelabel.text = [NSString stringWithFormat:@"%d時間%d分%d秒",hour,min,sec];
-    NSLog(@"%@",app.userid);
-    self.prolabel.text = @"";
-    urlstr = @"http://time.miraiserver.com/projecttop.php?id=";
-    urlstr = [urlstr stringByAppendingString:app.userid];
-    self.textview.editable = NO;
-    self.textview.text = @"プロジェクトランキング";
-    array = [self serverdata:urlstr];
-    for (int i = 0; i < [array count]; i++) {
-        self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位\n",i+1]];
-        NSDictionary *dic = [array objectAtIndex:i];
-        self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[dic objectForKey:@"project"]]];
-        NSString *jikyustr = [dic objectForKey:@"jikyuavg"];
-        avg = [jikyustr intValue];
-        self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給:%d円\n",avg]];
-        
+    NSLog(@"%@",array);
+    NSLog(@"配列の数は%ld",[array count]);
+    NSLog(@"%@",[array objectAtIndex:0]);
+    if(([array count]>0) && !([[array objectAtIndex:0] isEqualToString:@"<null>"])){
+        NSLog(@"配列は0でない");
+        NSString *avgjikyu = [array objectAtIndex:0];
+        int avg = [avgjikyu intValue];
+        avgjikyu = [NSString stringWithFormat:@"%d円",avg];
+        self.jikyulabel.text = avgjikyu;
+        NSLog(@"%@",app.userid);
+        urlstr = @"http://time.miraiserver.com/timeavg.php?id=";
+        urlstr = [urlstr stringByAppendingString:app.userid];
+        array = [self serverdata:urlstr];
+        avgjikyu = [array objectAtIndex:0];
+        avg = [avgjikyu intValue];
+        int hour = avg / 3600;
+        int min = (avg - 3600 * hour) / 60;
+        int sec = (avg - 3600 * hour - min * 60);
+        self.timelabel.text = [NSString stringWithFormat:@"%d時間%d分%d秒",hour,min,sec];
+        NSLog(@"%@",app.userid);
+        self.prolabel.text = @"";
+        urlstr = @"http://time.miraiserver.com/projecttop.php?id=";
+        urlstr = [urlstr stringByAppendingString:app.userid];
+        self.textview.editable = NO;
+        self.textview.text = @"プロジェクトランキング";
+        array = [self serverdata:urlstr];
+        for (int i = 0; i < [array count]; i++) {
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位\n",i+1]];
+            NSDictionary *dic = [array objectAtIndex:i];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[dic objectForKey:@"project"]]];
+            NSString *jikyustr = [dic objectForKey:@"jikyuavg"];
+            avg = [jikyustr intValue];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給:%d円\n",avg]];
+            
+            
+        }
         
     }
     [super viewDidLoad];

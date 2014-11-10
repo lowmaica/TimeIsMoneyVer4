@@ -65,6 +65,7 @@
     //目標時給と報酬から目標時間を割り出す
     float flt = app.housyu/app.jikyu*60*60;
     NSInteger intNum = flt; //目標時間から小数点を切り捨てるためにint型の変数に代入
+    NSLog(@"%ld",app.prjTime);
     
     //目標時間から経過時間を引いて残り時間を割り出す
     intNum = intNum - app.prjTime;

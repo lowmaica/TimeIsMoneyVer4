@@ -16,7 +16,6 @@
 
 @implementation topViewController{
     AppDelegate *app; //変数管理
-    NSMutableArray *array;
 //    NSString *dvid;
 }
 
@@ -42,10 +41,8 @@
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     NSLog(@"%@",app.userid);
     urlstr = [urlstr stringByAppendingString:app.userid];
-    array = [NSMutableArray array];
-    array = (NSMutableArray*)[self serverdata:urlstr];
-    
-    NSLog(@"%@",array);
+    self.array = [NSMutableArray array];
+    self.array = (NSMutableArray*)[self serverdata:urlstr];
     
 //    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
     
@@ -115,7 +112,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger dataCount;
     dataCount = app.nowProject.count;
-    return [array count]; //配列の中身の数を数えてローの数を指定する
+    return [self.array count]; //配列の中身の数を数えてローの数を指定する
 }
 
 
@@ -130,7 +127,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [array[indexPath.row] objectForKey:@"project"];
+    cell.textLabel.text = [self.array[indexPath.row] objectForKey:@"project"];
     return cell;
 }
 
@@ -155,7 +152,7 @@
         
         
         //取り出した文字列で辞書を呼び出す
-        NSDictionary *dic = [array objectAtIndex:row];
+        NSDictionary *dic = [self.array objectAtIndex:row];
         app.projectName = [dic objectForKey:@"project"];
         
         //報酬を代入
@@ -220,8 +217,8 @@
     {
         // 削除するコードを挿入します
         NSLog(@"%ld行目削除",indexPath.row);
-        NSDictionary *prodic = [array objectAtIndex:indexPath.row];
-        [array removeObjectAtIndex:indexPath.row];
+        NSDictionary *prodic = [self.array objectAtIndex:indexPath.row];
+        [self.array removeObjectAtIndex:indexPath.row];
         //サーバーのデータ送信処理
         NSURL *url = [NSURL URLWithString:@"http://time.miraiserver.com/delete.php"];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -253,5 +250,11 @@
 
 //戻るボタンのためにSegueを設定
 - (IBAction)returnTop:(UIStoryboardSegue *)segue {
+    NSLog(@"トップに戻る");
+    NSString *urlstr = @"http://time.miraiserver.com/alldata.php?id=";
+    urlstr = [urlstr stringByAppendingString:app.userid];
+    self.array = [NSMutableArray array];
+    self.array = (NSMutableArray*)[self serverdata:urlstr];
+    [self.tableView reloadData];
 }
 @end

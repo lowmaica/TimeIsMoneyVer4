@@ -124,7 +124,7 @@
     NSURLResponse *response;
     NSError *err = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]; //ここがおかしい？
     NSLog(@"%@",datastring);
 }
 

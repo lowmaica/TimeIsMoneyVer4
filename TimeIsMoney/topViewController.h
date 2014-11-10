@@ -12,5 +12,6 @@
 @interface topViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property NSMutableArray *array;
 
 @end
