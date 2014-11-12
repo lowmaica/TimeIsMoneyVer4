@@ -60,13 +60,11 @@
             NSString *jikyustr = [dic objectForKey:@"jikyuavg"];
             avg = [jikyustr intValue];
             self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給:%d円\n",avg]];
-            
-            
         }
         
     }
     else{
-        //なにもないときにメッセージ
+        //なにもないときにメッセージを出す
         
     }
     [super viewDidLoad];

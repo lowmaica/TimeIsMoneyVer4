@@ -10,6 +10,7 @@
 
 @interface NewidViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *idtextfield;
+@property (weak, nonatomic) IBOutlet UITextField *fakepasstextfield;
 @property (weak, nonatomic) IBOutlet UITextField *passtextfield;
 - (IBAction)newid:(id)sender;
 

@@ -40,19 +40,46 @@
 */
 
 - (IBAction)newid:(id)sender {
-    //サーバーのデータ送信処理
-    NSString *urlstr = @"http://timeismoney.miraiserver.com/newid.php?";
-    urlstr =[urlstr stringByAppendingString:[NSString stringWithFormat:@"id=%@&", self.idtextfield.text]];
-    urlstr = [urlstr stringByAppendingString:[NSString stringWithFormat:@"pass=%@",self.passtextfield.text]];
-    NSDictionary *resdic = [self serverdata:urlstr];
-    NSLog(@"%@",resdic);
-    if ([[resdic objectForKey:@"result"] isEqualToString:@"1"]) {
-        NSLog(@"新規登録成功");
-        app = [[UIApplication sharedApplication] delegate];
-        app.userid = self.idtextfield.text;
-        [self performSegueWithIdentifier:@"newidsegue" sender:self];
+    //パスワード記入欄に記入したテキストを変数に入れる×２
+    NSString *pass1 = self.fakepasstextfield.text;
+    NSString *pass2 = self.passtextfield.text;
+    //もし1つめのパスワードと2つ目のパスワードが同じ場合if文の中を通し、違う場合はアラートを出す
+    if ([pass1 isEqualToString:pass2]) {
+        //サーバーのデータ送信処理
+        NSString *urlstr = @"http://timeismoney.miraiserver.com/newid.php?";
+        urlstr =[urlstr stringByAppendingString:[NSString stringWithFormat:@"id=%@&", self.idtextfield.text]];
+        urlstr = [urlstr stringByAppendingString:[NSString stringWithFormat:@"pass=%@",self.passtextfield.text]];
+        NSDictionary *resdic = [self serverdata:urlstr];
+        NSLog(@"%@",resdic);
+        if ([[resdic objectForKey:@"result"] isEqualToString:@"1"]) {
+            NSLog(@"新規登録成功");
+            app = [[UIApplication sharedApplication] delegate];
+            app.userid = self.idtextfield.text;
+            [self performSegueWithIdentifier:@"newidsegue" sender:self];
+            
+        //IDをUserDefaultで保存
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:app.userid forKey:@"ID文字列"];
+        }else{
+            NSLog(@"同じIDがある");
+            //アラートでそのIDは使用されていますと出す
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"新規アカウントを作成できません"
+                                  message:@"\nそのIDは既に使われています。\n別のIDを入力してください。"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }else{
-        NSLog(@"同じIDがある");
+        //アラートで「パスワードが一致しません」と出す
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"新規アカウントを作成できません"
+                              message:@"\nパスワードが一致しません。\nもう一度入力してください。"
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 

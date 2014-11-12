@@ -142,4 +142,8 @@
 //    [defaults setObject:app.password forKey:@"パスワード"];
 }
 
+//戻るボタンのためにSegueを設定
+- (IBAction)returnLogin:(UIStoryboardSegue *)segue {
+}
+
 @end
