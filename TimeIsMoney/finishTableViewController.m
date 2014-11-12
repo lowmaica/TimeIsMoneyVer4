@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
 //    dvid = @"time01";
-    NSString *urlstr = @"http://time.miraiserver.com/exitalldata.php?id=";
+    NSString *urlstr = @"http://timeismoney.miraiserver.com/exitalldata.php?id=";
     urlstr = [urlstr stringByAppendingString:app.userid];
     array = (NSMutableArray*)[self serverdata:urlstr];
     NSLog(@"%@",array);
@@ -113,7 +113,7 @@
         app.clientName = [NSString stringWithFormat:@"%@", data];
         
         //ジャンルを代入
-        data = [dic objectForKey:@"genre"];
+        data = [dic objectForKey:@"janle"];
         app.genreName = [NSString stringWithFormat:@"%@", data];
         data = [dic objectForKey:@"projectid"];
         int num = [data intValue];
@@ -166,7 +166,7 @@
         NSDictionary *prodic = [array objectAtIndex:indexPath.row];
         [array removeObjectAtIndex:indexPath.row];
         //サーバーのデータ送信処理
-        NSURL *url = [NSURL URLWithString:@"http://time.miraiserver.com/exitdelete.php"];
+        NSURL *url = [NSURL URLWithString:@"http://timeismoney.miraiserver.com/exitdelete.php"];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
         NSMutableData *body = [NSMutableData data];
         NSString *boundary = @"--1680ert52491z";

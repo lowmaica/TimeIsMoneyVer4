@@ -25,20 +25,19 @@
     //端末idを取得するための変数であるがシミュレータを起動するたびにかわるのでコメント
     //dvid = [UIDevice currentDevice].identifierForVendor.UUIDString;
     NSLog(@"%@",app.userid);
-    NSString *urlstr = @"http://time.miraiserver.com/avgjikyu.php?id=";
+    NSString *urlstr = @"http://timeismoney.miraiserver.com/avgjikyu.php?id=";
     urlstr = [urlstr stringByAppendingString:app.userid];
     array = [self serverdata:urlstr];
     NSLog(@"%@",array);
     NSLog(@"配列の数は%ld",[array count]);
-    NSLog(@"%@",[array objectAtIndex:0]);
-    if(([array count]>0) && !([[array objectAtIndex:0] isEqualToString:@"<null>"])){
+    if(([array count]>0)){
         NSLog(@"配列は0でない");
         NSString *avgjikyu = [array objectAtIndex:0];
         int avg = [avgjikyu intValue];
         avgjikyu = [NSString stringWithFormat:@"%d円",avg];
         self.jikyulabel.text = avgjikyu;
         NSLog(@"%@",app.userid);
-        urlstr = @"http://time.miraiserver.com/timeavg.php?id=";
+        urlstr = @"http://timeismoney.miraiserver.com/timeavg.php?id=";
         urlstr = [urlstr stringByAppendingString:app.userid];
         array = [self serverdata:urlstr];
         avgjikyu = [array objectAtIndex:0];
@@ -49,7 +48,7 @@
         self.timelabel.text = [NSString stringWithFormat:@"%d時間%d分%d秒",hour,min,sec];
         NSLog(@"%@",app.userid);
         self.prolabel.text = @"";
-        urlstr = @"http://time.miraiserver.com/projecttop.php?id=";
+        urlstr = @"http://timeismoney.miraiserver.com/projecttop.php?id=";
         urlstr = [urlstr stringByAppendingString:app.userid];
         self.textview.editable = NO;
         self.textview.text = @"プロジェクトランキング";
@@ -64,6 +63,10 @@
             
             
         }
+        
+    }
+    else{
+        //なにもないときにメッセージ
         
     }
     [super viewDidLoad];

@@ -9,19 +9,35 @@
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 
-@interface LoginViewController ()<UITextFieldDelegate>{
+@interface LoginViewController ()<UITextFieldDelegate>
+@end
+
+@implementation LoginViewController{
     AppDelegate *app;
 }
 
-@end
-
-@implementation LoginViewController
-
 - (void)viewDidLoad {
+    app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
+    
     self.idtextfield.delegate = self;
     self.passtextfield.delegate = self;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //Userdefaultsから取り出してIDとパスワードを変数に入れる
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    app.id = [defaults stringForKey:@"ID文字列"];
+//    app.password = [defaults stringForKey:@"パスワード"];
+    
+    //もしIDの中身が空でなければテキストフィールドにIDの中身を表示
+    if (app.id != nil) {
+        [self.idtextfield setText:app.id];
+    }
+    
+//    //もしpasswordの中身が空でなければテキストフィールドにpasswordの中身を表示
+//    if (app.password != nil) {
+//        [self.idtextfield setText:app.password];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,7 +57,7 @@
 
 - (IBAction)logincheck:(id)sender {
     //サーバーのデータ送信処理
-    NSString *urlstr = @"http://time.miraiserver.com/login.php?";
+    NSString *urlstr = @"http://timeismoney.miraiserver.com/login.php?";
     urlstr =[urlstr stringByAppendingString:[NSString stringWithFormat:@"id=%@&", self.idtextfield.text]];
     urlstr = [urlstr stringByAppendingString:[NSString stringWithFormat:@"pass=%@",self.passtextfield.text]];
     NSDictionary *resdic = [self serverdata:urlstr];
@@ -53,6 +69,15 @@
         [self performSegueWithIdentifier:@"loginsegue" sender:self];
     }else{
         NSLog(@"ログイン失敗");
+        //アラートが出る
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"ログインできません"
+                              message:@"\nIDまたはパスワードが違います。\n再入力してください。"
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+
     }
 }
 
@@ -103,13 +128,18 @@
 
 //IDを変数として保存
 - (IBAction)idField:(UITextField *)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *text = sender.text;
+    app.id = text;
+    [defaults setObject:app.id forKey:@"ID文字列"];
 }
 
 //パスワードを変数として保存
 - (IBAction)passField:(UITextField *)sender {
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *text = sender.text;
+//    app.password = text;
+//    [defaults setObject:app.password forKey:@"パスワード"];
 }
-
-
-
 
 @end

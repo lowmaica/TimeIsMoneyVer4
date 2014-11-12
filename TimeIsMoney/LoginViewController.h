@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h" //変数管理
 
 @interface LoginViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *idtextfield;
-
 @property (weak, nonatomic) IBOutlet UITextField *passtextfield;
 - (IBAction)logincheck:(id)sender;
 @end

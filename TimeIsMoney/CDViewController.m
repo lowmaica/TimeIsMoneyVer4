@@ -227,7 +227,7 @@
     [defaults setObject:dic forKey: app.projectName];
      */
     //サーバーのデータ送信処理
-    NSURL *url = [NSURL URLWithString:@"http://time.miraiserver.com/update.php"];
+    NSURL *url = [NSURL URLWithString:@"http://timeismoney.miraiserver.com/update.php"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     NSMutableData *body = [NSMutableData data];
     NSString *boundary = @"--1680ert52491z";

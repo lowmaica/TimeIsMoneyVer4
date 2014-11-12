@@ -80,7 +80,7 @@
 //    [defaults setObject:app.nowProject forKey:@"進行中"];
     
     //サーバーのデータ送信処理
-    NSURL *url = [NSURL URLWithString:@"http://time.miraiserver.com/insert.php"];
+    NSURL *url = [NSURL URLWithString:@"http://timeismoney.miraiserver.com/insert.php"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     NSMutableData *body = [NSMutableData data];
     NSString *boundary = @"--1680ert52491z";
@@ -102,7 +102,7 @@
     //clientのパラメータの設定
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Disposition: form-data; name=\"client\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    if(app.clientName == nil){
+    if([app.clientName length] == 0){
         app.clientName = @"その他のクライアント";
     }
     [body appendData:[[NSString stringWithFormat:@"%@\r\n",app.clientName] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -112,7 +112,7 @@
     [body appendData:[@"Content-Disposition: form-data; name=\"houshu\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"%f\r\n",app.housyu] dataUsingEncoding:NSUTF8StringEncoding]];
     //janleのパラメータの設定
-    if(app.genreName == nil){
+    if([app.genreName length]== 0){
         app.genreName = @"その他のジャンル";
     }
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];

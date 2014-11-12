@@ -37,6 +37,10 @@
 //iPhone4Sかどうかの判定のための変数
 @property NSString *deviceName;
 
+//IDとパスワードを入れる変数
+@property NSString *id;
+@property NSString *password;
+
 
 ////終了タブから戻ってきたかどうかの判定
 //@property NSInteger syuryo;

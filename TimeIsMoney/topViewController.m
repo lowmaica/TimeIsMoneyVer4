@@ -37,7 +37,7 @@
     //端末idを取得するための変数であるがシミュレータを起動するたびにかわるのでコメント
     //dvid = [UIDevice currentDevice].identifierForVendor.UUIDString;
     
-    NSString *urlstr = @"http://time.miraiserver.com/alldata.php?id=";
+    NSString *urlstr = @"http://timeismoney.miraiserver.com/alldata.php?id=";
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     NSLog(@"%@",app.userid);
     urlstr = [urlstr stringByAppendingString:app.userid];
@@ -220,7 +220,7 @@
         NSDictionary *prodic = [self.array objectAtIndex:indexPath.row];
         [self.array removeObjectAtIndex:indexPath.row];
         //サーバーのデータ送信処理
-        NSURL *url = [NSURL URLWithString:@"http://time.miraiserver.com/delete.php"];
+        NSURL *url = [NSURL URLWithString:@"http://timeismoney.miraiserver.com/delete.php"];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
         NSMutableData *body = [NSMutableData data];
         NSString *boundary = @"--1680ert52491z";
@@ -251,7 +251,7 @@
 //戻るボタンのためにSegueを設定
 - (IBAction)returnTop:(UIStoryboardSegue *)segue {
     NSLog(@"トップに戻る");
-    NSString *urlstr = @"http://time.miraiserver.com/alldata.php?id=";
+    NSString *urlstr = @"http://timeismoney.miraiserver.com/alldata.php?id=";
     urlstr = [urlstr stringByAppendingString:app.userid];
     self.array = [NSMutableArray array];
     self.array = (NSMutableArray*)[self serverdata:urlstr];

@@ -112,7 +112,7 @@
     [defaults setObject:app.nowProject forKey:@"進行中"];
     */
     //サーバーのデータ送信処理
-    NSURL *url = [NSURL URLWithString:@"http://time.miraiserver.com/restart.php"];
+    NSURL *url = [NSURL URLWithString:@"http://timeismoney.miraiserver.com/restart.php"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     NSMutableData *body = [NSMutableData data];
     NSString *boundary = @"--1680ert52491z";

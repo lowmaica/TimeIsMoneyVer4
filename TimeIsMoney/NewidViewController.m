@@ -41,7 +41,7 @@
 
 - (IBAction)newid:(id)sender {
     //サーバーのデータ送信処理
-    NSString *urlstr = @"http://time.miraiserver.com/newid.php?";
+    NSString *urlstr = @"http://timeismoney.miraiserver.com/newid.php?";
     urlstr =[urlstr stringByAppendingString:[NSString stringWithFormat:@"id=%@&", self.idtextfield.text]];
     urlstr = [urlstr stringByAppendingString:[NSString stringWithFormat:@"pass=%@",self.passtextfield.text]];
     NSDictionary *resdic = [self serverdata:urlstr];
