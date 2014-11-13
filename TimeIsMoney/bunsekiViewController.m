@@ -34,7 +34,7 @@
         NSLog(@"配列は0でない");
         NSString *avgjikyu = [array objectAtIndex:0];
         int avg = [avgjikyu intValue];
-        avgjikyu = [NSString stringWithFormat:@"%d円",avg];
+        avgjikyu = [NSString stringWithFormat:@"%d",avg];
         self.jikyulabel.text = avgjikyu;
         NSLog(@"%@",app.userid);
         urlstr = @"http://timeismoney.miraiserver.com/timeavg.php?id=";
@@ -42,31 +42,31 @@
         array = [self serverdata:urlstr];
         avgjikyu = [array objectAtIndex:0];
         avg = [avgjikyu intValue];
-        int hour = avg / 3600;
-        int min = (avg - 3600 * hour) / 60;
-        int sec = (avg - 3600 * hour - min * 60);
-        self.timelabel.text = [NSString stringWithFormat:@"%d時間%d分%d秒",hour,min,sec];
+//        int hour = avg / 3600;
+//        int min = (avg - 3600 * hour) / 60;
+//        int sec = (avg - 3600 * hour - min * 60);
+//        self.timelabel.text = [NSString stringWithFormat:@"%d時間%d分%d秒",hour,min,sec];
         NSLog(@"%@",app.userid);
         self.prolabel.text = @"";
         urlstr = @"http://timeismoney.miraiserver.com/projecttop.php?id=";
         urlstr = [urlstr stringByAppendingString:app.userid];
         self.textview.editable = NO;
-        self.textview.text = @"プロジェクトランキング";
+        self.textview.text = @"【 プロジェクト別 】\n";
         array = [self serverdata:urlstr];
         for (int i = 0; i < [array count]; i++) {
-            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位\n",i+1]];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i+1]];
             NSDictionary *dic = [array objectAtIndex:i];
             self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[dic objectForKey:@"project"]]];
             NSString *jikyustr = [dic objectForKey:@"jikyuavg"];
             avg = [jikyustr intValue];
-            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給:%d円\n",avg]];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
         }
         
     }
-    else{
-        //なにもないときにメッセージを出す
-        
-    }
+//    else{
+//        //なにもないときにメッセージを出す
+//        
+//    }
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }

@@ -39,7 +39,7 @@
     mySound = [[Sound alloc]init]; //音源クラスのインスタンス初期化
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
-    //チート用。経過時間を操作。
+//    //チート用。経過時間を操作。
 //    NSInteger i = 4; //時間
 //    app.prjTime = i*3600;
 //    i = 59; //分
@@ -57,11 +57,18 @@
     //初期状態のラベル表示
     //プロジェクト時間ラベルの表示と背景の設定
     if (app.prjTime > targetTime) { //もし経過時間が目標時間よりも大きければ
-        //背景を赤にする
-        self.backImage.image = [UIImage imageNamed:@"cdback02"]; //背景画像を変更する。ボタンも変更。
-        [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRed"] forState:UIControlStateNormal];
-        [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRed"] forState:UIControlStateNormal];
-        [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
+        //背景を赤にする。iPhone4sの場合はif文の中、違う場合はelseを通る
+        if (app.deviceNum == 1){
+            self.backImage.image = [UIImage imageNamed:@"oldCdback02"]; //背景画像を変更する。ボタンも変更。
+            [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRedOld"] forState:UIControlStateNormal];
+            [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRedOld"] forState:UIControlStateNormal];
+            [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
+        }else{
+            self.backImage.image = [UIImage imageNamed:@"cdback02"]; //背景画像を変更する。ボタンも変更。
+            [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRed"] forState:UIControlStateNormal];
+            [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRed"] forState:UIControlStateNormal];
+            [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
+        }
         //超過時間を表示する
         NSInteger num = app.prjTime - targetTime; //目標を超過した時間
         hours = num/3600;
@@ -130,11 +137,18 @@
         
     }else if (targetTime == tmp){   //目標時間と経過時間が同じ場合
         self.pjTimeLabel.text = [NSString stringWithFormat:@"00:00:00"];
-        //背景やボタンを変更する
-        self.backImage.image = [UIImage imageNamed:@"cdback02"]; //背景画像を変更する。ボタンも変更。
-        [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRed"] forState:UIControlStateNormal];
-        [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRed"] forState:UIControlStateNormal];
-        [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
+        //背景を赤にする。iPhone4sの場合はif文の中、違う場合はelseを通る
+        if (app.deviceNum == 1){
+            self.backImage.image = [UIImage imageNamed:@"oldCdback02"]; //背景画像を変更する。ボタンも変更。
+            [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRedOld"] forState:UIControlStateNormal];
+            [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRedOld"] forState:UIControlStateNormal];
+            [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
+        }else{
+            self.backImage.image = [UIImage imageNamed:@"cdback02"]; //背景画像を変更する。ボタンも変更。
+            [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRed"] forState:UIControlStateNormal];
+            [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRed"] forState:UIControlStateNormal];
+            [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
+        }
         //アラート音を鳴らす
         [mySound soundAlert];
         

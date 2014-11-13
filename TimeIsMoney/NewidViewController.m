@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     self.idtextfield.delegate = self;
+    self.fakepasstextfield.delegate = self;
     self.passtextfield.delegate = self;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -100,6 +101,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //キーボードを閉じる
     [self.idtextfield resignFirstResponder];
+    [self.fakepasstextfield resignFirstResponder];
     [self.passtextfield resignFirstResponder];
 }
 

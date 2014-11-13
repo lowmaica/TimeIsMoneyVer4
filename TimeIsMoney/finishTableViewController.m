@@ -193,6 +193,11 @@
     }
 }
 
+//更新ボタン
+- (IBAction)btnReload:(UIButton *)sender {
+    [self.tableView reloadData];
+}
+
 //戻るボタンのためにSegueを設定
 - (IBAction)returnFinish:(UIStoryboardSegue *)segue {
 }

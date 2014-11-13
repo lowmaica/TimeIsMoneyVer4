@@ -231,6 +231,12 @@
     }
 }
 
+//テーブルビューの更新
+- (IBAction)btnReload:(UIButton *)sender {
+    [self.tableView reloadData];
+}
+
+
 //戻るボタンのためにSegueを設定
 - (IBAction)returnTop:(UIStoryboardSegue *)segue {
     NSLog(@"トップに戻る");
