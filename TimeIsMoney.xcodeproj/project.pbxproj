@@ -159,11 +159,11 @@
 				F4DBBB5219E4443A0064083C /* Sound.h */,
 				F4DBBB5319E4443A0064083C /* Sound.m */,
 				F46D80AB19E99A47003732D5 /* Main.storyboard */,
+				F4D1C5341A0B4F0C00BF95AA /* iPhoneOld.storyboard */,
 				F4C8253E1A0DF53E00C374F4 /* NewidViewController.h */,
 				F4C8253F1A0DF53E00C374F4 /* NewidViewController.m */,
 				F49C7F311A0DE87A00ACA590 /* LoginViewController.h */,
 				F49C7F321A0DE87A00ACA590 /* LoginViewController.m */,
-				F4D1C5341A0B4F0C00BF95AA /* iPhoneOld.storyboard */,
 				F4A86A6119EE0E8600B42894 /* bunsekiViewController.h */,
 				F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */,
 				F43D562219E455C000BF6718 /* topViewController.h */,
@@ -274,6 +274,7 @@
 				ORGANIZATIONNAME = mycompany;
 				TargetAttributes = {
 					F46DA20A19CB403300AB1CEC = {
+						DevelopmentTeam = F6V5S453ZH;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -463,6 +464,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeIsMoney/TimeIsMoney-Prefix.pch";
 				INFOPLIST_FILE = "TimeIsMoney/TimeIsMoney-Info.plist";
@@ -477,6 +479,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TimeIsMoney/TimeIsMoney-Prefix.pch";
 				INFOPLIST_FILE = "TimeIsMoney/TimeIsMoney-Info.plist";

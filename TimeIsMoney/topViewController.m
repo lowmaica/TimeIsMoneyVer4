@@ -33,10 +33,7 @@
     self.tabBarController.delegate = self;
     
 //    dvid = @"time01";
-    
-    //端末idを取得するための変数であるがシミュレータを起動するたびにかわるのでコメント
-    //dvid = [UIDevice currentDevice].identifierForVendor.UUIDString;
-    
+        
     NSString *urlstr = @"http://timeismoney.miraiserver.com/alldata.php?id=";
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     NSLog(@"%@",app.userid);
@@ -71,20 +68,6 @@
              self.tabBarController.selectedViewController = vc;
          }];
     }
-    
-    //終了結果表示から帰ってきた場合終了タブを開く
-//    if(app.syuryo == 1){
-//        UIViewController *vc = self.tabBarController.childViewControllers[1];
-//        [UIView transitionFromView:self.view
-//                            toView:vc.view
-//                          duration:1.0
-//                           options:UIViewAnimationOptionTransitionCrossDissolve
-//                        completion:
-//         ^(BOOL finished) {
-//             self.tabBarController.selectedViewController = vc;
-//             app.syuryo = 0;
-//         }];
-//    }
 }
 
 

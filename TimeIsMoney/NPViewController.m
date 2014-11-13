@@ -24,6 +24,10 @@
     mySound = [[Sound alloc]init]; //音源のインスタンス初期化
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
+    //ジャンル名とクライアント名を初期化
+    app.genreName = nil;
+    app.clientName = nil;
+    
     //背景クリックでソフトウェアキーボードを消す
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeSoftKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
@@ -64,7 +68,7 @@
 //    //経過時間を0として保存prjTime
 //    [dic setValue: 0  forKey: @"経過時間"];
     
-    //ここはどうしたらよかろう？
+    //ここはどうしたらいい？
     //進行中プロジェクトの配列の中身が空の場合初期化する
     NSInteger dataCount;
     dataCount = app.nowProject.count;
