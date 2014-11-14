@@ -16,6 +16,12 @@
 {
     // Override point for customization after application launch.
     
+    //ローカル通知用
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound categories:nil];
+        [application registerUserNotificationSettings:settings];
+    }
+    
     //以下ストーリーボード分岐のためのコード
     // StoryBoardの型宣言
     UIStoryboard *storyboard;

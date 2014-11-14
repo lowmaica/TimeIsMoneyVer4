@@ -61,6 +61,30 @@
             avg = [jikyustr intValue];
             self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
         }
+        urlstr = @"http://timeismoney.miraiserver.com/clienttop.php?id=";
+        urlstr = [urlstr stringByAppendingString:app.userid];
+        array = [self serverdata:urlstr];
+        self.textview.text = [self.textview.text stringByAppendingString:@"\n【 クライアント別 】\n"];
+        for (int i = 0; i < [array count]; i++) {
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i+1]];
+            NSDictionary *dic = [array objectAtIndex:i];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[dic objectForKey:@"client"]]];
+            NSString *jikyustr = [dic objectForKey:@"jikyuavg"];
+            avg = [jikyustr intValue];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+        }
+        urlstr = @"http://timeismoney.miraiserver.com/janletop.php?id=";
+        urlstr = [urlstr stringByAppendingString:app.userid];
+        array = [self serverdata:urlstr];
+        self.textview.text = [self.textview.text stringByAppendingString:@"\n【 ジャンル別 】\n"];
+        for (int i = 0; i < [array count]; i++) {
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i+1]];
+            NSDictionary *dic = [array objectAtIndex:i];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[dic objectForKey:@"janle"]]];
+            NSString *jikyustr = [dic objectForKey:@"jikyuavg"];
+            avg = [jikyustr intValue];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+        }
         
     }
 //    else{

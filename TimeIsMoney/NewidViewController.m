@@ -61,7 +61,7 @@
         //IDをUserDefaultで保存
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:app.userid forKey:@"ID文字列"];
-        }else{
+        }else if([[resdic objectForKey:@"result"] isEqualToString:@"0"]){
             NSLog(@"同じIDがある");
             //アラートでそのIDは使用されていますと出す
             UIAlertView *alert = [[UIAlertView alloc]
@@ -71,6 +71,16 @@
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
             [alert show];
+        }else{
+            //アラートが出る
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"ログインできません"
+                                  message:@"\nサーバーの接続に失敗しました。"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+
         }
     }else{
         //アラートで「パスワードが一致しません」と出す

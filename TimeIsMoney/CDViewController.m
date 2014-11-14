@@ -18,8 +18,7 @@
     AppDelegate *app; //変数管理
     NSTimer *myTimer; //タイマーのインスタンス
     
-    //多分消しても大丈夫
-    BOOL isOver; //設定時間を過ぎたかどうかの判定、YESならマイナスカウントを始める
+    BOOL isOver; //設定時間を過ぎたかどうかの判定
 
     //このクラスでしか使われない変数
     NSInteger hours;
@@ -57,18 +56,8 @@
     //初期状態のラベル表示
     //プロジェクト時間ラベルの表示と背景の設定
     if (app.prjTime > targetTime) { //もし経過時間が目標時間よりも大きければ
-        //背景を赤にする。iPhone4sの場合はif文の中、違う場合はelseを通る
-        if (app.deviceNum == 1){
-            self.backImage.image = [UIImage imageNamed:@"oldCdback02"]; //背景画像を変更する。ボタンも変更。
-            [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRedOld"] forState:UIControlStateNormal];
-            [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRedOld"] forState:UIControlStateNormal];
-            [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
-        }else{
-            self.backImage.image = [UIImage imageNamed:@"cdback02"]; //背景画像を変更する。ボタンも変更。
-            [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRed"] forState:UIControlStateNormal];
-            [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRed"] forState:UIControlStateNormal];
-            [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
-        }
+        //背景を赤にする
+        [self backchange];
         //超過時間を表示する
         NSInteger num = app.prjTime - targetTime; //目標を超過した時間
         hours = num/3600;
@@ -137,22 +126,15 @@
         
     }else if (targetTime == tmp){   //目標時間と経過時間が同じ場合
         self.pjTimeLabel.text = [NSString stringWithFormat:@"00:00:00"];
-        //背景を赤にする。iPhone4sの場合はif文の中、違う場合はelseを通る
-        if (app.deviceNum == 1){
-            self.backImage.image = [UIImage imageNamed:@"oldCdback02"]; //背景画像を変更する。ボタンも変更。
-            [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRedOld"] forState:UIControlStateNormal];
-            [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRedOld"] forState:UIControlStateNormal];
-            [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
-        }else{
-            self.backImage.image = [UIImage imageNamed:@"cdback02"]; //背景画像を変更する。ボタンも変更。
-            [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRed"] forState:UIControlStateNormal];
-            [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRed"] forState:UIControlStateNormal];
-            [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
-        }
+        //背景を赤にする
+        [self backchange];
         //アラート音を鳴らす
         [mySound soundAlert];
         
     }else{  //目標時間が経過時間の総計より小さい場合
+        if (!isOver) {
+            [self backchange];
+        }
         tmp = tmp - targetTime; //「tmp」が目標を超過した時間
         //超過した時間を時：分：秒の形で表示する
         hours = tmp/3600;
@@ -160,6 +142,25 @@
         seconds = (tmp%3600)%60;
         self.pjTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",(long)hours,(long)minutes,(long)seconds];    }
 }
+
+
+//背景を赤にするメソッド
+-(void)backchange{
+    //背景を赤にする。iPhone4sの場合はif文の中、違う場合はelseを通る
+    if (app.deviceNum == 1){
+        self.backImage.image = [UIImage imageNamed:@"oldCdback02"]; //背景画像を変更する。ボタンも変更。
+        [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRedOld"] forState:UIControlStateNormal];
+        [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRedOld"] forState:UIControlStateNormal];
+        [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
+    }else{
+        self.backImage.image = [UIImage imageNamed:@"cdback02"]; //背景画像を変更する。ボタンも変更。
+        [self.startStopButton setImage:[UIImage imageNamed:@"btnStartRed"] forState:UIControlStateNormal];
+        [self.finishBtn setImage:[UIImage imageNamed:@"btnFinishRed"] forState:UIControlStateNormal];
+        [self.backBtn setImage:[UIImage imageNamed:@"btnBackWhite"] forState:UIControlStateNormal];
+    }
+    isOver = YES;
+}
+
 
 //経過時間を保存するメソッド
 -(void)saveTime{
@@ -224,10 +225,27 @@
     [self saveTime]; //経過時間を保存
 }
 
+-(void)notification{
+    // インスタンス生成
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    // ?分後に通知をする（設定は秒単位）
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(targetTime)];
+    // タイムゾーンの設定
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    // 通知時に表示させるメッセージ内容
+    notification.alertBody = @"目標時間を過ぎました";
+    // 通知に鳴る音の設定
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    // 通知の登録
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
 //開始／停止ボタンをおした時の動作
 - (IBAction)startStopButton:(id)sender {
     if ([myTimer isValid]) { //myTimerが動いている場合止める
         [myTimer invalidate];
+        // アプリに登録されている全ての通知を削除
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
     }else{ //myTimerが動いてない場合動かす
         start = [NSDate date]; //タイマーが動き出した時刻を記録。「start」がタイマーを開始した時間
         //タイマーを動かす
@@ -237,6 +255,8 @@
                    selector:@selector(countDown)
                    userInfo:nil
                    repeats:YES];
+        //ローカル通知
+        [self notification];
     }
     [self saveTime]; //経過時間を保存
     [mySound soundCoin]; //コインの音

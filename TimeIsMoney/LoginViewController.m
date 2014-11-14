@@ -67,7 +67,7 @@
         app = [[UIApplication sharedApplication] delegate];
         app.userid = self.idtextfield.text;
         [self performSegueWithIdentifier:@"loginsegue" sender:self];
-    }else{
+    }else if ([[resdic objectForKey:@"result"] isEqualToString:@"0"]){
         NSLog(@"ログイン失敗");
         //アラートが出る
         UIAlertView *alert = [[UIAlertView alloc]
@@ -78,6 +78,15 @@
                               otherButtonTitles:nil];
         [alert show];
 
+    }else{
+        //アラートが出る
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"ログインできません"
+                              message:@"\nサーバーの接続に失敗しました。"
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
     }
 }
 
