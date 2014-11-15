@@ -158,6 +158,9 @@
     return resdic;
 }
 
+
+
+
 //IDを変数として保存
 - (IBAction)idField:(UITextField *)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

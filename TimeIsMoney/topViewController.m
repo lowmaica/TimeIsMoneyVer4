@@ -16,21 +16,25 @@
 
 @implementation topViewController{
     AppDelegate *app; //変数管理
-//    NSString *dvid;
+    UIView *loadingView; //更新中のぐるぐる
+    UIActivityIndicatorView *indicator; //更新中のぐるぐる
 }
 
-
 - (void)viewDidLoad {
-    [super viewDidLoad];
-//        NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-//        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
-
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tabBarController.delegate = self;
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
+    [super viewDidLoad];
+//        NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+//        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+
+
     
-    [self datareload];
+    NSString *urlstr = @"http://timeismoney.miraiserver.com/alldata.php?id=";
+    urlstr = [urlstr stringByAppendingString:app.userid];
+    self.array = [NSMutableArray array];
+    self.array = (NSMutableArray*)[self serverdata:urlstr];
     NSLog(@"%@",app.userid);
     
     //プロジェクトの変数を初期化する
@@ -172,7 +176,7 @@
     return resarray;
 }
 
-//横フリックでプロジェクトを削除できるようにしたい
+//横フリックでプロジェクトを削除
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -219,15 +223,30 @@
     [self.tableView reloadData];
 }
 
-//サーバーからデータを取ってきて配列に入れているっぽいけど確信はない
--(void)datareload{
-    NSString *urlstr = @"http://timeismoney.miraiserver.com/alldata.php?id=";
-    urlstr = [urlstr stringByAppendingString:app.userid];
-    self.array = [NSMutableArray array];
-    self.array = (NSMutableArray*)[self serverdata:urlstr];
+//更新ボタン
+- (IBAction)btnReload:(UIButton *)sender {
+    loadingView = [[UIView alloc] initWithFrame:self.view.bounds];
+    // 雰囲気出すために背景を黒く半透明する
+    loadingView.backgroundColor = [UIColor blackColor];
+    loadingView.alpha = 0.5f;
+    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    // でっかいグルグル
+    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    // 画面の中心に配置
+    [indicator setCenter:CGPointMake(loadingView.bounds.size.width / 2, loadingView.bounds.size.height / 2)];
+    // 画面に追加
+    [loadingView addSubview:indicator];
+    [self.view addSubview:loadingView];
+    // ぐるぐる開始
+    [indicator startAnimating];
+    
+    //ここでサーバーからデータを取ってきたい（保留中）
+    //成功したか失敗したかのアラートを出したい（保留中）
+    
+    // ぐるぐる停止
+    [indicator stopAnimating];
+    // 画面から除去して黒い半透明を消す
+    [loadingView removeFromSuperview];
 }
 
-- (IBAction)btnReload:(UIButton *)sender {
-    [self datareload];
-}
 @end
