@@ -229,7 +229,9 @@
     // インスタンス生成
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     // ?分後に通知をする（設定は秒単位）
-    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(targetTime)];
+    NSInteger num = targetTime - app.prjTime;
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:(num)];
+    NSLog(@"通知は%ld秒後",(long)num);
     // タイムゾーンの設定
     notification.timeZone = [NSTimeZone defaultTimeZone];
     // 通知時に表示させるメッセージ内容
@@ -255,8 +257,9 @@
                    selector:@selector(countDown)
                    userInfo:nil
                    repeats:YES];
-        //ローカル通知
-        [self notification];
+        if (app.prjTime < targetTime) { //もし経過時間が目標時間よりも小さければ
+            [self notification]; //ローカル通知をセット
+        }
     }
     [self saveTime]; //経過時間を保存
     [mySound soundCoin]; //コインの音
@@ -264,7 +267,7 @@
 
 //終了ボタン
 - (IBAction)finishBtn:(UIButton *)sender {
-    //もし経過時間が0秒だったらアラートを表示しSegueを実行しないようにする
+    //もし経過時間が0秒だったらアラートを表示しSegueを実行しないようにする（保留）
     [self saveTime]; //経過時間を保存
     [mySound soundRegi]; //レジの音
     
