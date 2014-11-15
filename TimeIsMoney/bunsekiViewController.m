@@ -166,9 +166,14 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     }
 }
 
-//NSUserdefaltの中身を消去するメソッド
+//時給だけ残してNSUserdefaltの中身を消去するメソッド
 -(void)defaultClear{
+    //NSUserdefaltの中身を消去
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    //時給をNSUserDefaultで保存
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *num = [NSNumber numberWithFloat:app.jikyu];
+    [defaults setObject:num forKey:@"時給"];
 }
 @end

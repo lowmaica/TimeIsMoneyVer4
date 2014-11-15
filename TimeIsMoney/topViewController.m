@@ -25,25 +25,13 @@
 //        NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
 //        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tabBarController.delegate = self;
-    
-//    dvid = @"time01";
-        
-    NSString *urlstr = @"http://timeismoney.miraiserver.com/alldata.php?id=";
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
+    
+    [self datareload];
     NSLog(@"%@",app.userid);
-    urlstr = [urlstr stringByAppendingString:app.userid];
-    self.array = [NSMutableArray array];
-    self.array = (NSMutableArray*)[self serverdata:urlstr];
-    
-//    self.tabBarController.selectedViewController = self.tabBarController.viewControllers[3];
-    
-
-//    [app sinkouSet]; //配列の準備
-//    [app finishSet]; //配列の準備
     
     //プロジェクトの変数を初期化する
     app.housyu = 0; //報酬
@@ -160,13 +148,6 @@
     }
 }
 
-//今のところ機能してないのでデータ消去に利用
-//- (IBAction)hensyu:(UIButton *)sender {
-//    //NSUserdefaultの中身を全消去するメソッド
-//    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
-//}
-
 -(NSArray*)serverdata:(NSString*)url{
     //URLを生成
     NSURL *dataurl = [NSURL URLWithString:url];
@@ -224,16 +205,9 @@
         NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"削除は%@",datastring);
 
-        
         [tableView reloadData];
     }
 }
-
-//テーブルビューの更新
-- (IBAction)btnReload:(UIButton *)sender {
-    [self.tableView reloadData];
-}
-
 
 //戻るボタンのためにSegueを設定
 - (IBAction)returnTop:(UIStoryboardSegue *)segue {
@@ -243,5 +217,17 @@
     self.array = [NSMutableArray array];
     self.array = (NSMutableArray*)[self serverdata:urlstr];
     [self.tableView reloadData];
+}
+
+//サーバーからデータを取ってきて配列に入れているっぽいけど確信はない
+-(void)datareload{
+    NSString *urlstr = @"http://timeismoney.miraiserver.com/alldata.php?id=";
+    urlstr = [urlstr stringByAppendingString:app.userid];
+    self.array = [NSMutableArray array];
+    self.array = (NSMutableArray*)[self serverdata:urlstr];
+}
+
+- (IBAction)btnReload:(UIButton *)sender {
+    [self datareload];
 }
 @end
