@@ -27,17 +27,40 @@
     //Userdefaultsから取り出してIDとパスワードを変数に入れる
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     app.id = [defaults stringForKey:@"ID文字列"];
-//    app.password = [defaults stringForKey:@"パスワード"];
-    
-    //もしIDの中身が空でなければテキストフィールドにIDの中身を表示
-    if (app.id != nil) {
-        [self.idtextfield setText:app.id];
+    app.password = [defaults stringForKey:@"パスワード"];
     }
-    
-//    //もしpasswordの中身が空でなければテキストフィールドにpasswordの中身を表示
-//    if (app.password != nil) {
-//        [self.idtextfield setText:app.password];
-//    }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    //もしIDとパスワードの中身が空でなければテキストフィールドに表示すると同時にログインする
+    if (app.id != nil && app.password != nil) {
+        [self.idtextfield setText:app.id];
+        [self.idtextfield setText:app.password];
+        NSLog(@"IDは%@、パスワードは%@",app.id,app.password);
+        
+        //サーバーにログインする
+        //サーバーのデータ送信処理
+        NSString *urlstr = @"http://timeismoney.miraiserver.com/login.php?";
+        urlstr =[urlstr stringByAppendingString:[NSString stringWithFormat:@"id=%@&", app.id]];
+        urlstr = [urlstr stringByAppendingString:[NSString stringWithFormat:@"pass=%@",app.password]];
+        NSDictionary *resdic = [self serverdata:urlstr];
+        NSLog(@"%@",resdic);
+        if ([[resdic objectForKey:@"result"] isEqualToString:@"1"]) {
+            NSLog(@"ログイン成功");
+            app = [[UIApplication sharedApplication] delegate];
+            app.userid = app.id;
+            [self performSegueWithIdentifier:@"loginsegue" sender:self];
+        }else{
+            //アラートが出る
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"ログインできません"
+                                  message:@"\nログインに失敗しました。\nIDとパスワードを入力してログインするかアプリを再起動してください。"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -145,10 +168,10 @@
 
 //パスワードを変数として保存
 - (IBAction)passField:(UITextField *)sender {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSString *text = sender.text;
-//    app.password = text;
-//    [defaults setObject:app.password forKey:@"パスワード"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *text = sender.text;
+    app.password = text;
+    [defaults setObject:app.password forKey:@"パスワード"];
 }
 
 //戻るボタンのためにSegueを設定

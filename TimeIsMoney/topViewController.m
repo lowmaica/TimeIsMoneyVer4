@@ -22,8 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
 //        NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
 //        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 
