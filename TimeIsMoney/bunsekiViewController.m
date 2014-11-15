@@ -18,6 +18,7 @@
     AppDelegate *app; //変数管理
 }
 
+
 - (void)viewDidLoad {
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
 
@@ -135,4 +136,39 @@
 }
 
 
+- (IBAction)btnLogout:(UIButton *)sender {
+    //アラート表示
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"確認"
+                          message:@"\nログアウトしてID入力画面に戻ります\nよろしいですか？"
+                          delegate:self
+                          cancelButtonTitle:@"Cancel"
+                          otherButtonTitles:@"OK", nil];
+    alert.alertViewStyle = UIAlertViewStyleDefault;
+    [alert show];
+}
+
+// ログアウトのアラートのボタンが押された時に呼ばれるデリゲート例文
+-(void)alertView:(UIAlertView*)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0:
+            //１番目のボタン（キャンセル）が押されたときの処理を記述する
+            break;
+        case 1:
+            //２番目のボタン（OK）が押されたときの処理を記述する
+            //NSUserdefaultの中身を全消去する
+            [self defaultClear];
+            //Segueを実行して画面遷移
+            [self performSegueWithIdentifier:@"toLogin" sender:self];
+            break;
+    }
+}
+
+//NSUserdefaltの中身を消去するメソッド
+-(void)defaultClear{
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+}
 @end
