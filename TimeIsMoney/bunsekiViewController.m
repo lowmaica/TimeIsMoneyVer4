@@ -16,37 +16,32 @@
 
 @implementation bunsekiViewController{
     AppDelegate *app; //変数管理
+    NSString *mailText;
 }
 
 
 - (void)viewDidLoad {
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
 
-//    NSString *dvid = @"time01";
-    //端末idを取得するための変数であるがシミュレータを起動するたびにかわるのでコメント
-    //dvid = [UIDevice currentDevice].identifierForVendor.UUIDString;
     NSLog(@"%@",app.userid);
     NSString *urlstr = @"http://timeismoney.miraiserver.com/avgjikyu.php?id=";
     urlstr = [urlstr stringByAppendingString:app.userid];
     array = [self serverdata:urlstr];
     NSLog(@"%@",array);
-    NSLog(@"配列の数は%ld",[array count]);
+    NSLog(@"配列の数は%ld",(long)[array count]);
     if(([array count]>0)){
         NSLog(@"配列は0でない");
         NSString *avgjikyu = [array objectAtIndex:0];
         int avg = [avgjikyu intValue];
         avgjikyu = [NSString stringWithFormat:@"%d",avg];
         self.jikyulabel.text = avgjikyu;
+        NSString *mailJikyu =avgjikyu; //メールのために平均時給を保存
         NSLog(@"%@",app.userid);
         urlstr = @"http://timeismoney.miraiserver.com/timeavg.php?id=";
         urlstr = [urlstr stringByAppendingString:app.userid];
         array = [self serverdata:urlstr];
         avgjikyu = [array objectAtIndex:0];
         avg = [avgjikyu intValue];
-//        int hour = avg / 3600;
-//        int min = (avg - 3600 * hour) / 60;
-//        int sec = (avg - 3600 * hour - min * 60);
-//        self.timelabel.text = [NSString stringWithFormat:@"%d時間%d分%d秒",hour,min,sec];
         NSLog(@"%@",app.userid);
         self.prolabel.text = @"";
         urlstr = @"http://timeismoney.miraiserver.com/projecttop.php?id=";
@@ -85,8 +80,11 @@
             NSString *jikyustr = [dic objectForKey:@"jikyuavg"];
             avg = [jikyustr intValue];
             self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+            
+            //メール送信用にテキストを変数に入れる
+            NSString *hoge = self.textview.text;
+            mailText = [NSString stringWithFormat:@"過去の時給の平均：%@円\n\n高額時給ランキング\n%@",mailJikyu,hoge];
         }
-        
     }
 //    else{
 //        //なにもないときにメッセージを出す
@@ -136,6 +134,8 @@
 }
 
 
+//ログアウト関連ここから-----------------------------------
+//ログアウトボタン
 - (IBAction)btnLogout:(UIButton *)sender {
     //アラート表示
     UIAlertView *alert = [[UIAlertView alloc]
@@ -176,4 +176,73 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSNumber *num = [NSNumber numberWithFloat:app.jikyu];
     [defaults setObject:num forKey:@"時給"];
 }
+//ログアウト関連ここまで-----------------------------------
+
+
+//メール送信関連ここから-----------------------------------
+//メール送信ボタン
+- (IBAction)btnSendMail:(UIButton *)sender {
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    
+    //件名を設定
+    NSString *kenmei = [NSString stringWithFormat:@"「%@」のTime is Money 分析結果",app.userid];
+    
+    [controller setSubject:kenmei];
+    if(([array count]>0)){
+        [controller setMessageBody:mailText isHTML:NO];
+    }else{
+        [controller setMessageBody:@"十分なデータがありません。" isHTML:NO];
+    }
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+//メール画面で操作後に呼ばれるメソッド
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultSent:
+            //送信した場合
+            //送信しましたっていうアラート
+            [self resultAlert];
+            break;
+        case MFMailComposeResultCancelled:
+            //キャンセルした場合
+            break;
+        case MFMailComposeResultSaved:
+            //保存した場合
+            break;
+        case MFMailComposeResultFailed:
+            //失敗した場合
+            //失敗しましたっていうアラート
+            [self failedAlert];
+            break;
+        default:
+            break;
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//メール送信に成功した場合のアラート
+-(void)resultAlert{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"確認"
+                          message:@"\nメールを送信しました"
+                          delegate:self
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+}
+
+//メール送信に失敗した場合のアラート
+-(void)failedAlert{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"確認"
+                          message:@"\n送信に失敗しました"
+                          delegate:self
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+}
+//メール送信関連ここまで-----------------------------------
 @end

@@ -35,7 +35,7 @@
 @property NSInteger prjTime;
 
 //iPhone4Sかどうかの判定のための変数
-@property NSInteger *deviceNum;
+@property NSInteger deviceNum;
 
 //IDとパスワードを入れる変数
 @property NSString *id;

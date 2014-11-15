@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Sound.h" //音源クラス
 #import "AppDelegate.h" //変数管理
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface FNViewController : UIViewController
+@interface FNViewController : UIViewController<MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *pjNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *resultTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *resultCostLabel;

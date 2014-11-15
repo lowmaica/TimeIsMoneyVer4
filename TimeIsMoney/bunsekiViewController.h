@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h" //変数管理
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface bunsekiViewController : UIViewController
+@interface bunsekiViewController : UIViewController <MFMailComposeViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *timelabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *jikyulabel;

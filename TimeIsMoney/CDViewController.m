@@ -267,5 +267,6 @@
     //もし経過時間が0秒だったらアラートを表示しSegueを実行しないようにする
     [self saveTime]; //経過時間を保存
     [mySound soundRegi]; //レジの音
+    
 }
 @end

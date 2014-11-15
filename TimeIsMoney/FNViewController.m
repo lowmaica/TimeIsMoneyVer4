@@ -72,7 +72,7 @@
     minutes = (app.prjTime%3600)/60;
     seconds = (app.prjTime%3600)%60;
     self.resultTimeLabel.text = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",
-                                 hours,minutes,seconds];
+                                 (long)hours,(long)minutes,(long)seconds];
 
 
     //resultCostLabelに報酬額から総コストを引いた金額を記入
@@ -80,18 +80,14 @@
     flt = app.prjTime/ichienByousu;
     cost = flt;
     cost = app.housyu - cost;
-    self.resultCostLabel.text = [NSString stringWithFormat:@"%ld",cost];
+    self.resultCostLabel.text = [NSString stringWithFormat:@"%ld",(long)cost];
     
     //resultJikyuLabelに報酬額をかかった時間で割った「時給」を記入
     resultJikyu = (app.housyu/app.prjTime)*3600;
     if (app.housyu < resultJikyu) {
-        NSNumber *num = [NSNumber numberWithFloat:app.housyu]; //float型を編集
         resultJikyu = app.housyu;
-        self.resultJikyuLabel.text = [NSString stringWithFormat:@"%@",num];
-    }else{
-        app.housyu = resultJikyu;
-        self.resultJikyuLabel.text = [NSString stringWithFormat:@"%ld",(long)resultJikyu];
     }
+    self.resultJikyuLabel.text = [NSString stringWithFormat:@"%ld",(long)resultJikyu];
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,24 +108,6 @@
  */
 
 - (IBAction)otuBtn:(UIButton *)sender {
-    /*
-    //nowProjectから削除してUserDefaltsで保存
-    [app.nowProject removeObject:app.projectName];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:app.nowProject forKey:@"進行中"];
-
-    //finishProjectに挿入してUserDefaltsで保存
-    //終了済プロジェクトの配列の中身が空の場合初期化する
-    NSInteger dataCount;
-    dataCount = app.finishProject.count;
-    if (dataCount == 0) {
-        app.finishProject = [[NSMutableArray alloc] init];
-    }
-    //終了済プロジェクトの配列の最後に保存
-    [app.finishProject addObject:app.projectName];
-    //userdefaultsで配列を保存
-    [defaults setObject:app.finishProject forKey:@"終了済"];
-    */
     [mySound soundCoin]; //コインの音
 
     //サーバーのデータ送信処理
@@ -151,7 +129,7 @@
     //timeのパラメータの設定
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Disposition: form-data; name=\"time\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%ld\r\n",app.prjTime] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%ld\r\n",(long)app.prjTime] dataUsingEncoding:NSUTF8StringEncoding]];
     //clientのパラメータの設定
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Disposition: form-data; name=\"client\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
@@ -160,7 +138,7 @@
     //jikyuのパラメータの設定
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Disposition: form-data; name=\"jikyu\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%ld\r\n",resultJikyu] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%ld\r\n",(long)resultJikyu] dataUsingEncoding:NSUTF8StringEncoding]];
     //houshuのパラメータの設定
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Disposition: form-data; name=\"houshu\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
@@ -185,4 +163,73 @@
     
 }
 
+//メール送信関連ここから-----------------------------------
+//メール送信ボタン
+- (IBAction)btnSendMail:(UIButton *)sender {
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    
+    //件名を設定
+    NSString *kenmei = [NSString stringWithFormat:@"%@",app.projectName];
+    //本文を設定
+    NSNumber *numHousyu = [NSNumber numberWithFloat:app.housyu];
+    NSInteger totalHours = app.prjTime/3600;
+    NSInteger totalMinutes = (app.prjTime%3600)/60;
+    NSInteger totalSeconds = (app.prjTime%3600)%60;
+    NSString *totalTime = [NSString stringWithFormat:@"%02ld:%02ld:%02ld",(long)totalHours,(long)totalMinutes,(long)totalSeconds];
+    NSString *mailText = [NSString stringWithFormat:@"報酬額：%@円\nクライアント：%@\nジャンル：%@\n\n合計時間　%@\n時給結果　%ld円", numHousyu,app.clientName,app.genreName,totalTime,(long)resultJikyu];
+    
+    [controller setSubject:kenmei];
+    [controller setMessageBody:mailText isHTML:NO];
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+//メール画面で操作後に呼ばれるメソッド
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultSent:
+            //送信した場合
+            //送信しましたっていうアラート
+            [self resultAlert];
+            break;
+        case MFMailComposeResultCancelled:
+            //キャンセルした場合
+            break;
+        case MFMailComposeResultSaved:
+            //保存した場合
+            break;
+        case MFMailComposeResultFailed:
+            //失敗した場合
+            //失敗しましたっていうアラート
+            [self failedAlert];
+            break;
+        default:
+            break;
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//メール送信に成功した場合のアラート
+-(void)resultAlert{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"確認"
+                          message:@"\nメールを送信しました"
+                          delegate:self
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+}
+
+//メール送信に失敗した場合のアラート
+-(void)failedAlert{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"確認"
+                          message:@"\n送信に失敗しました"
+                          delegate:self
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+}
+//メール送信関連ここまで-----------------------------------
 @end

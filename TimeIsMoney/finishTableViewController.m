@@ -162,7 +162,7 @@
     {
         // 削除するコードを挿入します
         // 削除するコードを挿入します
-        NSLog(@"%ld行目削除",indexPath.row);
+        NSLog(@"%ld行目削除",(long)indexPath.row);
         NSDictionary *prodic = [array objectAtIndex:indexPath.row];
         [array removeObjectAtIndex:indexPath.row];
         //サーバーのデータ送信処理
