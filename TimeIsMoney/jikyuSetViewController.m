@@ -117,6 +117,7 @@
     
     [self closeSoftKeyboard];//ソフトウェアキーボードを閉じる
     [mySound soundCoin]; //コインの音
+
 }
 
 - (IBAction)okBtn:(UIButton *)sender {
@@ -124,6 +125,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSNumber *num = [NSNumber numberWithFloat:app.jikyu];
     [defaults setObject:num forKey:@"時給"];
+    
+    [mySound soundCoin]; //コインの音
 }
 
 @end

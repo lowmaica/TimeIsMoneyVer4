@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Sound.h"
 
 @interface NewidViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *idtextfield;

@@ -204,6 +204,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="btnToNewID:" destination="Q1Y-sS-Bda" eventType="touchUpInside" id="4wF-bZ-dW0"/>
                                     <segue destination="tAo-Fk-3ay" kind="modal" identifier="newsegue" animates="NO" id="hYk-w2-DUb"/>
                                 </connections>
                             </button>
@@ -523,6 +524,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="btnCancel:" destination="tAo-Fk-3ay" eventType="touchUpInside" id="GP2-rk-6bv"/>
                                     <segue destination="apd-eD-4mx" kind="unwind" unwindAction="returnLogin:" id="ght-QX-uPr"/>
                                 </connections>
                             </button>
@@ -876,7 +878,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ds5-gG-qsy"/>
+        <segue reference="F1w-qP-ccZ"/>
         <segue reference="CdM-Bm-ja5"/>
         <segue reference="lYV-gr-fN4"/>
     </inferredMetricsTieBreakers>

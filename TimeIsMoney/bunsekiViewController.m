@@ -10,6 +10,8 @@
 
 @interface bunsekiViewController (){
     NSArray *array;
+    UIView *loadingView; //更新中のぐるぐる
+    UIActivityIndicatorView *indicator; //更新中のぐるぐる
 }
 
 @end
@@ -248,6 +250,88 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 //更新ボタン
 - (IBAction)btnReload:(UIButton *)sender {
+//    loadingView = [[UIView alloc] initWithFrame:self.view.bounds];
+//    // 雰囲気出すために背景を黒く半透明する
+//    loadingView.backgroundColor = [UIColor blackColor];
+//    loadingView.alpha = 0.5f;
+//    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//    // でっかいグルグル
+//    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+//    // 画面の中心に配置
+//    [indicator setCenter:CGPointMake(loadingView.bounds.size.width / 2, loadingView.bounds.size.height / 2)];
+//    // 画面に追加
+//    [loadingView addSubview:indicator];
+//    [self.view addSubview:loadingView];
+//    // ぐるぐる開始
+//    [indicator startAnimating];
+    
     //サーバーからデータを取ってきて更新する。失敗した場合はアラートを表示する。
+    NSString *urlstr = @"http://timeismoney.miraiserver.com/avgjikyu.php?id=";
+    urlstr = [urlstr stringByAppendingString:app.userid];
+    array = [self serverdata:urlstr];
+    NSLog(@"%@",array);
+    NSLog(@"配列の数は%ld",(long)[array count]);
+    if(([array count]>0)){
+        NSLog(@"配列は0でない");
+        NSString *avgjikyu = [array objectAtIndex:0];
+        int avg = [avgjikyu intValue];
+        avgjikyu = [NSString stringWithFormat:@"%d",avg];
+        self.jikyulabel.text = avgjikyu;
+        NSString *mailJikyu =avgjikyu; //メールのために平均時給を保存
+        NSLog(@"%@",app.userid);
+        urlstr = @"http://timeismoney.miraiserver.com/timeavg.php?id=";
+        urlstr = [urlstr stringByAppendingString:app.userid];
+        array = [self serverdata:urlstr];
+        avgjikyu = [array objectAtIndex:0];
+        avg = [avgjikyu intValue];
+        NSLog(@"%@",app.userid);
+        self.prolabel.text = @"";
+        urlstr = @"http://timeismoney.miraiserver.com/projecttop.php?id=";
+        urlstr = [urlstr stringByAppendingString:app.userid];
+        self.textview.editable = NO;
+        self.textview.text = @"【 プロジェクト別 】\n";
+        array = [self serverdata:urlstr];
+        for (int i = 0; i < [array count]; i++) {
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i+1]];
+            NSDictionary *dic = [array objectAtIndex:i];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[dic objectForKey:@"project"]]];
+            NSString *jikyustr = [dic objectForKey:@"jikyuavg"];
+            avg = [jikyustr intValue];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+        }
+        urlstr = @"http://timeismoney.miraiserver.com/clienttop.php?id=";
+        urlstr = [urlstr stringByAppendingString:app.userid];
+        array = [self serverdata:urlstr];
+        self.textview.text = [self.textview.text stringByAppendingString:@"\n【 クライアント別 】\n"];
+        for (int i = 0; i < [array count]; i++) {
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i+1]];
+            NSDictionary *dic = [array objectAtIndex:i];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[dic objectForKey:@"client"]]];
+            NSString *jikyustr = [dic objectForKey:@"jikyuavg"];
+            avg = [jikyustr intValue];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+        }
+        urlstr = @"http://timeismoney.miraiserver.com/janletop.php?id=";
+        urlstr = [urlstr stringByAppendingString:app.userid];
+        array = [self serverdata:urlstr];
+        self.textview.text = [self.textview.text stringByAppendingString:@"\n【 ジャンル別 】\n"];
+        for (int i = 0; i < [array count]; i++) {
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i+1]];
+            NSDictionary *dic = [array objectAtIndex:i];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[dic objectForKey:@"janle"]]];
+            NSString *jikyustr = [dic objectForKey:@"jikyuavg"];
+            avg = [jikyustr intValue];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+            
+            //メール送信用にテキストを変数に入れる
+            NSString *hoge = self.textview.text;
+            mailText = [NSString stringWithFormat:@"過去の時給の平均：%@円\n\n高額時給ランキング\n%@",mailJikyu,hoge];
+            
+//            // ぐるぐる停止
+//            [indicator stopAnimating];
+//            // 画面から除去して黒い半透明を消す
+//            [loadingView removeFromSuperview];
+        }
+    }
 }
 @end

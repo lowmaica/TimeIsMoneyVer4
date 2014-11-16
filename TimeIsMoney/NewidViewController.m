@@ -15,12 +15,15 @@
 
 @end
 
-@implementation NewidViewController
+@implementation NewidViewController{
+    Sound *mySound; //音源のインスタンス
+}
 
 - (void)viewDidLoad {
     self.idtextfield.delegate = self;
     self.fakepasstextfield.delegate = self;
     self.passtextfield.delegate = self;
+    mySound = [[Sound alloc]init];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
@@ -92,6 +95,7 @@
                               otherButtonTitles:nil];
         [alert show];
     }
+    [mySound soundCoin];
 }
 
 //キーボードのリターンキーを押したときに呼ばれるメソッド
@@ -140,4 +144,7 @@
     return resdic;
 }
 
+- (IBAction)btnCancel:(UIButton *)sender {
+    [mySound soundCoin];
+}
 @end

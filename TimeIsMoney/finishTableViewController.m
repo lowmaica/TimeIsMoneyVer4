@@ -16,7 +16,8 @@
 @implementation finishTableViewController{
     AppDelegate *app; //変数管理
     NSMutableArray *array;
-//    NSString *dvid;
+    UIView *loadingView; //更新中のぐるぐる
+    UIActivityIndicatorView *indicator; //更新中のぐるぐる
 }
 
 - (void)viewDidLoad {
@@ -245,6 +246,30 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 //更新ボタン
 - (IBAction)btnReload:(UIButton *)sender {
+    loadingView = [[UIView alloc] initWithFrame:self.view.bounds];
+    // 雰囲気出すために背景を黒く半透明する
+    loadingView.backgroundColor = [UIColor blackColor];
+    loadingView.alpha = 0.5f;
+    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    // でっかいグルグル
+    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    // 画面の中心に配置
+    [indicator setCenter:CGPointMake(loadingView.bounds.size.width / 2, loadingView.bounds.size.height / 2)];
+    // 画面に追加
+    [loadingView addSubview:indicator];
+    [self.view addSubview:loadingView];
+    // ぐるぐる開始
+    [indicator startAnimating];
+    
     //サーバーからデータを取ってきてテーブルを更新する。失敗した場合はアラートを表示する。
+    NSString *urlstr = @"http://timeismoney.miraiserver.com/exitalldata.php?id=";
+    urlstr = [urlstr stringByAppendingString:app.userid];
+    array = (NSMutableArray*)[self serverdata:urlstr];
+    [self.tableView reloadData];
+    
+    // ぐるぐる停止
+    [indicator stopAnimating];
+    // 画面から除去して黒い半透明を消す
+    [loadingView removeFromSuperview];
 }
 @end

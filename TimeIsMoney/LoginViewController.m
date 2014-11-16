@@ -13,16 +13,8 @@
 @end
 
 @implementation LoginViewController{
+    Sound *mySound; //音源のインスタンス
     AppDelegate *app;
-}
-
-//起動画面を1秒間見せる
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // 起動画面を1秒間見せるためここでスレッドを止める
-    [NSThread sleepForTimeInterval:3.0f];
-    //    sleep(1);
-    return YES;
 }
 
 - (void)viewDidLoad {
@@ -30,6 +22,7 @@
     
     self.idtextfield.delegate = self;
     self.passtextfield.delegate = self;
+    mySound = [[Sound alloc]init];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -122,6 +115,7 @@
                               otherButtonTitles:nil];
         [alert show];
     }
+    [mySound soundCoin];
 }
 
 //キーボードのリターンキーを押したときに呼ばれるメソッド
@@ -186,6 +180,10 @@
     NSString *text = sender.text;
     app.password = text;
     [defaults setObject:app.password forKey:@"パスワード"];
+}
+
+- (IBAction)btnToNewID:(UIButton *)sender {
+    [mySound soundCoin];
 }
 
 //戻るボタンのためにSegueを設定
