@@ -32,9 +32,9 @@
 		F4C825401A0DF53E00C374F4 /* NewidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C8253F1A0DF53E00C374F4 /* NewidViewController.m */; };
 		F4D1C5351A0B4F0C00BF95AA /* iPhoneOld.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D1C5341A0B4F0C00BF95AA /* iPhoneOld.storyboard */; };
 		F4DBBB5419E4443A0064083C /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DBBB5319E4443A0064083C /* Sound.m */; };
-		F4E008491A188E35006B2679 /* timeupsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4E008481A188E35006B2679 /* timeupsound.mp3 */; };
 		F4E9CF6C19CC02EE0049F233 /* coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4E9CF6919CC02EE0049F233 /* coin.mp3 */; };
 		F4E9CF6D19CC02EE0049F233 /* register.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4E9CF6A19CC02EE0049F233 /* register.mp3 */; };
+		F4EA3BAC1A195653007D3A56 /* timeupsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4EA3BAB1A195653007D3A56 /* timeupsound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,9 +90,9 @@
 		F4D1C5341A0B4F0C00BF95AA /* iPhoneOld.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhoneOld.storyboard; sourceTree = "<group>"; };
 		F4DBBB5219E4443A0064083C /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		F4DBBB5319E4443A0064083C /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
-		F4E008481A188E35006B2679 /* timeupsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = timeupsound.mp3; path = "../../../Camera Uploads/timeupsound.mp3"; sourceTree = "<group>"; };
 		F4E9CF6919CC02EE0049F233 /* coin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin.mp3; sourceTree = "<group>"; };
 		F4E9CF6A19CC02EE0049F233 /* register.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = register.mp3; sourceTree = "<group>"; };
+		F4EA3BAB1A195653007D3A56 /* timeupsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = timeupsound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,10 +191,10 @@
 			isa = PBXGroup;
 			children = (
 				F4E9CF6919CC02EE0049F233 /* coin.mp3 */,
-				F4E008481A188E35006B2679 /* timeupsound.mp3 */,
 				F4E9CF6A19CC02EE0049F233 /* register.mp3 */,
 				F46DA21619CB403300AB1CEC /* TimeIsMoney-Info.plist */,
 				F46DA21719CB403300AB1CEC /* InfoPlist.strings */,
+				F4EA3BAB1A195653007D3A56 /* timeupsound.mp3 */,
 				F46DA21A19CB403300AB1CEC /* main.m */,
 				F46DA21C19CB403300AB1CEC /* TimeIsMoney-Prefix.pch */,
 			);
@@ -310,9 +310,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4EA3BAC1A195653007D3A56 /* timeupsound.mp3 in Resources */,
 				F46DA22719CB403400AB1CEC /* Images.xcassets in Resources */,
 				F46DA21919CB403300AB1CEC /* InfoPlist.strings in Resources */,
-				F4E008491A188E35006B2679 /* timeupsound.mp3 in Resources */,
 				F46D80AC19E99A47003732D5 /* Main.storyboard in Resources */,
 				F4D1C5351A0B4F0C00BF95AA /* iPhoneOld.storyboard in Resources */,
 				F4E9CF6D19CC02EE0049F233 /* register.mp3 in Resources */,
