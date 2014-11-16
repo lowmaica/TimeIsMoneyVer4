@@ -139,7 +139,7 @@
 - (IBAction)btnLogout:(UIButton *)sender {
     //アラート表示
     UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"確認"
+                          initWithTitle:@"ログアウト"
                           message:@"\nログアウトしてID入力画面に戻ります\nよろしいですか？"
                           delegate:self
                           cancelButtonTitle:@"Cancel"
@@ -161,7 +161,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             //NSUserdefaultの中身を全消去する
             [self defaultClear];
             //Segueを実行して画面遷移
-            [self performSegueWithIdentifier:@"toLogin" sender:self];
+            [self performSegueWithIdentifier:@"bunsekiToLogin" sender:self];
             break;
     }
 }
@@ -192,7 +192,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(([array count]>0)){
         [controller setMessageBody:mailText isHTML:NO];
     }else{
-        [controller setMessageBody:@"十分なデータがありません。" isHTML:NO];
+        [controller setMessageBody:@"データがありません。" isHTML:NO];
     }
     [self presentViewController:controller animated:YES completion:nil];
 }
@@ -245,4 +245,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     [alert show];
 }
 //メール送信関連ここまで-----------------------------------
+
+//更新ボタン
+- (IBAction)btnReload:(UIButton *)sender {
+    //サーバーからデータを取ってきて更新する。失敗した場合はアラートを表示する。
+}
 @end

@@ -60,11 +60,12 @@
         //iPhone4sの場合はif文の中、違う場合はelseを通る
         if (app.deviceNum == 1) {
             self.backImage.image = [UIImage imageNamed:@"oldFnback02"]; //背景画像を変更する
-            [self.otuBtn setImage:[UIImage imageNamed:@"btnOtsuRed"] forState:UIControlStateNormal];//ボタンも変更する
+
         }else{
             self.backImage.image = [UIImage imageNamed:@"fnback02"]; //背景画像を変更する
-            [self.otuBtn setImage:[UIImage imageNamed:@"btnOtsuRed"] forState:UIControlStateNormal];//ボタンも変更する
         }
+        [self.otuBtn setImage:[UIImage imageNamed:@"btnOtsuRed"] forState:UIControlStateNormal];//ボタンも変更する
+        [self.mailBtn setImage:[UIImage imageNamed:@"btnMailRed"] forState:UIControlStateNormal];//ボタンも変更する
     }
     
     //resultTimeLabelにプロジェクト終了までにかかった時間の合計を記入

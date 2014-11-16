@@ -193,13 +193,58 @@
     }
 }
 
-//更新ボタン
-- (IBAction)btnReload:(UIButton *)sender {
-    [self.tableView reloadData];
-}
 
 //戻るボタンのためにSegueを設定
 - (IBAction)returnFinish:(UIStoryboardSegue *)segue {
 }
 
+
+//ログアウト関連ここから-----------------------------------
+//ログアウトボタン
+- (IBAction)btnLogout:(UIButton *)sender {
+    //アラート表示
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"ログアウト"
+                          message:@"\nログアウトしてID入力画面に戻ります\nよろしいですか？"
+                          delegate:self
+                          cancelButtonTitle:@"Cancel"
+                          otherButtonTitles:@"OK", nil];
+    alert.alertViewStyle = UIAlertViewStyleDefault;
+    [alert show];
+}
+
+// ログアウトのアラートのボタンが押された時に呼ばれるデリゲート例文
+-(void)alertView:(UIAlertView*)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0:
+            //１番目のボタン（キャンセル）が押されたときの処理を記述する
+            break;
+        case 1:
+            //２番目のボタン（OK）が押されたときの処理を記述する
+            //NSUserdefaultの中身を全消去する
+            [self defaultClear];
+            //Segueを実行して画面遷移
+            [self performSegueWithIdentifier:@"finishToLogin" sender:self];
+            break;
+    }
+}
+
+//時給だけ残してNSUserdefaltの中身を消去するメソッド
+-(void)defaultClear{
+    //NSUserdefaltの中身を消去
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    //時給をNSUserDefaultで保存
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *num = [NSNumber numberWithFloat:app.jikyu];
+    [defaults setObject:num forKey:@"時給"];
+}
+//ログアウト関連ここまで-----------------------------------
+
+//更新ボタン
+- (IBAction)btnReload:(UIButton *)sender {
+    //サーバーからデータを取ってきてテーブルを更新する。失敗した場合はアラートを表示する。
+}
 @end

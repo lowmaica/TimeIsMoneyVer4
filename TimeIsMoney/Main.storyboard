@@ -22,13 +22,33 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uYi-wc-99e">
-                                <rect key="frame" x="265" y="20" width="55" height="44"/>
+                                <rect key="frame" x="271" y="20" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnNewPrj">
+                                <state key="normal" image="btnNewProject">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="VkJ-d8-TsN" kind="modal" animates="NO" id="lYV-gr-fN4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Zki-n0-OAa">
+                                <rect key="frame" x="6" y="20" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnLogout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnLogout:" destination="uN9-r8-35F" eventType="touchUpInside" id="MvR-gk-7C3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KV9-o1-rDA">
+                                <rect key="frame" x="50" y="20" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnReload">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnReload:" destination="uN9-r8-35F" eventType="touchUpInside" id="PAg-fB-sXE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -38,11 +58,12 @@
                     <connections>
                         <outlet property="tableView" destination="abU-63-wep" id="zgH-jU-DhX"/>
                         <segue destination="49m-P8-eY1" kind="modal" identifier="finishToResult" animates="NO" id="3gc-tR-UFc"/>
+                        <segue destination="Q1Y-sS-Bda" kind="modal" identifier="finishToLogin" animates="NO" id="K2a-Ka-Z1n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1d-a1-39l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1407" y="183"/>
+            <point key="canvasLocation" x="-1562" y="183"/>
         </scene>
         <!--Finish Result View Controller-->
         <scene sceneID="qgP-45-Q7L">
@@ -85,9 +106,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="otuBtn:" destination="zDi-Go-v1q" eventType="touchUpInside" id="D0C-w7-lIS"/>
                                     <action selector="restartBtn:" destination="49m-P8-eY1" eventType="touchUpInside" id="Kxo-Wb-1Vg"/>
-                                    <action selector="startStopButton:" destination="p0p-wN-6Ax" eventType="touchUpInside" id="i8p-IL-Lft"/>
                                     <segue destination="i6S-Lg-GgH" kind="modal" animates="NO" id="aVt-VP-t5n"/>
                                 </connections>
                             </button>
@@ -124,10 +143,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ea3-VP-hBr">
-                                <rect key="frame" x="259" y="28" width="45" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ea3-VP-hBr">
+                                <rect key="frame" x="271" y="21" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="メール">
+                                <state key="normal" image="btnMail">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -143,6 +162,7 @@
                         <outlet property="clientLabel" destination="E4Y-9o-MGP" id="Y9n-Rf-OKf"/>
                         <outlet property="genreLabel" destination="i22-ab-stu" id="9Pm-Ps-2sb"/>
                         <outlet property="housyuLabel" destination="GyF-1A-H7X" id="HKm-nc-RVa"/>
+                        <outlet property="mailBtn" destination="Ea3-VP-hBr" id="Zfv-p4-e74"/>
                         <outlet property="otuBtn" destination="4Ti-87-xOv" id="LS7-Th-IzD"/>
                         <outlet property="pjNameLabel" destination="BqX-Tu-S3m" id="ra5-uM-tfq"/>
                         <outlet property="resultCostLabel" destination="GN6-no-hZv" id="fpb-9V-Wqo"/>
@@ -167,20 +187,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="NMy-eg-HQE">
-                                <rect key="frame" x="38" y="253" width="244" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <connections>
-                                    <action selector="passField:" destination="Q1Y-sS-Bda" eventType="editingDidEnd" id="XMp-1U-H5m"/>
-                                </connections>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="d9l-lL-DOb">
-                                <rect key="frame" x="126" y="360" width="70" height="114"/>
+                                <rect key="frame" x="38" y="433" width="244" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnSandglass">
+                                <state key="normal" image="btnLogin">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -206,16 +216,16 @@
                                     <action selector="idField:" destination="Q1Y-sS-Bda" eventType="editingDidEnd" id="GZO-9w-cQp"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FnV-0p-Cr9">
-                                <rect key="frame" x="176" y="299" width="112" height="86"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="NMy-eg-HQE">
+                                <rect key="frame" x="38" y="273" width="244" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnWorking">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
-                                    <action selector="logincheck:" destination="Q1Y-sS-Bda" eventType="touchUpInside" id="PVG-xb-Q6u"/>
+                                    <action selector="passField:" destination="Q1Y-sS-Bda" eventType="editingDidEnd" id="XMp-1U-H5m"/>
                                 </connections>
-                            </button>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -248,31 +258,41 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="十分なデータがありません。" id="6W7-km-SKZ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="データがありません。" id="6W7-km-SKZ">
                                 <rect key="frame" x="50" y="227" width="220" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QGw-Lx-ubD">
-                                <rect key="frame" x="0.0" y="26" width="75" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V5M-j7-dfW">
+                                <rect key="frame" x="50" y="20" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="ログアウト">
+                                <state key="normal" image="btnReload">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnLogout:" destination="I4J-dx-Zy8" eventType="touchUpInside" id="Clc-Kk-hBw"/>
+                                    <action selector="btnReload:" destination="I4J-dx-Zy8" eventType="touchUpInside" id="Vgh-N5-Rc7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lGp-TG-Fei">
-                                <rect key="frame" x="275" y="26" width="45" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lGp-TG-Fei">
+                                <rect key="frame" x="271" y="20" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="メール">
+                                <state key="normal" image="btnMail">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="btnSendMail:" destination="I4J-dx-Zy8" eventType="touchUpInside" id="gdU-mJ-MzG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QGw-Lx-ubD">
+                                <rect key="frame" x="6" y="20" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnLogout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnLogout:" destination="I4J-dx-Zy8" eventType="touchUpInside" id="Clc-Kk-hBw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -283,12 +303,12 @@
                     <connections>
                         <outlet property="jikyulabel" destination="gPb-0Y-bjs" id="4CH-Vc-Xfw"/>
                         <outlet property="textview" destination="6W7-km-SKZ" id="Kjh-g8-u1R"/>
-                        <segue destination="Q1Y-sS-Bda" kind="modal" identifier="toLogin" animates="NO" id="CdM-Bm-ja5"/>
+                        <segue destination="Q1Y-sS-Bda" kind="modal" identifier="bunsekiToLogin" animates="NO" id="CdM-Bm-ja5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="440-ZX-RhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2729" y="-929"/>
+            <point key="canvasLocation" x="-2857" y="-790"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oov-j7-Cdb">
@@ -332,7 +352,6 @@
                                 </state>
                                 <connections>
                                     <action selector="okBtn:" destination="rEz-bG-NSN" eventType="touchUpInside" id="5vH-hZ-1Wu"/>
-                                    <action selector="okBtn:" destination="VkJ-d8-TsN" eventType="touchUpInside" id="lHO-6V-KfD"/>
                                     <segue destination="i6S-Lg-GgH" kind="modal" animates="NO" id="ds5-gG-qsy"/>
                                 </connections>
                             </button>
@@ -412,9 +431,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ct9-JU-NlR">
-                                <rect key="frame" x="265" y="20" width="55" height="44"/>
+                                <rect key="frame" x="271" y="20" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnNewPrj">
+                                <state key="normal" image="btnNewProject">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -422,14 +441,24 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="146-ik-8a6">
-                                <rect key="frame" x="0.0" y="20" width="55" height="44"/>
+                                <rect key="frame" x="6" y="20" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="更新">
+                                <state key="normal" image="btnLogout">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnReload:" destination="RCf-QB-14b" eventType="touchUpInside" id="wfZ-18-QFC"/>
+                                    <action selector="btnLogout:" destination="RCf-QB-14b" eventType="touchUpInside" id="vlb-He-Hm8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="d7k-rA-AZU">
+                                <rect key="frame" x="50" y="20" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="btnReload">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnReload:" destination="RCf-QB-14b" eventType="touchUpInside" id="Gfy-bD-khg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -440,11 +469,12 @@
                     <connections>
                         <outlet property="tableView" destination="Xer-Pg-jkT" id="zQ1-Rf-nGk"/>
                         <segue destination="p0p-wN-6Ax" kind="modal" identifier="topToCD" animates="NO" id="ZWQ-wJ-DPZ"/>
+                        <segue destination="Q1Y-sS-Bda" kind="modal" identifier="topToLogin" animates="NO" id="uf0-bX-baR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYU-jf-4jK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1204" y="-1536"/>
+            <point key="canvasLocation" x="-1288" y="-1515"/>
         </scene>
         <!--Newid View Controller-->
         <scene sceneID="8qD-yW-Ums">
@@ -742,7 +772,6 @@
                                 </state>
                                 <connections>
                                     <action selector="otuBtn:" destination="zDi-Go-v1q" eventType="touchUpInside" id="T1i-aO-ioV"/>
-                                    <action selector="startStopButton:" destination="p0p-wN-6Ax" eventType="touchUpInside" id="n6V-0J-pov"/>
                                     <segue destination="i6S-Lg-GgH" kind="modal" animates="NO" id="5Md-wl-6Uj"/>
                                 </connections>
                             </button>
@@ -779,10 +808,10 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WXB-sN-iQL">
-                                <rect key="frame" x="259" y="26" width="45" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WXB-sN-iQL">
+                                <rect key="frame" x="271" y="20" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="メール">
+                                <state key="normal" image="btnMail">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -797,6 +826,7 @@
                         <outlet property="clientLabel" destination="loN-yA-5Im" id="UPj-2j-Axg"/>
                         <outlet property="genreLabel" destination="jCM-9G-sSi" id="KEg-Vx-45U"/>
                         <outlet property="housyuLabel" destination="0gk-s5-3Cz" id="nVg-rr-cQX"/>
+                        <outlet property="mailBtn" destination="WXB-sN-iQL" id="SPD-ms-mgi"/>
                         <outlet property="otuBtn" destination="kLV-Pt-tVQ" id="3QG-KL-P53"/>
                         <outlet property="pjNameLabel" destination="K3U-T7-jpc" id="hRn-Xq-UXO"/>
                         <outlet property="resultCostLabel" destination="jRc-kA-vZ4" id="HmM-2p-mUe"/>
@@ -816,15 +846,17 @@
         <image name="btnCreAccount" width="244" height="50"/>
         <image name="btnFinish" width="244" height="50"/>
         <image name="btnGekkyu" width="60" height="40"/>
+        <image name="btnLogin" width="244" height="50"/>
+        <image name="btnLogout" width="44" height="44"/>
+        <image name="btnMail" width="44" height="44"/>
         <image name="btnNewAccount" width="244" height="50"/>
-        <image name="btnNewPrj" width="55" height="44"/>
+        <image name="btnNewProject" width="88" height="88"/>
         <image name="btnOk" width="244" height="50"/>
         <image name="btnOtsu" width="244" height="50"/>
+        <image name="btnReload" width="44" height="44"/>
         <image name="btnResume" width="244" height="50"/>
-        <image name="btnSandglass" width="70" height="114"/>
         <image name="btnStart" width="244" height="50"/>
         <image name="btnStartRed" width="244" height="50"/>
-        <image name="btnWorking" width="112" height="86"/>
         <image name="bunsekiBack" width="320" height="568"/>
         <image name="cdback01" width="320" height="568"/>
         <image name="finishBack" width="320" height="568"/>
@@ -844,7 +876,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5Md-wl-6Uj"/>
-        <segue reference="s4d-YY-sET"/>
+        <segue reference="ds5-gG-qsy"/>
+        <segue reference="CdM-Bm-ja5"/>
+        <segue reference="lYV-gr-fN4"/>
     </inferredMetricsTieBreakers>
 </document>

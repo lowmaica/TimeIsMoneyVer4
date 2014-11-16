@@ -182,7 +182,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         // 削除するコードを挿入します
-        NSLog(@"%ld行目削除",indexPath.row);
+        NSLog(@"%ld行目削除",(long)indexPath.row);
         NSDictionary *prodic = [self.array objectAtIndex:indexPath.row];
         [self.array removeObjectAtIndex:indexPath.row];
         //サーバーのデータ送信処理
@@ -223,30 +223,55 @@
     [self.tableView reloadData];
 }
 
+
+//ログアウト関連ここから-----------------------------------
+//ログアウトボタン
+- (IBAction)btnLogout:(UIButton *)sender {
+    //アラート表示
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"ログアウト"
+                          message:@"\nログアウトしてID入力画面に戻ります\nよろしいですか？"
+                          delegate:self
+                          cancelButtonTitle:@"Cancel"
+                          otherButtonTitles:@"OK", nil];
+    alert.alertViewStyle = UIAlertViewStyleDefault;
+    [alert show];
+}
+
+// ログアウトのアラートのボタンが押された時に呼ばれるデリゲート例文
+-(void)alertView:(UIAlertView*)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0:
+            //１番目のボタン（キャンセル）が押されたときの処理を記述する
+            break;
+        case 1:
+            //２番目のボタン（OK）が押されたときの処理を記述する
+            //NSUserdefaultの中身を全消去する
+            [self defaultClear];
+            //Segueを実行して画面遷移
+            [self performSegueWithIdentifier:@"topToLogin" sender:self];
+            break;
+    }
+}
+
+//時給だけ残してNSUserdefaltの中身を消去するメソッド
+-(void)defaultClear{
+    //NSUserdefaltの中身を消去
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    //時給をNSUserDefaultで保存
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *num = [NSNumber numberWithFloat:app.jikyu];
+    [defaults setObject:num forKey:@"時給"];
+}
+//ログアウト関連ここまで-----------------------------------
+
+
 //更新ボタン
 - (IBAction)btnReload:(UIButton *)sender {
-    loadingView = [[UIView alloc] initWithFrame:self.view.bounds];
-    // 雰囲気出すために背景を黒く半透明する
-    loadingView.backgroundColor = [UIColor blackColor];
-    loadingView.alpha = 0.5f;
-    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    // でっかいグルグル
-    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-    // 画面の中心に配置
-    [indicator setCenter:CGPointMake(loadingView.bounds.size.width / 2, loadingView.bounds.size.height / 2)];
-    // 画面に追加
-    [loadingView addSubview:indicator];
-    [self.view addSubview:loadingView];
-    // ぐるぐる開始
-    [indicator startAnimating];
-    
-    //ここでサーバーからデータを取ってきたい（保留中）
-    //成功したか失敗したかのアラートを出したい（保留中）
-    
-    // ぐるぐる停止
-    [indicator stopAnimating];
-    // 画面から除去して黒い半透明を消す
-    [loadingView removeFromSuperview];
+    //サーバーからデータを取ってきてテーブルを更新する。失敗した場合はアラートを表示する。
 }
 
 @end

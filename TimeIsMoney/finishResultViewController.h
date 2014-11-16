@@ -27,5 +27,6 @@
 //ボタンの色を変えるためにプロパティを宣言
 @property (weak, nonatomic) IBOutlet UIButton *otuBtn;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
+@property (weak, nonatomic) IBOutlet UIButton *mailBtn;
 
 @end
