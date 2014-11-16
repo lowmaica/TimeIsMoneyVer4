@@ -64,6 +64,9 @@
     [self.window makeKeyAndVisible];
     //ここまでストーリーボード分岐のためのコード
     
+    // 起動画面を1秒間見せるためここでスレッドを止める
+    [NSThread sleepForTimeInterval:1.0];
+    
       return YES;
 }
 

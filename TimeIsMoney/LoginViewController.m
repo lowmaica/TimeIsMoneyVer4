@@ -16,6 +16,15 @@
     AppDelegate *app;
 }
 
+//起動画面を1秒間見せる
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // 起動画面を1秒間見せるためここでスレッドを止める
+    [NSThread sleepForTimeInterval:3.0f];
+    //    sleep(1);
+    return YES;
+}
+
 - (void)viewDidLoad {
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
@@ -62,6 +71,8 @@
         }
     }
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
