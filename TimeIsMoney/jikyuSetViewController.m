@@ -66,8 +66,9 @@
 
 //時給を入力した時の動作 入力がすぐに反映されるのはなおした方がいいかも
 - (IBAction)jikyuLabel:(UITextField *)sender {
-    NSString *text = sender.text;
-    app.jikyu = text.integerValue;
+//    NSString *text = sender.text;
+//    app.jikyu = text.integerValue;
+    
 //    NSLog(@"イチ 時給を%fに変更",app.jikyu);
     
 //    //時給をNSUserDefaultで保存
@@ -80,47 +81,75 @@
 
 //月給を入力した時の動作
 - (IBAction)monthlySalaryText:(UITextField *)sender {
-    NSString *text = sender.text;
-    gekkyu = text.integerValue;
+//    NSString *text = sender.text;
+//    gekkyu = text.integerValue;
 }
 
 //労働時間を入力した時の動作
 - (IBAction)workTime:(UITextField *)sender {
-    NSString *text = sender.text;
-    workTime = text.integerValue;
+//    NSString *text = sender.text;
+//    workTime = text.integerValue;
 }
 
 //週休を入力した時の動作
 - (IBAction)weekHoliday:(UITextField *)sender {
-    NSString *text = sender.text;
-    weekHoliday = text.integerValue;
+//    NSString *text = sender.text;
+//    weekHoliday = text.integerValue;
 }
 
 
 //計算するボタンを押す
 - (IBAction)keisanButton {
-    //!!!ToDo!!! 多すぎる数字を入力した時にエラーが出るようにする。（ポップアップが理想）
-    //週休から月の勤務日数を割り出す
-    workDays = ((7-weekHoliday)*4)+2;
-    if (weekHoliday>3) {
-        workDays--;
+    //フィールドから入力内容を取り出す
+    gekkyu = self.gekkyuField.text.integerValue;
+    workTime = self.worktimeField.text.integerValue;
+    weekHoliday = self.weekholidayField.text.integerValue;
+    
+
+    if ((workTime > 24) ||(workTime == 0)||(weekHoliday > 6)||(gekkyu == 0)) {
+        //アラートを出す。労働時間が24時間を超えた場合、労働時間が0時間の場合、週休6日以上の場合、月給が0の場合
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"計算できません"
+                              message:@"\n必要項目が記入されていないか計算出来ない数字が入力されています。数字を入力しなおしてください。"
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+
+    }else{
+        //週休から月の勤務日数を割り出す
+        workDays = ((7-weekHoliday)*4)+2;
+        if (weekHoliday>3) {
+            workDays--;
+        }
+        
+        //勤務日数に労働時間をかけて一ヶ月の労働時間を割り出す
+        totalWorkTime = workDays*workTime;
+        //月給を総労働時間で割って時給を算出する
+        app.jikyu = gekkyu/totalWorkTime;
+        
+        //目標時給をラベルに表示する
+        NSNumber *num = [NSNumber numberWithFloat:app.jikyu]; //NSNumber型に変換
+        [self.jikyuhyouji setText: [NSString stringWithFormat:@"%@",num]];
+        
+        //この時点で時給を保存してしまう
+        //jikyufieldを読み込み
+        app.jikyu = self.jikyuhyouji.text.integerValue;
+        //時給をNSUserDefaultで保存
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSNumber *num1 = [NSNumber numberWithFloat:app.jikyu];
+        [defaults setObject:num1 forKey:@"時給"];
+        
+        [self closeSoftKeyboard];//ソフトウェアキーボードを閉じる
+        [mySound soundCoin]; //コインの音
     }
-    
-    //勤務日数に労働時間をかけて一ヶ月の労働時間を割り出す
-    totalWorkTime = workDays*workTime;
-    //月給を総労働時間で割って時給を算出する
-    app.jikyu = gekkyu/totalWorkTime;
-    
-    //目標時給をラベルに表示する
-    NSNumber *num = [NSNumber numberWithFloat:app.jikyu]; //NSNumber型に変換
-    [self.jikyuhyouji setText: [NSString stringWithFormat:@"%@",num]];
-    
-    [self closeSoftKeyboard];//ソフトウェアキーボードを閉じる
-    [mySound soundCoin]; //コインの音
 
 }
 
 - (IBAction)okBtn:(UIButton *)sender {
+    //jikyufieldを読み込み
+    app.jikyu = self.jikyuhyouji.text.integerValue;
+
     //時給をNSUserDefaultで保存
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSNumber *num = [NSNumber numberWithFloat:app.jikyu];

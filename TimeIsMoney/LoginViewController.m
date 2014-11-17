@@ -82,6 +82,23 @@
 }
 */
 
+//IDを変数として保存
+- (IBAction)idField:(UITextField *)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *text = sender.text;
+    app.id = text;
+    [defaults setObject:app.id forKey:@"ID文字列"];
+}
+
+//パスワードを変数として保存
+- (IBAction)passField:(UITextField *)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *text = sender.text;
+    app.password = text;
+    [defaults setObject:app.password forKey:@"パスワード"];
+}
+
+//ログインボタン
 - (IBAction)logincheck:(id)sender {
     //サーバーのデータ送信処理
     NSString *urlstr = @"http://timeismoney.miraiserver.com/login.php?";
@@ -161,25 +178,6 @@
     NSDictionary *resdic = [NSJSONSerialization JSONObjectWithData:trimdata options:NSJSONReadingMutableContainers error:&err];
     //値を返す
     return resdic;
-}
-
-
-
-
-//IDを変数として保存
-- (IBAction)idField:(UITextField *)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *text = sender.text;
-    app.id = text;
-    [defaults setObject:app.id forKey:@"ID文字列"];
-}
-
-//パスワードを変数として保存
-- (IBAction)passField:(UITextField *)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *text = sender.text;
-    app.password = text;
-    [defaults setObject:app.password forKey:@"パスワード"];
 }
 
 - (IBAction)btnToNewID:(UIButton *)sender {

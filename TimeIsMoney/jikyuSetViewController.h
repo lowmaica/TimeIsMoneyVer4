@@ -12,4 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *jikyuhyouji;
 
+@property (weak, nonatomic) IBOutlet UITextField *gekkyuField;
+@property (weak, nonatomic) IBOutlet UITextField *worktimeField;
+@property (weak, nonatomic) IBOutlet UITextField *weekholidayField;
+
 @end

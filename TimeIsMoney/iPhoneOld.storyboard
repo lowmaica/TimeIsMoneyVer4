@@ -412,7 +412,10 @@
                     <tabBarItem key="tabBarItem" title="時給登録" image="tab4" id="BI3-5G-5Jp"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="gekkyuField" destination="lEY-P1-uAA" id="zvU-7p-Y1p"/>
                         <outlet property="jikyuhyouji" destination="37H-yJ-bQZ" id="rkC-6M-JWF"/>
+                        <outlet property="weekholidayField" destination="Txa-82-Il3" id="0p7-UE-TdM"/>
+                        <outlet property="worktimeField" destination="UP3-Dp-LJF" id="kTr-Zf-DPs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yP-Ky-huK" userLabel="First Responder" sceneMemberID="firstResponder"/>
