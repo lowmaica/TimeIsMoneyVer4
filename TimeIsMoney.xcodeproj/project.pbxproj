@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F43D562419E455C000BF6718 /* topViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F43D562319E455C000BF6718 /* topViewController.m */; };
+		F449E8101A1984B000B09C8B /* timeup.wav in Resources */ = {isa = PBXBuildFile; fileRef = F449E80F1A1984B000B09C8B /* timeup.wav */; };
 		F46D80AC19E99A47003732D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F46D80AB19E99A47003732D5 /* Main.storyboard */; };
 		F46D80E119E9D877003732D5 /* finishTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46D80E019E9D877003732D5 /* finishTableViewController.m */; };
 		F46D80E419E9DACF003732D5 /* finishResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46D80E319E9DACF003732D5 /* finishResultViewController.m */; };
@@ -52,6 +53,7 @@
 		F42B5A221A00BD450097CBEB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F43D562219E455C000BF6718 /* topViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topViewController.h; sourceTree = "<group>"; };
 		F43D562319E455C000BF6718 /* topViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topViewController.m; sourceTree = "<group>"; };
+		F449E80F1A1984B000B09C8B /* timeup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = timeup.wav; sourceTree = "<group>"; };
 		F46D80AB19E99A47003732D5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F46D80DF19E9D877003732D5 /* finishTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finishTableViewController.h; sourceTree = "<group>"; };
 		F46D80E019E9D877003732D5 /* finishTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finishTableViewController.m; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				F4E9CF6919CC02EE0049F233 /* coin.mp3 */,
 				F4E9CF6A19CC02EE0049F233 /* register.mp3 */,
+				F449E80F1A1984B000B09C8B /* timeup.wav */,
 				F46DA21619CB403300AB1CEC /* TimeIsMoney-Info.plist */,
 				F46DA21719CB403300AB1CEC /* InfoPlist.strings */,
 				F4EA3BAB1A195653007D3A56 /* timeupsound.mp3 */,
@@ -312,6 +315,7 @@
 			files = (
 				F4EA3BAC1A195653007D3A56 /* timeupsound.mp3 in Resources */,
 				F46DA22719CB403400AB1CEC /* Images.xcassets in Resources */,
+				F449E8101A1984B000B09C8B /* timeup.wav in Resources */,
 				F46DA21919CB403300AB1CEC /* InfoPlist.strings in Resources */,
 				F46D80AC19E99A47003732D5 /* Main.storyboard in Resources */,
 				F4D1C5351A0B4F0C00BF95AA /* iPhoneOld.storyboard in Resources */,

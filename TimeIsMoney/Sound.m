@@ -29,7 +29,7 @@
 }
 
 -(void)soundAlert{
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"timeupsound"ofType:@"mp3"];
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"timeup"ofType:@"wav"];
     NSURL *url = [NSURL fileURLWithPath:path];
     self.sound = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:NULL];
     [self.sound play];
