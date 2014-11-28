@@ -7,6 +7,7 @@
 //
 
 #import "FNViewController.h"
+#import "FMDatabase.h"
 
 @interface FNViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
@@ -24,6 +25,11 @@
     NSInteger seconds;
     NSInteger cost;
     float ichienByousu;
+    
+    NSArray *paths;
+    NSString *dir;
+    FMDatabase *db;
+    NSString *sql;
 }
 
 
@@ -110,7 +116,8 @@
 
 - (IBAction)otuBtn:(UIButton *)sender {
     [mySound soundCoin]; //コインの音
-
+    
+    /*
     //サーバーのデータ送信処理
     NSURL *url = [NSURL URLWithString:@"http://timeismoney.miraiserver.com/exitadd.php"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -161,7 +168,26 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
     NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"削除は%@",datastring);
+     */
+    //DBファイルのパス
+    paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+    dir   = [paths objectAtIndex:0];
     
+    db= [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]];
+    sql = [NSString stringWithFormat:@"insert into exitproject(project,jikyu,houshu,time,client,genre) values('%@',%@,%@,%@,'%@','%@');",app.projectName,[NSString stringWithFormat:@"%ld",resultJikyu],[NSString stringWithFormat:@"%f",app.housyu],[NSString stringWithFormat:@"%ld",app.prjTime],app.clientName,app.genreName];
+    
+    int s = 0;
+    [db open];
+    if ( (s = [db executeUpdate:sql]) == 0 ) {
+        NSLog(@"失敗した");
+    };
+    NSLog(@"sの値は%d",s);
+    sql = [NSString stringWithFormat:@"delete from timeproject where id = %@;",app.projectid];
+    if ( (s = [db executeUpdate:sql]) == 0 ) {
+        NSLog(@"失敗した");
+    };
+    NSLog(@"sの値は%d",s);
+    [db close];
 }
 
 //メール送信関連ここから-----------------------------------

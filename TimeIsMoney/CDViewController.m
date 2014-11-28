@@ -7,6 +7,7 @@
 //
 
 #import "CDViewController.h"
+#import "FMDatabase.h"
 
 @interface CDViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
@@ -30,6 +31,11 @@
     NSInteger sabun; //時間差分を計算するための変数
     NSDate *start; //開始ボタンを押した時刻
     NSDate *now; //現在の時刻
+    
+    NSArray *paths;
+    NSString *dir;
+    FMDatabase *db;
+    NSString *sql;
 }
 
 - (void)viewDidLoad
@@ -167,7 +173,20 @@
     //差分を経過時間にプラスして差分は0に戻す
     app.prjTime = app.prjTime + sabun;
     sabun = 0;
+    paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+    dir   = [paths objectAtIndex:0];
+    db= [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]];   
+    NSString *timestr = [NSString stringWithFormat:@"%ld",(long)app.prjTime];
+    sql = [NSString stringWithFormat:@"update timeproject set time = %@ where id = %@",timestr,app.projectid];
+    int s = 0;
+    [db open];
+    if ( (s = [db executeUpdate:sql]) == 0 ) {
+        NSLog(@"失敗した");
+    };
+    NSLog(@"sの値は%d",s);
+    [db close];
     
+    /*
     //サーバーのデータ送信処理
     NSURL *url = [NSURL URLWithString:@"http://timeismoney.miraiserver.com/update.php"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -214,6 +233,8 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
     NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"%@",datastring);
+     */
+    
 }
 
 

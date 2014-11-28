@@ -7,6 +7,8 @@
 //
 
 #import "topViewController.h"
+#import "FMDatabase.h"
+
 //#import "CDViewController.h"
 
 
@@ -18,6 +20,11 @@
     AppDelegate *app; //変数管理
     UIView *loadingView; //更新中のぐるぐる
     UIActivityIndicatorView *indicator; //更新中のぐるぐる
+    
+    NSArray *paths;
+    NSString *dir;
+    FMDatabase *db;
+    NSString *sql;
 }
 
 - (void)viewDidLoad {
@@ -30,12 +37,55 @@
 //        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 
 
-    
-    NSString *urlstr = @"http://timeismoney.miraiserver.com/alldata.php?id=";
-    urlstr = [urlstr stringByAppendingString:app.userid];
+    //DBファイルのパス
+    paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+    dir   = [paths objectAtIndex:0];
     self.array = [NSMutableArray array];
-    self.array = (NSMutableArray*)[self serverdata:urlstr];
-    NSLog(@"%@",app.userid);
+    
+    //DBファイルがあるかどうか確認
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]])
+    {
+        //なければ新規作成
+        NSLog(@"データベースがないので作成");
+        db= [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]];
+        sql = @"CREATE TABLE timeproject (id INTEGER PRIMARY KEY AUTOINCREMENT,project TEXT,houshu float,time int,client TEXT,genre TEXT);";
+        
+        NSString *sql2 = @"CREATE TABLE exitproject (id INTEGER PRIMARY KEY AUTOINCREMENT,project TEXT,jikyu int,houshu float,time int,client TEXT,genre TEXT);";
+        
+        [db open]; //DB開く
+        [db executeUpdate:sql]; //SQL実行
+        [db executeUpdate:sql2]; //SQL実行
+        [db close]; //DB閉じる
+    }else{
+        NSLog(@"すでにデータベースがあるので作成しなかった");
+        NSString *db_path  = [dir stringByAppendingPathComponent:@"timeismoney.db"];
+        NSLog(@"データベースの場所は…%@", db_path );
+        db= [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]];
+        sql = @"select * from timeproject;";
+        [db open]; //DB開く
+        FMResultSet *results = [db executeQuery:sql];
+        while([results next]) {
+            NSString *idstr = [NSString stringWithFormat:@"%d",[results intForColumn:@"id"]];
+            NSString *projectstr = [NSString stringWithFormat:@"%@",[results  stringForColumn:@"project"]];
+            NSString *houshustr = [NSString stringWithFormat:@"%d",[results  intForColumn:@"houshu"]];
+            NSString *timestr = [NSString stringWithFormat:@"%d",[results  intForColumn:@"time"]];
+            NSString *clientstr = [NSString stringWithFormat:@"%@",[results  stringForColumn:@"client"]];
+            NSString *genrestr = [NSString stringWithFormat:@"%@",[results  stringForColumn:@"genre"]];
+            
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 idstr, @"id",houshustr, @"houshu",clientstr, @"client",projectstr,@"project",timestr,@"time",genrestr,@"genre",nil];
+            [self.array addObject:dic];
+        }
+        [db close]; //DB閉じる
+    }
+
+    
+//    NSString *urlstr = @"http://timeismoney.miraiserver.com/alldata.php?id=";
+//    urlstr = [urlstr stringByAppendingString:app.userid];
+//    self.array = [NSMutableArray array];
+//    self.array = (NSMutableArray*)[self serverdata:urlstr];
+//    NSLog(@"%@",app.userid);
     
     //プロジェクトの変数を初期化する
     app.housyu = 0; //報酬
@@ -126,6 +176,7 @@
         
         //取り出した文字列で辞書を呼び出す
         NSDictionary *dic = [self.array objectAtIndex:row];
+        
         app.projectName = [dic objectForKey:@"project"];
         
         //報酬を代入
@@ -142,11 +193,11 @@
         
         //ジャンルを代入
         data = [dic objectForKey:@"genre"];
-        app.genreName = [NSString stringWithFormat:@"%@", data];
-        data = [dic objectForKey:@"projectid"];
-        int num = [data intValue];
-        app.projectid = num;
+        app.genreName = data;
         
+        //プロジェクトのIDを代入
+        data = [dic objectForKey:@"id"];
+        app.projectid = data;
         [tableView deselectRowAtIndexPath:indexPath animated:YES]; // 選択状態の解除
         [self performSegueWithIdentifier:@"topToCD" sender:self]; //opToCD Segueを実行
     }
@@ -181,6 +232,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
+        /*
         // 削除するコードを挿入します
         NSLog(@"%ld行目削除",(long)indexPath.row);
         NSDictionary *prodic = [self.array objectAtIndex:indexPath.row];
@@ -208,6 +260,16 @@
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
         NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"削除は%@",datastring);
+         */
+        NSDictionary *prodic = [self.array objectAtIndex:indexPath.row];
+        NSString *proid = [prodic objectForKey:@"id"];
+        [self.array removeObjectAtIndex:indexPath.row];
+        sql = [NSString stringWithFormat:@"delete from timeproject where id = %@;",proid];
+        
+        
+        [db open]; //DB開く
+        [db executeUpdate:sql]; //SQL実行
+        [db close]; //DB閉じる
 
         [tableView reloadData];
     }
@@ -216,10 +278,30 @@
 //戻るボタンのためにSegueを設定
 - (IBAction)returnTop:(UIStoryboardSegue *)segue {
     NSLog(@"トップに戻る");
+    self.array = [NSMutableArray array];
+    db= [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]];
+    sql = @"select * from timeproject;";
+    [db open]; //DB開く
+    FMResultSet *results = [db executeQuery:sql];
+    while([results next]) {
+        NSString *idstr = [NSString stringWithFormat:@"%d",[results intForColumn:@"id"]];
+        NSString *projectstr = [NSString stringWithFormat:@"%@",[results  stringForColumn:@"project"]];
+        NSString *houshustr = [NSString stringWithFormat:@"%d",[results  intForColumn:@"houshu"]];
+        NSString *timestr = [NSString stringWithFormat:@"%d",[results  intForColumn:@"time"]];
+        NSString *clientstr = [NSString stringWithFormat:@"%@",[results  stringForColumn:@"client"]];
+        NSString *genrestr = [NSString stringWithFormat:@"%@",[results  stringForColumn:@"genre"]];
+        
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                             idstr, @"id",houshustr, @"houshu",clientstr, @"client",projectstr,@"project",timestr,@"time",genrestr,@"genre",nil];
+        [self.array addObject:dic];
+    }
+    [db close]; //DB閉じる
+    /*
     NSString *urlstr = @"http://timeismoney.miraiserver.com/alldata.php?id=";
     urlstr = [urlstr stringByAppendingString:app.userid];
     self.array = [NSMutableArray array];
     self.array = (NSMutableArray*)[self serverdata:urlstr];
+     */
     [self.tableView reloadData];
 }
 
@@ -227,6 +309,7 @@
 //ログアウト関連ここから-----------------------------------
 //ログアウトボタン
 - (IBAction)btnLogout:(UIButton *)sender {
+    /*
     //アラート表示
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle:@"ログアウト"
@@ -236,12 +319,12 @@
                           otherButtonTitles:@"OK", nil];
     alert.alertViewStyle = UIAlertViewStyleDefault;
     [alert show];
+     */
 }
 
 // ログアウトのアラートのボタンが押された時に呼ばれるデリゲート例文
 -(void)alertView:(UIAlertView*)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
     switch (buttonIndex) {
         case 0:
             //１番目のボタン（キャンセル）が押されたときの処理を記述する
@@ -268,36 +351,16 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 }
 //ログアウト関連ここまで-----------------------------------
 
-
 //更新ボタン
 - (IBAction)btnReload:(UIButton *)sender {
-//    loadingView = [[UIView alloc] initWithFrame:self.view.bounds];
-//    // 雰囲気出すために背景を黒く半透明する
-//    loadingView.backgroundColor = [UIColor blackColor];
-//    loadingView.alpha = 0.5f;
-//    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-//    // でっかいグルグル
-//    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-//    // 画面の中心に配置
-//    [indicator setCenter:CGPointMake(loadingView.bounds.size.width / 2, loadingView.bounds.size.height / 2)];
-//    // 画面に追加
-//    [loadingView addSubview:indicator];
-//    [self.view addSubview:loadingView];
-//    // ぐるぐる開始
-//    [indicator startAnimating];
-    
-    
+    /*
     //サーバーからデータを取ってきてテーブルを更新する。失敗した場合はアラートを表示する。
     NSString *urlstr = @"http://timeismoney.miraiserver.com/alldata.php?id=";
     urlstr = [urlstr stringByAppendingString:app.userid];
     self.array = [NSMutableArray array];
     self.array = (NSMutableArray*)[self serverdata:urlstr];
     [self.tableView reloadData];
-    
-//    // ぐるぐる停止
-//    [indicator stopAnimating];
-//    // 画面から除去して黒い半透明を消す
-//    [loadingView removeFromSuperview];
+     */
 }
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "NPViewController.h"
+#import "FMDatabase.h"
+
 
 @interface NPViewController ()
 @end
@@ -15,6 +17,11 @@
 {
     Sound *mySound; //音源のインスタンス
     AppDelegate *app; //変数管理
+    
+    NSArray *paths;
+    NSString *dir;
+    FMDatabase *db;
+    NSString *sql;
 }
 
 
@@ -82,7 +89,7 @@
     //userdefaultsでdicと配列を保存
 //    [defaults setObject:dic forKey: app.projectName];
 //    [defaults setObject:app.nowProject forKey:@"進行中"];
-    
+    /*
     //サーバーのデータ送信処理
     NSURL *url = [NSURL URLWithString:@"http://timeismoney.miraiserver.com/insert.php"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -130,6 +137,28 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
     NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]; //ここがおかしい？
     NSLog(@"%@",datastring);
+     */
+    if([app.clientName length] == 0){
+        app.clientName = @"その他のクライアント";
+    }
+    if([app.genreName length]== 0){
+        app.genreName = @"その他のジャンル";
+    }
+
+    //DBファイルのパス
+    paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+    dir   = [paths objectAtIndex:0];
+    
+    db= [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]];
+    sql = [NSString stringWithFormat:@"insert into timeproject(project,houshu,time,client,genre) values('%@',%@,0,'%@','%@');",app.projectName,[NSString stringWithFormat:@"%f",app.housyu],app.clientName,app.genreName];
+    
+    int s = 0;
+    [db open];
+    if ( (s = [db executeUpdate:sql]) == 0 ) {
+        NSLog(@"失敗した");
+    };
+    NSLog(@"sの値は%d",s);
+    [db close];
 }
 
 

@@ -8,6 +8,7 @@
 
 #import "finishTableViewController.h"
 #import "AppDelegate.h"
+#import "FMDatabase.h"
 
 @interface finishTableViewController ()
 
@@ -18,15 +19,53 @@
     NSMutableArray *array;
     UIView *loadingView; //更新中のぐるぐる
     UIActivityIndicatorView *indicator; //更新中のぐるぐる
+    
+    NSArray *paths;
+    NSString *dir;
+    FMDatabase *db;
+    NSString *sql;
 }
+@synthesize array;
 
 - (void)viewDidLoad {
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
 //    dvid = @"time01";
+    /*
     NSString *urlstr = @"http://timeismoney.miraiserver.com/exitalldata.php?id=";
     urlstr = [urlstr stringByAppendingString:app.userid];
     array = (NSMutableArray*)[self serverdata:urlstr];
     NSLog(@"%@",array);
+     */
+    //DBファイルのパス
+    paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+    dir   = [paths objectAtIndex:0];
+    self.array = [NSMutableArray array];
+    //DBファイルがあるかどうか確認
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]])
+    {
+        NSLog(@"すでにデータベースがある");
+        NSString *db_path  = [dir stringByAppendingPathComponent:@"timeismoney.db"];
+        NSLog(@"データベースの場所は…%@", db_path );
+        db= [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]];
+        sql = @"select * from exitproject;";
+        [db open]; //DB開く
+        FMResultSet *results = [db executeQuery:sql];
+        while([results next]) {
+            NSString *idstr = [NSString stringWithFormat:@"%d",[results intForColumn:@"id"]];
+            NSString *projectstr = [NSString stringWithFormat:@"%@",[results  stringForColumn:@"project"]];
+            NSString *houshustr = [NSString stringWithFormat:@"%d",[results  intForColumn:@"houshu"]];
+            NSString *timestr = [NSString stringWithFormat:@"%d",[results  intForColumn:@"time"]];
+            NSString *clientstr = [NSString stringWithFormat:@"%@",[results  stringForColumn:@"client"]];
+            NSString *genrestr = [NSString stringWithFormat:@"%@",[results  stringForColumn:@"genre"]];
+            NSString *jikyustr = [NSString stringWithFormat:@"%d",[results  intForColumn:@"jikyu"]];
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 idstr, @"id",houshustr, @"houshu",clientstr, @"client",projectstr,@"project",timestr,@"time",genrestr,@"genre",jikyustr,@"jikyu",nil];
+            [self.array addObject:dic];
+        }
+        [db close]; //DB閉じる
+    }
+
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -62,7 +101,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger dataCount;
     dataCount = app.finishProject.count;
-    return [array count]; //配列の中身の数を数えてローの数を指定する
+    return [self.array count]; //配列の中身の数を数えてローの数を指定する
 }
 
 //ここのメソッド何やってるかぜんぜんわからない
@@ -76,7 +115,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [array[indexPath.row] objectForKey:@"project"];
+    cell.textLabel.text = [self.array[indexPath.row] objectForKey:@"project"];
     return cell;
 }
 
@@ -98,7 +137,7 @@
         if ( indexPath.section != 0) return; //これがよくわからない
         NSInteger row = indexPath.row; //何番目が押されたかを判別してるっぽい
         //取り出した文字列で辞書を呼び出す
-        NSDictionary *dic = [array objectAtIndex:row];
+        NSDictionary *dic = [self.array objectAtIndex:row];
         app.projectName = [dic objectForKey:@"project"];
         
         //報酬を代入
@@ -114,11 +153,11 @@
         app.clientName = [NSString stringWithFormat:@"%@", data];
         
         //ジャンルを代入
-        data = [dic objectForKey:@"janle"];
+        data = [dic objectForKey:@"genre"];
         app.genreName = [NSString stringWithFormat:@"%@", data];
-        data = [dic objectForKey:@"projectid"];
-        int num = [data intValue];
-        app.projectid = num;
+        //プロジェクトIDを代入
+        data = [dic objectForKey:@"id"];
+        app.projectid = data;
         NSString *houshustr = [dic objectForKey:@"houshu"];
         app.housyu = [houshustr floatValue];
         
@@ -164,8 +203,9 @@
         // 削除するコードを挿入します
         // 削除するコードを挿入します
         NSLog(@"%ld行目削除",(long)indexPath.row);
-        NSDictionary *prodic = [array objectAtIndex:indexPath.row];
-        [array removeObjectAtIndex:indexPath.row];
+        NSDictionary *prodic = [self.array objectAtIndex:indexPath.row];
+        [self.array removeObjectAtIndex:indexPath.row];
+        /*
         //サーバーのデータ送信処理
         NSURL *url = [NSURL URLWithString:@"http://timeismoney.miraiserver.com/exitdelete.php"];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -189,6 +229,14 @@
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
         NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"削除は%@",datastring);
+         */
+        NSString *proid = [prodic objectForKey:@"id"];
+        sql = [NSString stringWithFormat:@"delete from exitproject where id = %@;",proid];
+        
+        
+        [db open]; //DB開く
+        [db executeUpdate:sql]; //SQL実行
+        [db close]; //DB閉じる
 
         [tableView reloadData];
     }
@@ -260,11 +308,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 //    [self.view addSubview:loadingView];
 //    // ぐるぐる開始
 //    [indicator startAnimating];
-    
+    /*
     //サーバーからデータを取ってきてテーブルを更新する。失敗した場合はアラートを表示する。
     NSString *urlstr = @"http://timeismoney.miraiserver.com/exitalldata.php?id=";
     urlstr = [urlstr stringByAppendingString:app.userid];
     array = (NSMutableArray*)[self serverdata:urlstr];
+     */
     [self.tableView reloadData];
     
 //    // ぐるぐる停止

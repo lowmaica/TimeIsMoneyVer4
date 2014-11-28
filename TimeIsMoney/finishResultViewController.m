@@ -7,6 +7,7 @@
 //
 
 #import "finishResultViewController.h"
+#import "FMDatabase.h"
 
 @interface finishResultViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
@@ -24,6 +25,12 @@
     NSInteger seconds;
     NSInteger cost;
     float ichienByousu;
+    
+    NSArray *paths;
+    NSString *dir;
+    FMDatabase *db;
+    NSString *sql;
+
 }
 
 - (void)viewDidLoad {
@@ -97,6 +104,7 @@
 
 //再開ボタンをおした時の挙動
 - (IBAction)restartBtn:(UIButton *)sender {
+    /*
     //サーバーのデータ送信処理
     NSURL *url = [NSURL URLWithString:@"http://timeismoney.miraiserver.com/restart.php"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -143,6 +151,26 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
     NSString *datastring = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"削除は%@",datastring);
+     */
+    //DBファイルのパス
+    paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+    dir   = [paths objectAtIndex:0];
+    
+    db= [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]];
+    sql = [NSString stringWithFormat:@"insert into timeproject(project,houshu,time,client,genre) values('%@',%@,%@,'%@','%@');",app.projectName,[NSString stringWithFormat:@"%f",app.housyu],[NSString stringWithFormat:@"%ld",(long)app.prjTime],app.clientName,app.genreName];
+    
+    int s = 0;
+    [db open];
+    if ( (s = [db executeUpdate:sql]) == 0 ) {
+        NSLog(@"失敗した");
+    };
+    NSLog(@"sの値は%d",s);
+    sql = [NSString stringWithFormat:@"delete from exitproject where id = %@;",app.projectid];
+    if ( (s = [db executeUpdate:sql]) == 0 ) {
+        NSLog(@"失敗した");
+    };
+    NSLog(@"sの値は%d",s);
+    [db close];
     [mySound soundCoin]; //コインの音
 }
 

@@ -7,6 +7,9 @@
 //
 
 #import "bunsekiViewController.h"
+#import "FMDatabase.h"
+
+
 
 @interface bunsekiViewController (){
     NSArray *array;
@@ -19,11 +22,19 @@
 @implementation bunsekiViewController{
     AppDelegate *app; //変数管理
     NSString *mailText;
+    NSString *mailJikyu;
+    
+    NSArray *paths;
+    NSString *dir;
+    FMDatabase *db;
+    NSString *sql;
 }
 
 
 - (void)viewDidLoad {
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
+    
+    /*
 
     NSLog(@"%@",app.userid);
     NSString *urlstr = @"http://timeismoney.miraiserver.com/avgjikyu.php?id=";
@@ -31,6 +42,72 @@
     array = [self serverdata:urlstr];
     NSLog(@"%@",array);
     NSLog(@"配列の数は%ld",(long)[array count]);
+     */
+    //DBファイルのパス
+    paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+    dir   = [paths objectAtIndex:0];
+    //DBファイルがあるかどうか確認
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]])
+    {
+        NSLog(@"すでにデータベースがある");
+        NSString *db_path  = [dir stringByAppendingPathComponent:@"timeismoney.db"];
+        NSLog(@"データベースの場所は…%@", db_path );
+        db= [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]];
+        sql = @"select avg(jikyu) as jikyuavg from exitproject;";
+        [db open]; //DB開く
+        FMResultSet *results = [db executeQuery:sql];
+        while([results next]){
+            //平均時給を表示
+            self.jikyulabel.text = [NSString stringWithFormat:@"%d",[results intForColumn:@"jikyuavg"]];
+            mailJikyu =self.jikyulabel.text; //メールのために平均時給を保存
+        }
+        sql = @"select jikyu,project from exitproject order by jikyu desc limit 5;";
+        results = [db executeQuery:sql];
+        int i = 1;
+        //プロジェクトランキング表示
+        self.textview.editable = NO;
+        self.textview.text = @"【 プロジェクト別 】\n";
+        while([results next]){
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i]];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[results stringForColumn:@"project"]]];
+            
+            int avg = [results intForColumn:@"jikyu"];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+            i++;
+        }
+        i = 1;
+        sql = @"select avg(jikyu) as jikyuavg ,client from exitproject group by client order by jikyuavg desc limit 5;";
+        results = [db executeQuery:sql];
+        self.textview.text = [self.textview.text stringByAppendingString:@"\n【 クライアント別 】\n"];
+        while([results next]){
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i]];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[results stringForColumn:@"client"]]];
+            
+            int avg = [results intForColumn:@"jikyuavg"];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+            i++;
+        }
+        i = 1;
+        sql = @"select avg(jikyu) as jikyuavg ,genre from exitproject group by genre order by jikyuavg desc limit 5;";
+        results = [db executeQuery:sql];
+        self.textview.text = [self.textview.text stringByAppendingString:@"\n【 ジャンル別 】\n"];
+        while([results next]){
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i]];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[results stringForColumn:@"genre"]]];
+            
+            int avg = [results intForColumn:@"jikyuavg"];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+            i++;
+        }
+        
+        //メール送信用にテキストを変数に入れる
+        NSString *hoge = self.textview.text;
+        mailText = [NSString stringWithFormat:@"過去の時給の平均：%@円\n\n高額時給ランキング\n%@",mailJikyu,hoge];
+        
+        [db close]; //DB閉じる
+    }
+    /*
     if(([array count]>0)){
         NSLog(@"配列は0でない");
         NSString *avgjikyu = [array objectAtIndex:0];
@@ -88,6 +165,7 @@
             mailText = [NSString stringWithFormat:@"過去の時給の平均：%@円\n\n高額時給ランキング\n%@",mailJikyu,hoge];
         }
     }
+     */
 //    else{
 //        //なにもないときにメッセージを出す
 //        
@@ -188,7 +266,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     controller.mailComposeDelegate = self;
     
     //件名を設定
-    NSString *kenmei = [NSString stringWithFormat:@"「%@」のTime is Money 分析結果",app.userid];
+    NSString *kenmei = [NSString stringWithFormat:@"Time is Money 分析結果"];
     
     [controller setSubject:kenmei];
     if(([array count]>0)){
@@ -250,6 +328,70 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 //更新ボタン
 - (IBAction)btnReload:(UIButton *)sender {
+    self.textview.text = @"";
+    //DBファイルのパス
+    paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+    dir   = [paths objectAtIndex:0];
+    //DBファイルがあるかどうか確認
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]])
+    {
+        NSLog(@"すでにデータベースがある");
+        NSString *db_path  = [dir stringByAppendingPathComponent:@"timeismoney.db"];
+        NSLog(@"データベースの場所は…%@", db_path );
+        db= [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]];
+        sql = @"select avg(jikyu) as jikyuavg from exitproject;";
+        [db open]; //DB開く
+        FMResultSet *results = [db executeQuery:sql];
+        while([results next]){
+            //平均時給を表示
+            self.jikyulabel.text = [NSString stringWithFormat:@"%d",[results intForColumn:@"jikyuavg"]];
+        }
+        sql = @"select jikyu,project from exitproject order by jikyu desc limit 5;";
+        results = [db executeQuery:sql];
+        int i = 1;
+        //プロジェクトランキング表示
+        self.textview.editable = NO;
+        self.textview.text = @"【 プロジェクト別 】\n";
+        while([results next]){
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i]];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[results stringForColumn:@"project"]]];
+            
+            int avg = [results intForColumn:@"jikyu"];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+            i++;
+        }
+        i = 1;
+        sql = @"select avg(jikyu) as jikyuavg ,client from exitproject group by client order by jikyuavg desc limit 5;";
+        results = [db executeQuery:sql];
+        self.textview.text = [self.textview.text stringByAppendingString:@"\n【 クライアント別 】\n"];
+        while([results next]){
+            NSLog(@"クライアント追加");
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i]];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[results stringForColumn:@"client"]]];
+            
+            int avg = [results intForColumn:@"jikyuavg"];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+            i++;
+        }
+        [db close];
+        i = 1;
+        [db open];
+        sql = @"select avg(jikyu) as jikyuavg ,genre from exitproject group by genre order by jikyuavg desc limit 5;";
+        results = [db executeQuery:sql];
+        self.textview.text = [self.textview.text stringByAppendingString:@"\n【 ジャンル別 】\n"];
+        while([results next]){
+            NSLog(@"ジャンル追加");
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%d位：",i]];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[results stringForColumn:@"genre"]]];
+            
+            int avg = [results intForColumn:@"jikyuavg"];
+            self.textview.text = [self.textview.text stringByAppendingString:[NSString stringWithFormat:@"時給%d円\n\n",avg]];
+            i++;
+        }
+        
+        [db close]; //DB閉じる
+    }
 //    loadingView = [[UIView alloc] initWithFrame:self.view.bounds];
 //    // 雰囲気出すために背景を黒く半透明する
 //    loadingView.backgroundColor = [UIColor blackColor];
@@ -264,7 +406,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 //    [self.view addSubview:loadingView];
 //    // ぐるぐる開始
 //    [indicator startAnimating];
-    
+    /*
     //サーバーからデータを取ってきて更新する。失敗した場合はアラートを表示する。
     NSString *urlstr = @"http://timeismoney.miraiserver.com/avgjikyu.php?id=";
     urlstr = [urlstr stringByAppendingString:app.userid];
@@ -333,5 +475,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 //            [loadingView removeFromSuperview];
         }
     }
+     */
 }
 @end

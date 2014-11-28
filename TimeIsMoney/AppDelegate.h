@@ -28,7 +28,7 @@
 @property NSString *projectName; //プロジェクト名
 @property NSString *genreName; //ジャンル名
 @property NSString *clientName; //クライアント名
-@property int projectid;
+@property NSString *projectid;
 @property NSString *userid;
 
 //プロジェクトの経過時間を数える変数

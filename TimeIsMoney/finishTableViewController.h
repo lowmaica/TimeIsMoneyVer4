@@ -11,5 +11,6 @@
 @interface finishTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property NSMutableArray *array;
 
 @end
