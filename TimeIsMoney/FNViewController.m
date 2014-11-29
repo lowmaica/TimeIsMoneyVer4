@@ -174,7 +174,7 @@
     dir   = [paths objectAtIndex:0];
     
     db= [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:@"timeismoney.db"]];
-    sql = [NSString stringWithFormat:@"insert into exitproject(project,jikyu,houshu,time,client,genre) values('%@',%@,%@,%@,'%@','%@');",app.projectName,[NSString stringWithFormat:@"%ld",resultJikyu],[NSString stringWithFormat:@"%f",app.housyu],[NSString stringWithFormat:@"%ld",app.prjTime],app.clientName,app.genreName];
+    sql = [NSString stringWithFormat:@"insert into exitproject(project,jikyu,houshu,time,client,genre) values('%@',%@,%@,%@,'%@','%@');",app.projectName,[NSString stringWithFormat:@"%ld",(long)resultJikyu],[NSString stringWithFormat:@"%f",app.housyu],[NSString stringWithFormat:@"%ld",(long)app.prjTime],app.clientName,app.genreName];
     
     int s = 0;
     [db open];
