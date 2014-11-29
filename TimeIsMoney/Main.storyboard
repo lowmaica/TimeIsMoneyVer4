@@ -31,26 +31,6 @@
                                     <segue destination="VkJ-d8-TsN" kind="modal" animates="NO" id="lYV-gr-fN4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Zki-n0-OAa">
-                                <rect key="frame" x="6" y="20" width="44" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnLogout">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnLogout:" destination="uN9-r8-35F" eventType="touchUpInside" id="MvR-gk-7C3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KV9-o1-rDA">
-                                <rect key="frame" x="50" y="20" width="44" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnReload">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnReload:" destination="uN9-r8-35F" eventType="touchUpInside" id="PAg-fB-sXE"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -58,7 +38,6 @@
                     <connections>
                         <outlet property="tableView" destination="abU-63-wep" id="zgH-jU-DhX"/>
                         <segue destination="49m-P8-eY1" kind="modal" identifier="finishToResult" animates="NO" id="3gc-tR-UFc"/>
-                        <segue destination="Q1Y-sS-Bda" kind="modal" identifier="finishToLogin" animates="NO" id="K2a-Ka-Z1n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1d-a1-39l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -175,71 +154,6 @@
             </objects>
             <point key="canvasLocation" x="-984" y="183"/>
         </scene>
-        <!--Login View Controller-->
-        <scene sceneID="Uud-KW-YgD">
-            <objects>
-                <viewController id="Q1Y-sS-Bda" customClass="LoginViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dy0-sC-iMM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBack" id="Eu3-UV-2tP">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="d9l-lL-DOb">
-                                <rect key="frame" x="38" y="433" width="244" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnLogin">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logincheck:" destination="Q1Y-sS-Bda" eventType="touchUpInside" id="kZb-UT-Oev"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ecJ-IN-39L">
-                                <rect key="frame" x="38" y="493" width="244" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnNewAccount">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnToNewID:" destination="Q1Y-sS-Bda" eventType="touchUpInside" id="4wF-bZ-dW0"/>
-                                    <segue destination="tAo-Fk-3ay" kind="modal" identifier="newsegue" animates="NO" id="hYk-w2-DUb"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="7zd-r7-bhb">
-                                <rect key="frame" x="38" y="193" width="244" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="idField:" destination="Q1Y-sS-Bda" eventType="editingDidEnd" id="GZO-9w-cQp"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="NMy-eg-HQE">
-                                <rect key="frame" x="38" y="273" width="244" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <connections>
-                                    <action selector="passField:" destination="Q1Y-sS-Bda" eventType="editingDidEnd" id="XMp-1U-H5m"/>
-                                </connections>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="idtextfield" destination="7zd-r7-bhb" id="a5T-fb-qbt"/>
-                        <outlet property="passtextfield" destination="NMy-eg-HQE" id="pW6-tf-t73"/>
-                        <segue destination="i6S-Lg-GgH" kind="modal" identifier="loginsegue" animates="NO" id="Kaj-UC-1tZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nq1-T7-cZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2548" y="-1649"/>
-        </scene>
         <!--分析-->
         <scene sceneID="1f1-Zc-Ueh">
             <objects>
@@ -266,16 +180,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V5M-j7-dfW">
-                                <rect key="frame" x="50" y="20" width="44" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnReload">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnReload:" destination="I4J-dx-Zy8" eventType="touchUpInside" id="Vgh-N5-Rc7"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lGp-TG-Fei">
                                 <rect key="frame" x="271" y="20" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -286,14 +190,14 @@
                                     <action selector="btnSendMail:" destination="I4J-dx-Zy8" eventType="touchUpInside" id="gdU-mJ-MzG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QGw-Lx-ubD">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V5M-j7-dfW">
                                 <rect key="frame" x="6" y="20" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnLogout">
+                                <state key="normal" image="btnReload">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnLogout:" destination="I4J-dx-Zy8" eventType="touchUpInside" id="Clc-Kk-hBw"/>
+                                    <action selector="btnReload:" destination="I4J-dx-Zy8" eventType="touchUpInside" id="Vgh-N5-Rc7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -304,7 +208,6 @@
                     <connections>
                         <outlet property="jikyulabel" destination="gPb-0Y-bjs" id="4CH-Vc-Xfw"/>
                         <outlet property="textview" destination="6W7-km-SKZ" id="Kjh-g8-u1R"/>
-                        <segue destination="Q1Y-sS-Bda" kind="modal" identifier="bunsekiToLogin" animates="NO" id="CdM-Bm-ja5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="440-ZX-RhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -361,36 +264,24 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="monthlySalaryText:" destination="rEz-bG-NSN" eventType="editingDidEnd" id="DAi-lu-D3B"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="Ddm-VG-DHS">
                                 <rect key="frame" x="45" y="280" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="workTime:" destination="rEz-bG-NSN" eventType="editingDidEnd" id="Gqg-Pa-EN3"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="IAi-mG-dFp">
                                 <rect key="frame" x="196" y="280" width="61" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="weekHoliday:" destination="rEz-bG-NSN" eventType="editingDidEnd" id="795-R1-V5A"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="q6z-Ta-npp">
                                 <rect key="frame" x="30" y="113" width="150" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="jikyuLabel:" destination="rEz-bG-NSN" eventType="editingDidEnd" id="eFw-bS-joK"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mqq-hu-OFV">
                                 <rect key="frame" x="214" y="203" width="60" height="40"/>
@@ -444,27 +335,6 @@
                                     <segue destination="VkJ-d8-TsN" kind="modal" animates="NO" id="s4d-YY-sET"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="146-ik-8a6">
-                                <rect key="frame" x="6" y="20" width="44" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnLogout">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnLogout:" destination="RCf-QB-14b" eventType="touchUpInside" id="vlb-He-Hm8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="d7k-rA-AZU">
-                                <rect key="frame" x="50" y="20" width="44" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnReload">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnReload:" destination="RCf-QB-14b" eventType="touchUpInside" id="Gfy-bD-khg"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -473,78 +343,11 @@
                     <connections>
                         <outlet property="tableView" destination="Xer-Pg-jkT" id="zQ1-Rf-nGk"/>
                         <segue destination="p0p-wN-6Ax" kind="modal" identifier="topToCD" animates="NO" id="ZWQ-wJ-DPZ"/>
-                        <segue destination="Q1Y-sS-Bda" kind="modal" identifier="topToLogin" animates="NO" id="uf0-bX-baR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYU-jf-4jK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1288" y="-1515"/>
-        </scene>
-        <!--Newid View Controller-->
-        <scene sceneID="8qD-yW-Ums">
-            <objects>
-                <viewController id="tAo-Fk-3ay" customClass="NewidViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hOw-5a-YvV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewAcountBack" id="bWF-2l-sTA">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="nZy-zV-fYH">
-                                <rect key="frame" x="38" y="193" width="244" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CXo-XF-xwU">
-                                <rect key="frame" x="38" y="433" width="244" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnCreAccount">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="newid:" destination="tAo-Fk-3ay" eventType="touchUpInside" id="Vjg-Q5-HdS"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="0Uu-TP-Ecp">
-                                <rect key="frame" x="38" y="360" width="244" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="vo8-X0-cAA">
-                                <rect key="frame" x="38" y="272" width="244" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YD5-7J-J3G">
-                                <rect key="frame" x="38" y="492" width="244" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnCancel">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnCancel:" destination="tAo-Fk-3ay" eventType="touchUpInside" id="GP2-rk-6bv"/>
-                                    <segue destination="apd-eD-4mx" kind="unwind" unwindAction="returnLogin:" id="ght-QX-uPr"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="fakepasstextfield" destination="vo8-X0-cAA" id="fx2-BW-bvs"/>
-                        <outlet property="idtextfield" destination="nZy-zV-fYH" id="Plm-jg-rh8"/>
-                        <outlet property="passtextfield" destination="0Uu-TP-Ecp" id="VFe-YZ-B5K"/>
-                        <segue destination="i6S-Lg-GgH" kind="modal" identifier="newidsegue" animates="NO" id="F1w-qP-ccZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kfx-8O-rxR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="apd-eD-4mx" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="-2092" y="-1536"/>
         </scene>
         <!--新規-->
         <scene sceneID="U7g-Rm-pHW">
@@ -584,42 +387,34 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
-                                <connections>
-                                    <action selector="pjNameLabel:" destination="VkJ-d8-TsN" eventType="editingChanged" id="dB0-Av-Qyx"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="zq6-zs-IYV">
                                 <rect key="frame" x="30" y="171" width="260" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
-                                <connections>
-                                    <action selector="clientLabel:" destination="VkJ-d8-TsN" eventType="editingChanged" id="dME-wi-Qah"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="s9m-4q-lEb">
                                 <rect key="frame" x="30" y="231" width="260" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
-                                <connections>
-                                    <action selector="genreLabel:" destination="VkJ-d8-TsN" eventType="editingChanged" id="Adh-cc-tDN"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" id="HiT-SQ-QZ2">
                                 <rect key="frame" x="30" y="292" width="150" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                                <connections>
-                                    <action selector="housyuLabel:" destination="VkJ-d8-TsN" eventType="editingChanged" id="DR7-mT-3VY"/>
-                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="新規" id="Hzf-Xc-3IJ"/>
                     <connections>
+                        <outlet property="clientNameField" destination="zq6-zs-IYV" id="FXQ-FS-U5Y"/>
+                        <outlet property="genleNameField" destination="s9m-4q-lEb" id="Ptn-NK-Ozx"/>
+                        <outlet property="housyuField" destination="HiT-SQ-QZ2" id="bJj-8C-pst"/>
+                        <outlet property="projectNameField" destination="JQZ-FE-jFD" id="pSl-vb-L0U"/>
                         <segue destination="i6S-Lg-GgH" kind="modal" identifier="NPtoTop" animates="NO" id="QdP-ix-bC3"/>
                     </connections>
                 </viewController>
@@ -845,16 +640,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NewAcountBack" width="320" height="568"/>
         <image name="btnBack" width="75" height="44"/>
-        <image name="btnCancel" width="244" height="50"/>
-        <image name="btnCreAccount" width="244" height="50"/>
         <image name="btnFinish" width="244" height="50"/>
         <image name="btnGekkyu" width="60" height="40"/>
-        <image name="btnLogin" width="244" height="50"/>
-        <image name="btnLogout" width="44" height="44"/>
         <image name="btnMail" width="44" height="44"/>
-        <image name="btnNewAccount" width="244" height="50"/>
         <image name="btnNewProject" width="88" height="88"/>
         <image name="btnOk" width="244" height="50"/>
         <image name="btnOtsu" width="244" height="50"/>
@@ -867,7 +656,6 @@
         <image name="finishBack" width="320" height="568"/>
         <image name="fnback01" width="320" height="568"/>
         <image name="jikyuBack" width="320" height="568"/>
-        <image name="loginBack" width="320" height="568"/>
         <image name="npback" width="320" height="568"/>
         <image name="tab1" width="30" height="30"/>
         <image name="tab2" width="30" height="30"/>
@@ -881,8 +669,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ds5-gG-qsy"/>
-        <segue reference="CdM-Bm-ja5"/>
-        <segue reference="lYV-gr-fN4"/>
+        <segue reference="QdP-ix-bC3"/>
+        <segue reference="s4d-YY-sET"/>
     </inferredMetricsTieBreakers>
 </document>

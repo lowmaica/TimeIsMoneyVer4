@@ -63,41 +63,6 @@
     [self.view endEditing: YES];
 }
 
-
-//時給を入力した時の動作 入力がすぐに反映されるのはなおした方がいいかも
-- (IBAction)jikyuLabel:(UITextField *)sender {
-//    NSString *text = sender.text;
-//    app.jikyu = text.integerValue;
-    
-//    NSLog(@"イチ 時給を%fに変更",app.jikyu);
-    
-//    //時給をNSUserDefaultで保存
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSNumber *num = [NSNumber numberWithFloat:app.jikyu];
-//    [defaults setObject:num forKey:@"時給"];
-//    NSLog(@"ニ 時給を%fに変更",app.jikyu);
-}
-
-
-//月給を入力した時の動作
-- (IBAction)monthlySalaryText:(UITextField *)sender {
-//    NSString *text = sender.text;
-//    gekkyu = text.integerValue;
-}
-
-//労働時間を入力した時の動作
-- (IBAction)workTime:(UITextField *)sender {
-//    NSString *text = sender.text;
-//    workTime = text.integerValue;
-}
-
-//週休を入力した時の動作
-- (IBAction)weekHoliday:(UITextField *)sender {
-//    NSString *text = sender.text;
-//    weekHoliday = text.integerValue;
-}
-
-
 //計算するボタンを押す
 - (IBAction)keisanButton {
     //フィールドから入力内容を取り出す

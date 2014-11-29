@@ -15,9 +15,6 @@
 //プロジェクト名を表示するラベル
 @property (weak, nonatomic) IBOutlet UILabel *pjNameLabel;
 
-////プロジェクトが赤字かどうかを表示するラベル
-//@property (weak, nonatomic) IBOutlet UILabel *pjStatusLabel;
-
 //時間を表示するラベル
 @property (weak, nonatomic) IBOutlet UILabel *pjTimeLabel;
 //時間コストを表示するラベル
@@ -34,10 +31,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *startStopButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishBtn;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
-
-//NPから受け渡される変数のプロパティを宣言
-@property float jikyu;
-@property float housyu;
-@property NSString *projectName;
 
 @end

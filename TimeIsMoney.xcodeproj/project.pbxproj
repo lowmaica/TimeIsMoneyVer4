@@ -33,10 +33,8 @@
 		F46DA24519CB41AE00AB1CEC /* NPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA24419CB41AE00AB1CEC /* NPViewController.m */; };
 		F46DA24E19CB466800AB1CEC /* FNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F46DA24D19CB466800AB1CEC /* FNViewController.m */; };
 		F4819B491A092A0D00319379 /* CDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4819B481A092A0D00319379 /* CDViewController.m */; };
-		F49C7F331A0DE87B00ACA590 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F49C7F321A0DE87A00ACA590 /* LoginViewController.m */; };
 		F4A86A6319EE0E8600B42894 /* bunsekiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */; };
 		F4A9AFB919E634C200F8E9FD /* jikyuSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */; };
-		F4C825401A0DF53E00C374F4 /* NewidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C8253F1A0DF53E00C374F4 /* NewidViewController.m */; };
 		F4D1C5351A0B4F0C00BF95AA /* iPhoneOld.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4D1C5341A0B4F0C00BF95AA /* iPhoneOld.storyboard */; };
 		F4DBBB5419E4443A0064083C /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DBBB5319E4443A0064083C /* Sound.m */; };
 		F4E9CF6C19CC02EE0049F233 /* coin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4E9CF6919CC02EE0049F233 /* coin.mp3 */; };
@@ -99,14 +97,10 @@
 		F46DA24D19CB466800AB1CEC /* FNViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FNViewController.m; sourceTree = "<group>"; };
 		F4819B471A092A0D00319379 /* CDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDViewController.h; sourceTree = "<group>"; };
 		F4819B481A092A0D00319379 /* CDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDViewController.m; sourceTree = "<group>"; };
-		F49C7F311A0DE87A00ACA590 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		F49C7F321A0DE87A00ACA590 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		F4A86A6119EE0E8600B42894 /* bunsekiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bunsekiViewController.h; sourceTree = "<group>"; };
 		F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bunsekiViewController.m; sourceTree = "<group>"; };
 		F4A9AFB719E634C200F8E9FD /* jikyuSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jikyuSetViewController.h; sourceTree = "<group>"; };
 		F4A9AFB819E634C200F8E9FD /* jikyuSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jikyuSetViewController.m; sourceTree = "<group>"; };
-		F4C8253E1A0DF53E00C374F4 /* NewidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewidViewController.h; sourceTree = "<group>"; };
-		F4C8253F1A0DF53E00C374F4 /* NewidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewidViewController.m; sourceTree = "<group>"; };
 		F4D1C5341A0B4F0C00BF95AA /* iPhoneOld.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhoneOld.storyboard; sourceTree = "<group>"; };
 		F4DBBB5219E4443A0064083C /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		F4DBBB5319E4443A0064083C /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
@@ -201,10 +195,6 @@
 				F4DBBB5319E4443A0064083C /* Sound.m */,
 				F46D80AB19E99A47003732D5 /* Main.storyboard */,
 				F4D1C5341A0B4F0C00BF95AA /* iPhoneOld.storyboard */,
-				F4C8253E1A0DF53E00C374F4 /* NewidViewController.h */,
-				F4C8253F1A0DF53E00C374F4 /* NewidViewController.m */,
-				F49C7F311A0DE87A00ACA590 /* LoginViewController.h */,
-				F49C7F321A0DE87A00ACA590 /* LoginViewController.m */,
 				F4A86A6119EE0E8600B42894 /* bunsekiViewController.h */,
 				F4A86A6219EE0E8600B42894 /* bunsekiViewController.m */,
 				F43D562219E455C000BF6718 /* topViewController.h */,
@@ -388,8 +378,6 @@
 				F46D80E119E9D877003732D5 /* finishTableViewController.m in Sources */,
 				F46D80E419E9DACF003732D5 /* finishResultViewController.m in Sources */,
 				F43D562419E455C000BF6718 /* topViewController.m in Sources */,
-				F49C7F331A0DE87B00ACA590 /* LoginViewController.m in Sources */,
-				F4C825401A0DF53E00C374F4 /* NewidViewController.m in Sources */,
 				F46DA21F19CB403300AB1CEC /* AppDelegate.m in Sources */,
 				F46DA24519CB41AE00AB1CEC /* NPViewController.m in Sources */,
 				F42100051A26A92100989F18 /* FMDatabasePool.m in Sources */,

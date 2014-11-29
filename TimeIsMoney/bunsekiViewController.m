@@ -45,77 +45,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-//-(NSArray*)serverdata:(NSString*)url{
-//    //URLを生成
-//    NSURL *dataurl = [NSURL URLWithString:url];
-//    //リクエスト生成
-//    NSURLRequest *request = [NSURLRequest requestWithURL:dataurl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-//    //レスポンスを生成
-//    NSHTTPURLResponse *response;
-//    //NSErrorの初期化
-//    NSError *err = nil;
-//    //requestによって返ってきたデータを生成
-//    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-//    //データを元に文字列を生成
-//    NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//    //余計な文字列を削除
-//    str = [str stringByReplacingOccurrencesOfString:@"<!--/* Miraiserver \"NO ADD\" http://www.miraiserver.com */-->" withString:@""];
-//    str = [str stringByReplacingOccurrencesOfString:@"<script type=\"text/javascript\" src=\"http://17787372.ranking.fc2.com/analyze.js\" charset=\"utf-8\"></script>" withString:@""];
-//    //strをNSData型の変数に変換
-//    NSData *trimdata = [str dataUsingEncoding:NSUTF8StringEncoding];
-//    //dataを元にJSONオブジェクトを生成
-//    NSArray *resarray = [NSJSONSerialization JSONObjectWithData:trimdata options:NSJSONReadingMutableContainers error:&err];
-//    //値を返す
-//    return resarray;
-//}
-
-
-////ログアウト関連ここから-----------------------------------
-////ログアウトボタン
-//- (IBAction)btnLogout:(UIButton *)sender {
-//    //アラート表示
-//    UIAlertView *alert = [[UIAlertView alloc]
-//                          initWithTitle:@"ログアウト"
-//                          message:@"\nログアウトしてID入力画面に戻ります\nよろしいですか？"
-//                          delegate:self
-//                          cancelButtonTitle:@"Cancel"
-//                          otherButtonTitles:@"OK", nil];
-//    alert.alertViewStyle = UIAlertViewStyleDefault;
-//    [alert show];
-//}
-//
-//// ログアウトのアラートのボタンが押された時に呼ばれるデリゲート例文
-//-(void)alertView:(UIAlertView*)alertView
-//clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    
-//    switch (buttonIndex) {
-//        case 0:
-//            //１番目のボタン（キャンセル）が押されたときの処理を記述する
-//            break;
-//        case 1:
-//            //２番目のボタン（OK）が押されたときの処理を記述する
-//            //NSUserdefaultの中身を全消去する
-//            [self defaultClear];
-//            //Segueを実行して画面遷移
-//            [self performSegueWithIdentifier:@"bunsekiToLogin" sender:self];
-//            break;
-//    }
-//}
-
-////時給だけ残してNSUserdefaltの中身を消去するメソッド
-//-(void)defaultClear{
-//    //NSUserdefaltの中身を消去
-//    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
-//    //時給をNSUserDefaultで保存
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSNumber *num = [NSNumber numberWithFloat:app.jikyu];
-//    [defaults setObject:num forKey:@"時給"];
-//}
-////ログアウト関連ここまで-----------------------------------
-
-
 //メール送信関連ここから-----------------------------------
 //メール送信ボタン
 - (IBAction)btnSendMail:(UIButton *)sender {
@@ -189,8 +118,8 @@
     [self bunseki];
 }
 
+//データベースを読み込んでラベルに表示すると同時にメール用の文章も作成するメソッド
 -(void)bunseki{
-    //データベースを読み込んでラベルに表示すると同時にメール用の文章も作成する
     //DBファイルのパス
     paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
     dir   = [paths objectAtIndex:0];

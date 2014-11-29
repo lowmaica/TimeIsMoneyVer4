@@ -12,4 +12,9 @@
 
 @interface NPViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *projectNameField;
+@property (weak, nonatomic) IBOutlet UITextField *clientNameField;
+@property (weak, nonatomic) IBOutlet UITextField *genleNameField;
+@property (weak, nonatomic) IBOutlet UITextField *housyuField;
+
 @end
