@@ -28,6 +28,9 @@
     self.tabBarController.delegate = self;
     app = [[UIApplication sharedApplication] delegate]; //変数管理のデリゲート
     
+    // アプリに登録されている全ての通知を削除
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
     [super viewDidLoad];
 
     //DBファイルのパス

@@ -215,6 +215,9 @@
 
 //開始／停止ボタンをおした時の動作
 - (IBAction)startStopButton:(id)sender {
+    // アプリに登録されている全ての通知を削除（万が一残っていた場合のことを考えて）
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
     if ([myTimer isValid]) { //myTimerが動いている場合止める
         [myTimer invalidate];
         // アプリに登録されている全ての通知を削除
@@ -238,7 +241,17 @@
 
 //終了ボタン
 - (IBAction)finishBtn:(UIButton *)sender {
+    // アプリに登録されている全ての通知を削除
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
     [self saveTime]; //経過時間を保存
     [mySound soundRegi]; //レジの音
 }
+
+//戻るボタン
+- (IBAction)btnBack:(UIButton *)sender {
+    // アプリに登録されている全ての通知を削除
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
+
 @end
